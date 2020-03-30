@@ -34,7 +34,7 @@ class Horse extends React.Component {
           this.state.fizzBussList.map((x, i) => // thiccboi arrow doesn't need var
             (<li>
               <button onClick={() => this.increment(i)}>done</button>
-              <b>{x}y</b> {"Count is "
+              <font color='red'>{x}y</font> {"Count is "
               + (this.state.timesClicked[i] || 0)}
             </li>) ) // single statement can be in multiple lines
         }
