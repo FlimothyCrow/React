@@ -5,7 +5,8 @@ class FizzBuzzPrinter extends React.Component {
   constructor(props){
         super(props);
         this.state = {
-          fizzBussList:fizzBuzz()
+          fizzBussList:fizzBuzz(),
+          newItem:""
         };
   }
   removeTarget(index){
@@ -13,8 +14,18 @@ class FizzBuzzPrinter extends React.Component {
     this.setState({fizzBussList:this.state.fizzBussList}) // render triggers from setState
   }
 
+  addToList(string){
+    this.state.fizzBussList.push(string)
+    this.setState({fizzBussList:this.state.fizzBussList, newItem:""})
+  }
+
   render(){
     return(
+      <>
+      <input type="text" value={this.state.newItem}
+        onChange={(event) => this.setState({newItem:event.target.value})}>
+      </input>
+      <button onClick={() => this.addToList(this.state.newItem)}>Add</button>
       <ul>
         {this.state.fizzBussList.map((iter, index) => { // iter === 1, index === 0th
           var color = "green"
@@ -24,12 +35,13 @@ class FizzBuzzPrinter extends React.Component {
             color = "red"
             buttonText = "S"
           }
-          return (<li style={{color:color}}>
+          return (<li style={{color:color}} key={index}>
             <button onClick={() => this.removeTarget(index)}>{buttonText}</button>
             {iter}</li>)
         }
         )}
       </ul>
+      </>
     );
   }
 }
