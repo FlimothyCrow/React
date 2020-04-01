@@ -1,7 +1,6 @@
 
 export function reduceFun(listOfThings, reduceFN, seed) {
     return listOfThings.reduce(reduceFN, seed);
-
 }
 
 
