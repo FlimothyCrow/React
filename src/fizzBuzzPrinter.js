@@ -37,7 +37,8 @@ class FizzBuzzPrinter extends React.Component {
       <input type="text" value={this.state.newItem}
         onChange={(event) => this.setState({newItem:event.target.value})}>
       </input>
-      <button onClick={() => this.addToList(this.state.newItem)}>Add</button>
+      {this.state.newItem && // if first === true, evaluate second, else skip second and return false
+        (<button onClick={() => this.addToList(this.state.newItem)}>Add</button>)}
       <ul>
         {this.state.fizzBussList.map((iter, index) => { // iter === 1, index === 0th
           return (<li style={{color:"red"}} key={index}>
@@ -54,5 +55,12 @@ class FizzBuzzPrinter extends React.Component {
     );
   }
 }
+// what have we learned today?
+// ternary operators
+// not ! see line 29
+// && if both assertions === true, return second thing, else return false
 
+// || if first expression === true, return first expression,
+// else if second expression === true, return second expression
+// else return false
 export default FizzBuzzPrinter
