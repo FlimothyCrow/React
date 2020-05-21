@@ -26,7 +26,7 @@ class FizzBuzzPrinter extends React.Component {
   }
 
   toggleCompleted(index){
-    this.state.fizzBussList[index].completed = ! this.state.fizzBussList[index].completed
+    this.state.fizzBussList[index].completed = (! this.state.fizzBussList[index].completed)
     this.setState({fizzBussList:this.state.fizzBussList})
   }
 
@@ -39,25 +39,30 @@ class FizzBuzzPrinter extends React.Component {
       </input>
       {this.state.newItem && // if first === true, evaluate second, else skip second and return false
         (<button onClick={() => this.addToList(this.state.newItem)}>Add</button>)}
-      <ul>
+      <table>
         {this.state.fizzBussList.map((iter, index) => { // iter === 1, index === 0th
-          return (<li style={{color:"red"}} key={index}>
-            <button onClick={() => this.removeTarget(index)}>delete</button>
-            {iter.chore}
-            {iter.completed?" completed ":" to do "}
-            <button onClick={() => this.toggleCompleted(index)}>
-            {iter.completed?" redo ":" done "}</button>
-            </li>)
+          return (<tr style={{color:"red"}} key={index}>
+
+            <td>{iter.chore}</td>
+            <td>{iter.completed?"done":"to do"}</td>
+            <td>
+              <button onClick={() => this.toggleCompleted(index)}>
+                {iter.completed?"redo":"done"}
+              </button>
+            </td>
+            <td><button onClick={() => this.removeTarget(index)}>delete</button></td>
+            </tr>)
         }
         )}
-      </ul>
+      </table>
       </>
     );
   }
 }
 // what have we learned today?
-// ternary operators
-// not ! see line 29
+// ternary operators are super short conditionals line 47
+//  iter.completed?"done":"to do" // is completed true? "done" else "to do"
+// boolean = (! boolean) flips boolean from true > false
 // && if both assertions === true, return second thing, else return false
 
 // || if first expression === true, return first expression,
