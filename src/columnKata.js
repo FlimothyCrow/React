@@ -11,6 +11,11 @@ class ColumnKata extends React.Component {
     this.setState({tableOfItems:newTable, newObject:{date:"", description:""}})
   }
 
+  flipItems(){
+    this.setState({newObject:{date:this.state.newObject.description,
+                              description:this.state.newObject.date}})
+  }
+
   render(){
     console.log("state", this.state)
     return(
@@ -22,6 +27,7 @@ class ColumnKata extends React.Component {
       onChange={(event) => this.setState({newObject:{description:event.target.value,
                                                     date:this.state.newObject.date}})}/>
     <button onClick={() => this.addToList(this.state.newObject)}>Add</button>
+    <button onClick={() => this.flipItems()}>Flip</button>
     <table>
       <tbody>
       <tr>
@@ -45,5 +51,6 @@ export default ColumnKata
 // second input but single button to add both
 // inputs on 17 and 20 generate object{newObject}
 // button on 23 feeds newObject into addToList call
+// line 23 value=() is default draw before input is initiated
 // render function is always looping
 // setState automatically calls a reRender
