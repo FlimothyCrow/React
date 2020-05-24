@@ -28,6 +28,7 @@ class ColumnKata extends React.Component {
                                                     date:this.state.newObject.date}})}/>
     <button onClick={() => this.addToList(this.state.newObject)}>Add</button>
     <button onClick={() => this.flipItems()}>Flip</button>
+    <font color="red">
     <table>
       <tbody>
       <tr>
@@ -41,6 +42,7 @@ class ColumnKata extends React.Component {
                </tr>)})}
       </tbody>
     </table>
+    </font>
     </>
   )}
 }
