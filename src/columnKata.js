@@ -3,7 +3,7 @@ import React from 'react';
 class ColumnKata extends React.Component {
   constructor(props){
         super(props);
-        this.state = {newObject:{date:"", description:""},
+        this.state = {newObject:{date:"", description:"", doneness:false},
                       tableOfItems:[]};
   }
   addToList(input){
@@ -14,6 +14,23 @@ class ColumnKata extends React.Component {
   flipItems(){
     this.setState({newObject:{date:this.state.newObject.description,
                               description:this.state.newObject.date}})
+  }
+
+  alphabetizeOrder(a, b) {
+      var nameA = a.date.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.date.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0; // if a === b
+    }
+
+  toDoButton(index){
+    this.state.tableOfItems[index].doneness = (! this.state.tableOfItems[index].doneness)
+    this.setState({tableOfItems:this.state.tableOfItems})
   }
 
   render(){
@@ -34,11 +51,17 @@ class ColumnKata extends React.Component {
       <tr>
         <th>date</th>
         <th>description</th>
+        <th>done????</th>
       </tr>
-      {this.state.tableOfItems.map((iter, index) => { // iter === 1, index === 0th
+      {this.state.tableOfItems.sort(this.alphabetizeOrder).map((iter, index) => { // iter === 1, index === 0th
         return (<tr key={index}>
                   <td>{iter.date}</td>
                   <td>{iter.description}</td>
+                  <td>{iter.doneness?"done":"to do"}</td>
+                  <td><button onClick={() => this.toDoButton(index)}>
+                  {iter.doneness?"redo":"done"}
+                  </button></td>
+
                </tr>)})}
       </tbody>
     </table>
@@ -56,3 +79,4 @@ export default ColumnKata
 // line 23 value=() is default draw before input is initiated
 // render function is always looping
 // setState automatically calls a reRender
+// date alphabetically
