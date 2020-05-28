@@ -1,4 +1,5 @@
-import {reduceFun, longReduce} from './reduce.js' // ./ means "this directory"
+import {reduceFun, longReduce, doubleSort} from './reduce.js' // ./ means "this directory"
+
 
 test('reduceFun0', () => {
   var listOfInts = [1, 2]
@@ -60,3 +61,38 @@ test('longReduce0', () => {
 
 // why not rewrite old for loop katas with reduce?
 // fizzBuzz(map), pokerHand(howMany), makeCard(map || reduce)
+
+test('doubleSort', () => {
+  var arrayOfObjects = [{date:"z", description:"z", doneness:false},
+                    {date:"a", description:"a", doneness:false},
+                    {date:"l", description:"l", doneness:false},
+                    {date:"b", description:"b", doneness:true},
+                    {date:"x", description:"x", doneness:true},
+                    {date:"s", description:"s", doneness:true}]
+  var x = doubleSort(arrayOfObjects);
+
+  expect(x).toStrictEqual([
+              {date:"a", description:"a", doneness:false},
+              {date:"l", description:"l", doneness:false},
+              {date:"z", description:"z", doneness:false},
+              {date:"b", description:"b", doneness:true},
+              {date:"s", description:"s", doneness:true},
+              {date:"x", description:"x", doneness:true}]);
+});
+
+test('doubleSort1', () => {
+  var arrayOfObjects = [{date:"jerk", description:"jerk", doneness:false},
+                    {date:"small", description:"small", doneness:false},
+                    {date:"a", description:"a", doneness:false},
+                    {date:"b", description:"b", doneness:true},
+                    {date:"z", description:"z", doneness:true}]
+
+  var x = doubleSort(arrayOfObjects);
+
+  expect(x).toStrictEqual([
+              {date:"a", description:"a", doneness:false},
+              {date:"jerk", description:"jerk", doneness:false},
+              {date:"small", description:"small", doneness:false},
+              {date:"b", description:"b", doneness:true},
+              {date:"z", description:"z", doneness:true}]);
+});

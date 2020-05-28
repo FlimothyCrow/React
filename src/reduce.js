@@ -12,3 +12,26 @@ export function longReduce(listOfInts, funcToApply, starter) {
   }
   return returnValue
 }
+
+export function doubleSort(tableOfItems){
+  return tableOfItems.sort((a, b) => {
+    var doneA = a.doneness
+    var doneB = b.doneness
+    if (doneA === doneB){
+      return alphabetizeOrder(a, b)
+    }
+      return (doneA?1:-1)
+    }
+)}
+
+export function alphabetizeOrder(a, b) {
+    var nameA = a.date.toUpperCase(); // ignore upper and lowercase
+    var nameB = b.date.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0; // if a === b
+  }

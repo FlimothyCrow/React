@@ -35,8 +35,8 @@ class FizzBuzzPrinter extends React.Component {
     return(
       <>
       <input type="text" value={this.state.newItem}
-        onChange={(event) => this.setState({newItem:event.target.value})}>
-      </input>
+        onChange={(event) => this.setState({newItem:event.target.value})}/>
+
       {this.state.newItem && // if first === true, evaluate second, else skip second and return false
         (<button onClick={() => this.addToList(this.state.newItem)}>Add</button>)}
       <table>

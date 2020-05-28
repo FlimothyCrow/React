@@ -1,4 +1,5 @@
 import React from 'react';
+import {alphabetizeOrder, doubleSort} from './reduce.js'
 
 class ColumnKata extends React.Component {
   constructor(props){
@@ -16,17 +17,7 @@ class ColumnKata extends React.Component {
                               description:this.state.newObject.date}})
   }
 
-  alphabetizeOrder(a, b) {
-      var nameA = a.date.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.date.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0; // if a === b
-    }
+
 
   toDoButton(index){
     this.state.tableOfItems[index].doneness = (! this.state.tableOfItems[index].doneness)
@@ -53,7 +44,7 @@ class ColumnKata extends React.Component {
         <th>description</th>
         <th>done????</th>
       </tr>
-      {this.state.tableOfItems.sort(this.alphabetizeOrder).map((iter, index) => { // iter === 1, index === 0th
+      {doubleSort(this.state.tableOfItems).map((iter, index) => { // iter === 1, index === 0th
         return (<tr key={index}>
                   <td>{iter.date}</td>
                   <td>{iter.description}</td>
@@ -74,9 +65,13 @@ export default ColumnKata
 // tableOfItems should be listOfObjects
 // line 26 {iter.date} {iter.description}
 // second input but single button to add both
+
 // inputs on 17 and 20 generate object{newObject}
 // button on 23 feeds newObject into addToList call
 // line 23 value=() is default draw before input is initiated
 // render function is always looping
 // setState automatically calls a reRender
-// date alphabetically
+
+// line 67, passing a function as a lambda neeeds .bind(this) to preserve this data
+// line 58 doesn't need it because thiccboi arrow preserves this data
+// otherwise you'll get a "this" data not defined error
