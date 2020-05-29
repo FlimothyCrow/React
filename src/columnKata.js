@@ -32,6 +32,7 @@ class ColumnKata extends React.Component {
     this.setState({tableOfItems:this.state.tableOfItems})
   }
 
+
   render(){
     console.log("state", this.state)
     return(
@@ -92,3 +93,5 @@ export default ColumnKata
 // line 67, passing a function as a lambda neeeds .bind(this) to preserve this data
 // line 58 doesn't need it because thiccboi arrow preserves this data
 // otherwise you'll get a "this" data not defined error
+
+// what's the difference between semantic tags and semantic classses in CSS?
