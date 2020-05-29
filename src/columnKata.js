@@ -12,11 +12,15 @@ class ColumnKata extends React.Component {
     this.setState({tableOfItems:newTable, newObject:{date:"", description:""}})
   }
 
+  removeFromList(index){
+    this.state.tableOfItems.splice(index, 1)
+    this.setState({tableOfItems:this.state.tableOfItems})
+  }
+
   flipItems(){
     this.setState({newObject:{date:this.state.newObject.description,
                               description:this.state.newObject.date}})
   }
-
 
 
   toDoButton(index){
@@ -42,7 +46,8 @@ class ColumnKata extends React.Component {
       <tr>
         <th>date</th>
         <th>description</th>
-        <th>done????</th>
+        <th>done?</th>
+        <th></th>
       </tr>
       {doubleSort(this.state.tableOfItems).map((iter, index) => { // iter === 1, index === 0th
         return (<tr key={index}>
@@ -52,7 +57,8 @@ class ColumnKata extends React.Component {
                   <td><button onClick={() => this.toDoButton(index)}>
                   {iter.doneness?"redo":"done"}
                   </button></td>
-
+                  <td><button onClick={() => this.removeFromList(index)}>
+                  delete</button></td>
                </tr>)})}
       </tbody>
     </table>
