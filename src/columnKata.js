@@ -32,15 +32,22 @@ class ColumnKata extends React.Component {
     console.log("state", this.state)
     return(
     <>
-    <input type="text" value={this.state.newObject.date}
+    <div>
+    <label for="date">Date</label>
+    <input className="inputs" id="date" type="text" value={this.state.newObject.date}
       onChange={(event) => this.setState({newObject:{date:event.target.value,
                                                     description:this.state.newObject.description}})}/>
-    <input type="text" value={this.state.newObject.description}
+    </div>
+    <div>
+    <label for="description">Description</label>
+    <input className="inputs" id="description" type="text" value={this.state.newObject.description}
       onChange={(event) => this.setState({newObject:{description:event.target.value,
                                                     date:this.state.newObject.date}})}/>
-    <button onClick={() => this.addToList(this.state.newObject)}>Add</button>
-    <button onClick={() => this.flipItems()}>Flip</button>
-    <font color="red">
+    </div>
+    <div>
+    <button className="buttons" onClick={() => this.addToList(this.state.newObject)}>Add</button>
+    <button className="buttons" onClick={() => this.flipItems()}>Flip</button>
+    </div>
     <table>
       <tbody>
       <tr>
@@ -48,21 +55,21 @@ class ColumnKata extends React.Component {
         <th>description</th>
         <th>done?</th>
         <th></th>
+        <th></th>
       </tr>
       {doubleSort(this.state.tableOfItems).map((iter, index) => { // iter === 1, index === 0th
         return (<tr key={index}>
                   <td>{iter.date}</td>
                   <td>{iter.description}</td>
                   <td>{iter.doneness?"done":"to do"}</td>
-                  <td><button onClick={() => this.toDoButton(index)}>
+                  <td><button className="buttons" onClick={() => this.toDoButton(index)}>
                   {iter.doneness?"redo":"done"}
                   </button></td>
-                  <td><button onClick={() => this.removeFromList(index)}>
+                  <td><button className="buttons" onClick={() => this.removeFromList(index)}>
                   delete</button></td>
                </tr>)})}
       </tbody>
     </table>
-    </font>
     </>
   )}
 }
