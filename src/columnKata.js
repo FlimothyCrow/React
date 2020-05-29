@@ -5,7 +5,11 @@ class ColumnKata extends React.Component {
   constructor(props){
         super(props);
         this.state = {newObject:{date:"", description:"", doneness:false},
-                      tableOfItems:[]};
+                      tableOfItems:[{date:"a", description:"a", doneness:false},
+                      {date:"l", description:"l", doneness:false},
+                      {date:"b", description:"b", doneness:true},
+                      {date:"x", description:"x", doneness:true},
+                      {date:"s", description:"s", doneness:true}]};
   }
   addToList(input){
     var newTable = this.state.tableOfItems.concat([input])
@@ -34,19 +38,19 @@ class ColumnKata extends React.Component {
     <>
     <div>
     <label for="date">Date</label>
-    <input className="inputs" id="date" type="text" value={this.state.newObject.date}
+    <input id="date" type="text" value={this.state.newObject.date}
       onChange={(event) => this.setState({newObject:{date:event.target.value,
                                                     description:this.state.newObject.description}})}/>
     </div>
     <div>
     <label for="description">Description</label>
-    <input className="inputs" id="description" type="text" value={this.state.newObject.description}
+    <input id="description" type="text" value={this.state.newObject.description}
       onChange={(event) => this.setState({newObject:{description:event.target.value,
                                                     date:this.state.newObject.date}})}/>
     </div>
     <div>
-    <button className="buttons" onClick={() => this.addToList(this.state.newObject)}>Add</button>
-    <button className="buttons" onClick={() => this.flipItems()}>Flip</button>
+    <button onClick={() => this.addToList(this.state.newObject)}>Add</button>
+    <button onClick={() => this.flipItems()}>Flip</button>
     </div>
     <table>
       <tbody>
@@ -62,10 +66,10 @@ class ColumnKata extends React.Component {
                   <td>{iter.date}</td>
                   <td>{iter.description}</td>
                   <td>{iter.doneness?"done":"to do"}</td>
-                  <td><button className="buttons" onClick={() => this.toDoButton(index)}>
+                  <td><button className={iter.doneness?"warningColor":"done"} onClick={() => this.toDoButton(index)}>
                   {iter.doneness?"redo":"done"}
                   </button></td>
-                  <td><button className="buttons" onClick={() => this.removeFromList(index)}>
+                  <td><button className="warningColor" onClick={() => this.removeFromList(index)}>
                   delete</button></td>
                </tr>)})}
       </tbody>
