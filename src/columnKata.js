@@ -4,16 +4,15 @@ import {alphabetizeOrder, doubleSort} from './reduce.js'
 class ColumnKata extends React.Component {
   constructor(props){
         super(props);
-        this.state = {newObject:{date:"", description:"", doneness:false},
-                      tableOfItems:[{date:"a", description:"a", doneness:false},
-                      {date:"l", description:"l", doneness:false},
-                      {date:"b", description:"b", doneness:true},
-                      {date:"x", description:"x", doneness:true},
-                      {date:"s", description:"s", doneness:true}]};
+        this.state = {newObject:{date:"", exercise:"", sets:"",
+                                 reps:"", weight:"", doneness:false},
+                      tableOfItems:[],
+                      showCreate:false};
   }
   addToList(input){
     var newTable = this.state.tableOfItems.concat([input])
-    this.setState({tableOfItems:newTable, newObject:{date:"", description:""}})
+    this.setState({tableOfItems:newTable, showCreate:false, newObject:{date:"", exercise:"",
+                                                    sets:"", reps:"", weight:""}})
   }
 
   removeFromList(index){
@@ -21,9 +20,9 @@ class ColumnKata extends React.Component {
     this.setState({tableOfItems:this.state.tableOfItems})
   }
 
-  flipItems(){
-    this.setState({newObject:{date:this.state.newObject.description,
-                              description:this.state.newObject.date}})
+  clearFields(){
+    this.setState({newObject:{date:"", exercise:"",
+                              sets:"", reps:"", weight:""}})
   }
 
 
@@ -34,42 +33,71 @@ class ColumnKata extends React.Component {
 
 
   render(){
-    console.log("state", this.state)
-    return(
-    <>
+    var createNewFragment =  (<>
+
     <div>
     <label for="date">Date</label>
     <input id="date" type="text" value={this.state.newObject.date}
-      onChange={(event) => this.setState({newObject:{date:event.target.value,
-                                                    description:this.state.newObject.description}})}/>
+      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {date:event.target.value})})}/>
     </div>
+
     <div>
-    <label for="description">Description</label>
-    <input id="description" type="text" value={this.state.newObject.description}
-      onChange={(event) => this.setState({newObject:{description:event.target.value,
-                                                    date:this.state.newObject.date}})}/>
+    <label for="exercise">exercise</label>
+    <input id="exercise" type="text" value={this.state.newObject.exercise}
+      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {exercise:event.target.value})})}/>
     </div>
+
+    <div>
+    <label for="sets">sets</label>
+    <input id="sets" type="text" value={this.state.newObject.sets}
+      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {sets:event.target.value})})}/>
+    </div>
+
+    <div>
+    <label for="reps">reps</label>
+    <input id="reps" type="text" value={this.state.newObject.reps}
+      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {reps:event.target.value})})}/>
+    </div>
+
+    <div>
+    <label for="weight">weight</label>
+    <input id="weight" type="text" value={this.state.newObject.weight}
+      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {weight:event.target.value})})}/>
+    </div>
+
+
     <div>
     <button onClick={() => this.addToList(this.state.newObject)}>Add</button>
-    <button onClick={() => this.flipItems()}>Flip</button>
+    <button onClick={() => this.clearFields()}>Clear</button>
     </div>
+
+    </>);
+
+    return(
+    <>
+    <button onClick={() => {
+      this.setState({showCreate:! this.state.showCreate});
+      this.clearFields();
+    }}>Create new entry</button>
+    {this.state.showCreate && createNewFragment}
+
     <table>
       <tbody>
       <tr>
         <th>date</th>
-        <th>description</th>
-        <th>done?</th>
-        <th></th>
+        <th>exercise</th>
+        <th>sets</th>
+        <th>reps</th>
+        <th>weight</th>
         <th></th>
       </tr>
       {doubleSort(this.state.tableOfItems).map((iter, index) => { // iter === 1, index === 0th
         return (<tr key={index}>
                   <td>{iter.date}</td>
-                  <td>{iter.description}</td>
-                  <td>{iter.doneness?"done":"to do"}</td>
-                  <td><button className={iter.doneness?"warningColor":"done"} onClick={() => this.toDoButton(index)}>
-                  {iter.doneness?"redo":"done"}
-                  </button></td>
+                  <td>{iter.exercise}</td>
+                  <td>{iter.sets}</td>
+                  <td>{iter.reps}</td>
+                  <td>{iter.weight}</td>
                   <td><button className="warningColor" onClick={() => this.removeFromList(index)}>
                   delete</button></td>
                </tr>)})}
@@ -79,9 +107,9 @@ class ColumnKata extends React.Component {
   )}
 }
 export default ColumnKata
-// newObject (description:"", date:"")
+// newObject (exercise:"", date:"")
 // tableOfItems should be listOfObjects
-// line 26 {iter.date} {iter.description}
+// line 26 {iter.date} {iter.exercise}
 // second input but single button to add both
 
 // inputs on 17 and 20 generate object{newObject}
@@ -94,4 +122,24 @@ export default ColumnKata
 // line 58 doesn't need it because thiccboi arrow preserves this data
 // otherwise you'll get a "this" data not defined error
 
+
 // what's the difference between semantic tags and semantic classses in CSS?
+
+
+// what happens when we host a website?
+// we run a tool in NPM that converts typescript > javascript
+// the conversion code is executed on the development machine (PC)
+// the end user is seeing it "hosted"
+// the "server" in this case is our file system
+// any file on the system is "served" to the browser
+
+// Date
+// exercise
+// sets
+// reps
+// weight
+
+// const returnedTarget = Object.assign(target, source);
+// atom plugin rainbows parens
+// line 79 && returns the second input
+// line 79, if you want multiple function calls within a thiccboi, you have to {} each statement
