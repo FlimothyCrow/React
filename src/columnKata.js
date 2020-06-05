@@ -40,6 +40,7 @@ class ColumnKata extends React.Component {
         <th>reps</th>
         <th>sets</th>
         <th>weight</th>
+        <th>total</th>
         <th></th>
       </tr>
       {doubleSort(this.state.tableOfItems).map((iter, index) => { // iter === 1, index === 0th
@@ -49,6 +50,7 @@ class ColumnKata extends React.Component {
                   <td>{iter.reps}</td>
                   <td>{iter.sets}</td>
                   <td>{iter.weight}</td>
+                  <td>{iter.weight * iter.sets * iter.reps}</td>
                   <td><button className="warningColor" onClick={() => this.removeFromList(index)}>
                   delete</button></td>
                </tr>)})}

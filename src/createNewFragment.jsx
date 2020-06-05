@@ -5,7 +5,7 @@ class CreateNewFragment extends React.Component {
   constructor(props){
         super(props);
         this.state = {date:"", exercise:"", sets:"",
-                                 reps:"", weight:"", doneness:false}
+                                 reps:"", weight:""}
   }
 
   clearFields(){
@@ -31,19 +31,19 @@ class CreateNewFragment extends React.Component {
 
     <div>
     <label for="reps">reps</label>
-    <input id="reps" type="text" value={this.state.reps}
+    <input id="reps" type="number" value={this.state.reps}
       onChange={(event) => this.setState({reps:event.target.value})}/>
     </div>
 
     <div>
     <label for="sets">sets</label>
-    <input id="sets" type="text" value={this.state.sets}
+    <input id="sets" type="number" value={this.state.sets}
       onChange={(event) => this.setState({sets:event.target.value})}/>
     </div>
 
     <div>
     <label for="weight">weight</label>
-    <input id="weight" type="text" value={this.state.weight}
+    <input id="weight" type="number" value={this.state.weight}
       onChange={(event) => this.setState({weight:event.target.value})}/>
     </div>
 
