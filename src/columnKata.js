@@ -1,11 +1,11 @@
 import React from 'react';
 import {alphabetizeOrder, doubleSort} from './reduce.js'
+import CreateNewFragment from './createNewFragment'
 
 class ColumnKata extends React.Component {
   constructor(props){
         super(props);
-        this.state = {newObject:{date:"", exercise:"", sets:"",
-                                 reps:"", weight:"", doneness:false},
+        this.state = {
                       tableOfItems:JSON.parse(localStorage.getItem("tableOfItems") || "[]"),
                       showCreate:false};
 
@@ -14,8 +14,7 @@ class ColumnKata extends React.Component {
   addToList(input){
     var newTable = this.state.tableOfItems.concat([input])
     localStorage.setItem("tableOfItems", JSON.stringify(newTable));
-    this.setState({tableOfItems:newTable, showCreate:false, newObject:{date:"", exercise:"",
-                                                    sets:"", reps:"", weight:""}})
+    this.setState({tableOfItems:newTable, showCreate:false})
   }
 
   removeFromList(index){
@@ -24,65 +23,14 @@ class ColumnKata extends React.Component {
     this.setState({tableOfItems:this.state.tableOfItems})
   }
 
-  clearFields(){
-    this.setState({newObject:{date:"", exercise:"",
-                              sets:"", reps:"", weight:""}})
-  }
-
-
-  toDoButton(index){
-    this.state.tableOfItems[index].doneness = (! this.state.tableOfItems[index].doneness)
-    this.setState({tableOfItems:this.state.tableOfItems})
-  }
-
-
   render(){
-    var createNewFragment =  (<>
-
-    <div>
-    <label for="date">Date</label>
-    <input id="date" type="text" value={this.state.newObject.date}
-      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {date:event.target.value})})}/>
-    </div>
-
-    <div>
-    <label for="exercise">exercise</label>
-    <input id="exercise" type="text" value={this.state.newObject.exercise}
-      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {exercise:event.target.value})})}/>
-    </div>
-
-    <div>
-    <label for="reps">reps</label>
-    <input id="reps" type="text" value={this.state.newObject.reps}
-      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {reps:event.target.value})})}/>
-    </div>
-
-    <div>
-    <label for="sets">sets</label>
-    <input id="sets" type="text" value={this.state.newObject.sets}
-      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {sets:event.target.value})})}/>
-    </div>
-
-    <div>
-    <label for="weight">weight</label>
-    <input id="weight" type="text" value={this.state.newObject.weight}
-      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {weight:event.target.value})})}/>
-    </div>
-
-    <div>
-    <button onClick={() => this.addToList(this.state.newObject)}>Add</button>
-    <button onClick={() => this.clearFields()}>Clear</button>
-    </div>
-
-    </>);
 
     return(
     <>
     <button onClick={() => {
       this.setState({showCreate:! this.state.showCreate});
-      this.clearFields();
     }}>Create new entry</button>
-    {this.state.showCreate && createNewFragment}
+    {this.state.showCreate && <CreateNewFragment addToList={(newObject) => this.addToList(newObject)}/>}
 
     <table>
       <tbody>
