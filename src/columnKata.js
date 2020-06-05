@@ -6,17 +6,21 @@ class ColumnKata extends React.Component {
         super(props);
         this.state = {newObject:{date:"", exercise:"", sets:"",
                                  reps:"", weight:"", doneness:false},
-                      tableOfItems:[],
+                      tableOfItems:JSON.parse(localStorage.getItem("tableOfItems") || "[]"),
                       showCreate:false};
+
+
   }
   addToList(input){
     var newTable = this.state.tableOfItems.concat([input])
+    localStorage.setItem("tableOfItems", JSON.stringify(newTable));
     this.setState({tableOfItems:newTable, showCreate:false, newObject:{date:"", exercise:"",
                                                     sets:"", reps:"", weight:""}})
   }
 
   removeFromList(index){
     this.state.tableOfItems.splice(index, 1)
+    localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
     this.setState({tableOfItems:this.state.tableOfItems})
   }
 
@@ -48,15 +52,15 @@ class ColumnKata extends React.Component {
     </div>
 
     <div>
-    <label for="sets">sets</label>
-    <input id="sets" type="text" value={this.state.newObject.sets}
-      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {sets:event.target.value})})}/>
-    </div>
-
-    <div>
     <label for="reps">reps</label>
     <input id="reps" type="text" value={this.state.newObject.reps}
       onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {reps:event.target.value})})}/>
+    </div>
+
+    <div>
+    <label for="sets">sets</label>
+    <input id="sets" type="text" value={this.state.newObject.sets}
+      onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {sets:event.target.value})})}/>
     </div>
 
     <div>
@@ -64,7 +68,6 @@ class ColumnKata extends React.Component {
     <input id="weight" type="text" value={this.state.newObject.weight}
       onChange={(event) => this.setState({newObject:Object.assign(this.state.newObject, {weight:event.target.value})})}/>
     </div>
-
 
     <div>
     <button onClick={() => this.addToList(this.state.newObject)}>Add</button>
@@ -86,8 +89,8 @@ class ColumnKata extends React.Component {
       <tr>
         <th>date</th>
         <th>exercise</th>
-        <th>sets</th>
         <th>reps</th>
+        <th>sets</th>
         <th>weight</th>
         <th></th>
       </tr>
@@ -95,8 +98,8 @@ class ColumnKata extends React.Component {
         return (<tr key={index}>
                   <td>{iter.date}</td>
                   <td>{iter.exercise}</td>
-                  <td>{iter.sets}</td>
                   <td>{iter.reps}</td>
+                  <td>{iter.sets}</td>
                   <td>{iter.weight}</td>
                   <td><button className="warningColor" onClick={() => this.removeFromList(index)}>
                   delete</button></td>
@@ -143,3 +146,6 @@ export default ColumnKata
 // atom plugin rainbows parens
 // line 79 && returns the second input
 // line 79, if you want multiple function calls within a thiccboi, you have to {} each statement
+
+// localStorage can only accept strings
+// why not edit a previous entry?
