@@ -43,26 +43,42 @@ class ColumnKata extends React.Component {
         <th>total</th>
         <th></th>
       </tr>
-      {doubleSort(this.state.tableOfItems).map((iter, index) => { // iter === 1, index === 0th
-        return (<tr key={index}>
-                  <td>{iter.date}</td>
-                  <td>{iter.exercise}</td>
-                  <td>{iter.reps}</td>
-                  <td>{iter.sets}</td>
-                  <td>{iter.weight}</td>
-                  <td>{iter.weight * iter.sets * iter.reps}</td>
-                  <td><button className="warningColor" onClick={() => this.removeFromList(index)}>
-                  delete</button></td>
-               </tr>)})}
+      {doubleSort(this.state.tableOfItems).map((day, index) => { // day === 1, index === 0th
+        return (<>
+
+                  {day.exercises.map((exercise, exerciseIdx) => {
+                    let date = undefined
+                    if (exerciseIdx === 0) {
+                      date = (<td rowSpan="2">{day.date}</td>)
+                    }
+                      return(
+                      <>
+                      <tr>
+                      {date}
+                      <td>{exercise.description}</td>
+                      <td>{exercise.reps}</td>
+                      <td>{exercise.sets}</td>
+                      <td>{exercise.weight}</td>
+                      <td>{exercise.weight * exercise.sets * exercise.reps}</td>
+                      <td><button className="warningColor" onClick={() => this.removeFromList(index)}>
+                      delete</button></td>
+                      </tr>
+                      </>
+
+                    )
+                  })}
+
+
+               </>)})}
       </tbody>
     </table>
     </>
   )}
 }
 export default ColumnKata
-// newObject (exercise:"", date:"")
+// newObject (exercises:"", date:"")
 // tableOfItems should be listOfObjects
-// line 26 {iter.date} {iter.exercise}
+// line 26 {day.date} {day.exercises}
 // second input but single button to add both
 
 // inputs on 17 and 20 generate object{newObject}
@@ -87,7 +103,7 @@ export default ColumnKata
 // any file on the system is "served" to the browser
 
 // Date
-// exercise
+// exercises
 // sets
 // reps
 // weight
