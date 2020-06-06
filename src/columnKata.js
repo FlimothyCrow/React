@@ -1,81 +1,99 @@
-import React from 'react';
-import {alphabetizeOrder, doubleSort} from './reduce.js'
-import CreateNewFragment from './createNewFragment'
+import React from "react";
+import { alphabetizeOrder, doubleSort } from "./reduce.js";
+import CreateNewFragment from "./createNewFragment";
 
 class ColumnKata extends React.Component {
-  constructor(props){
-        super(props);
-        this.state = {
-                      tableOfItems:JSON.parse(localStorage.getItem("tableOfItems") || "[]"),
-                      showCreate:false};
-
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableOfItems: JSON.parse(localStorage.getItem("tableOfItems") || "[]"),
+      showCreate: false,
+    };
   }
-  addToList(input){
-    var newTable = this.state.tableOfItems.concat([input])
+  addToList(input) {
+    var newTable = this.state.tableOfItems.concat([input]);
     localStorage.setItem("tableOfItems", JSON.stringify(newTable));
-    this.setState({tableOfItems:newTable, showCreate:false})
+    this.setState({ tableOfItems: newTable, showCreate: false });
   }
 
-  removeFromList(index){
-    this.state.tableOfItems.splice(index, 1)
-    localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
-    this.setState({tableOfItems:this.state.tableOfItems})
+  removeFromList(index) {
+    this.state.tableOfItems.splice(index, 1);
+    localStorage.setItem(
+      "tableOfItems",
+      JSON.stringify(this.state.tableOfItems)
+    );
+    this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
-  render(){
+  render() {
+    return (
+      <>
+        <button
+          onClick={() => {
+            this.setState({ showCreate: !this.state.showCreate });
+          }}
+        >
+          Create new entry
+        </button>
+        {this.state.showCreate && (
+          <CreateNewFragment
+            addToList={(newObject) => this.addToList(newObject)}
+          />
+        )}
 
-    return(
-    <>
-    <button onClick={() => {
-      this.setState({showCreate:! this.state.showCreate});
-    }}>Create new entry</button>
-    {this.state.showCreate && <CreateNewFragment addToList={(newObject) => this.addToList(newObject)}/>}
-
-    <table>
-      <tbody>
-      <tr>
-        <th>date</th>
-        <th>exercise</th>
-        <th>reps</th>
-        <th>sets</th>
-        <th>weight</th>
-        <th>total</th>
-        <th></th>
-      </tr>
-      {doubleSort(this.state.tableOfItems).map((day, index) => { // day === 1, index === 0th
-        return (<>
-
+        <table>
+          <tbody>
+            <tr>
+              <th>date</th>
+              <th>exercise</th>
+              <th>reps</th>
+              <th>sets</th>
+              <th>weight</th>
+              <th>total</th>
+              <th></th>
+            </tr>
+            {doubleSort(this.state.tableOfItems).map((day, index) => {
+              // day === 1, index === 0th
+              return (
+                <>
                   {day.exercises.map((exercise, exerciseIdx) => {
-                    let date = undefined
+                    let date = undefined;
                     if (exerciseIdx === 0) {
-                      date = (<td rowSpan="2">{day.date}</td>)
+                      date = <td rowSpan="2">{day.date}</td>;
                     }
-                      return(
+                    return (
                       <>
-                      <tr>
-                      {date}
-                      <td>{exercise.description}</td>
-                      <td>{exercise.reps}</td>
-                      <td>{exercise.sets}</td>
-                      <td>{exercise.weight}</td>
-                      <td>{exercise.weight * exercise.sets * exercise.reps}</td>
-                      <td><button className="warningColor" onClick={() => this.removeFromList(index)}>
-                      delete</button></td>
-                      </tr>
+                        <tr>
+                          {date}
+                          <td>{exercise.description}</td>
+                          <td>{exercise.reps}</td>
+                          <td>{exercise.sets}</td>
+                          <td>{exercise.weight}</td>
+                          <td>
+                            {exercise.weight * exercise.sets * exercise.reps}
+                          </td>
+                          <td>
+                            <button
+                              className="warningColor"
+                              onClick={() => this.removeFromList(index)}
+                            >
+                              delete
+                            </button>
+                          </td>
+                        </tr>
                       </>
-
-                    )
+                    );
                   })}
-
-
-               </>)})}
-      </tbody>
-    </table>
-    </>
-  )}
+                </>
+              );
+            })}
+          </tbody>
+        </table>
+      </>
+    );
+  }
 }
-export default ColumnKata
+export default ColumnKata;
 // newObject (exercises:"", date:"")
 // tableOfItems should be listOfObjects
 // line 26 {day.date} {day.exercises}
@@ -91,9 +109,7 @@ export default ColumnKata
 // line 58 doesn't need it because thiccboi arrow preserves this data
 // otherwise you'll get a "this" data not defined error
 
-
 // what's the difference between semantic tags and semantic classses in CSS?
-
 
 // what happens when we host a website?
 // we run a tool in NPM that converts typescript > javascript
