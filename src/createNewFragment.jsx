@@ -8,50 +8,34 @@ class CreateNewFragment extends React.Component {
                                  reps:"", weight:""}
   }
 
+  addField(title, type){
+    return (
+      <>
+      <div>
+      <label for={title}>{title}</label>
+      <input id={title} type={type} value={this.state[title]}
+        onChange={(event) => this.setState({[title]:event.target.value})}/>
+      </div>
+      </>
+    )
+  }
+
   clearFields(){
     this.setState({date:"", exercise:"", sets:"", reps:"", weight:""})
   }
 
   render(){
-
     return (
     <>
-
-    <div>
-    <label for="date">Date</label>
-    <input id="date" type="text" value={this.state.date}
-      onChange={(event) => this.setState({date:event.target.value})}/>
-    </div>
-
-    <div>
-    <label for="exercise">exercise</label>
-    <input id="exercise" type="text" value={this.state.exercise}
-      onChange={(event) => this.setState({exercise:event.target.value})}/>
-    </div>
-
-    <div>
-    <label for="reps">reps</label>
-    <input id="reps" type="number" value={this.state.reps}
-      onChange={(event) => this.setState({reps:event.target.value})}/>
-    </div>
-
-    <div>
-    <label for="sets">sets</label>
-    <input id="sets" type="number" value={this.state.sets}
-      onChange={(event) => this.setState({sets:event.target.value})}/>
-    </div>
-
-    <div>
-    <label for="weight">weight</label>
-    <input id="weight" type="number" value={this.state.weight}
-      onChange={(event) => this.setState({weight:event.target.value})}/>
-    </div>
-
+    {this.addField("date", "text")}
+    {this.addField("exercise", "text")}
+    {this.addField("reps", "number")}
+    {this.addField("sets", "number")}
+    {this.addField("weight", "number")}
     <div>
     <button onClick={() => this.props.addToList(this.state)}>Add</button>
     <button onClick={() => this.clearFields()}>Clear</button>
     </div>
-
     </>);
     }
   }
