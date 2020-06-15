@@ -1,5 +1,5 @@
 import React from "react";
-import { alphabetizeOrder, doubleSort } from "./reduce.js";
+import { doubleSort } from "./reduce.js";
 import CreateNewFragment from "./createNewFragment";
 
 class ColumnKata extends React.Component {
@@ -26,6 +26,7 @@ class ColumnKata extends React.Component {
   }
 
   render() {
+    console.log("table", this.state.tableOfItems)
     return (
       <>
         <button

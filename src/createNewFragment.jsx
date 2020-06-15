@@ -16,6 +16,24 @@ class CreateNewFragment extends React.Component {
     };
   }
 
+  exerciseField(key, type) {
+    return (
+      <>
+        <div>
+          <label>{key}</label>
+          <input
+            id={key}
+            type={type}
+            value={this.state.exercises[0][key]}
+            onChange={(event) => {
+              this.state.exercises[0][key] = event.target.value
+              this.setState(this.state)}}
+          ></input>
+        </div>
+      </>
+    );
+  }
+
   addField(title, type) {
     return (
       <>
@@ -40,6 +58,10 @@ class CreateNewFragment extends React.Component {
     return (
       <>
         {this.addField("date", "text")}
+        {this.exerciseField("description", "text")}
+        {this.exerciseField("reps", "number")}
+        {this.exerciseField("sets", "number")}
+        {this.exerciseField("weight", "number")}
 
         <div>
           <button onClick={() => this.props.addToList(this.state)}>Add</button>
