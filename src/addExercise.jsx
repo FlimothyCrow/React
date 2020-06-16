@@ -12,7 +12,7 @@ class AddExercise extends React.Component {
   }
 
 
-  addExercise(key, value) {
+  inputField(key, value) {
     return (
           <td>
           <input
@@ -29,12 +29,12 @@ class AddExercise extends React.Component {
   render() {
     return (
       <>
-      {this.addExercise("description", "curls")}
-      {this.addExercise("sets", "5")}
-      {this.addExercise("reps", "4")}
-      {this.addExercise("weight", "3")}
+      {this.inputField("description", "curls")}
+      {this.inputField("sets", "5")}
+      {this.inputField("reps", "4")}
+      {this.inputField("weight", "3")}
         <td>
-          <button onClick={() => this.props.addExercise(this.state)}>Add</button>
+          <button onClick={() => this.props.addExerciseFn(this.state)}>Add</button>
         </td>
       </>
     );

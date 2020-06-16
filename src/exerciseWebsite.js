@@ -19,7 +19,9 @@ class ExerciseWebsite extends React.Component {
   }
 
   addToDate(exerciseObject, date){
-    
+    var target = this.state.tableOfItems[date] ;
+    this.state.tableOfItems[date] = target.concat([exerciseObject]) ;
+    this.setState({ tableOfItems: this.state.tableOfItems} )
   }
 
   removeFromList(index) {
@@ -63,7 +65,7 @@ class ExerciseWebsite extends React.Component {
                 <>
                   <tr>
                     <td>{date}</td>
-                    <AddExercise addExercise={(newObject) => this.addToList(newObject)} />
+                    <AddExercise addExerciseFn={(newObject) => this.addToDate(newObject, date)} />
                     <td>
                       <button
                         className="warningColor"
