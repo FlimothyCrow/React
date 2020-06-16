@@ -1,32 +1,38 @@
 import React from "react";
 import { doubleSort } from "./reduce.js";
-import CreateNewFragment from "./createNewFragment";
+import CreateDate from "./createDate";
+import AddExercise from "./addExercise.jsx";
 
-class ColumnKata extends React.Component {
+class ExerciseWebsite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tableOfItems: JSON.parse(localStorage.getItem("tableOfItems") || "[]"),
+      tableOfItems: JSON.parse(localStorage.getItem("tableOfItems") || "{}"),
       showCreate: false,
     };
   }
   addToList(input) {
-    var newTable = this.state.tableOfItems.concat([input]);
-    localStorage.setItem("tableOfItems", JSON.stringify(newTable));
-    this.setState({ tableOfItems: newTable, showCreate: false });
+    console.log(input)
+    this.state.tableOfItems[input] = [];
+    // localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
+    this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
+  }
+
+  addToDate(exerciseObject, date){
+    
   }
 
   removeFromList(index) {
     this.state.tableOfItems.splice(index, 1);
-    localStorage.setItem(
+    /*localStorage.setItem(
       "tableOfItems",
       JSON.stringify(this.state.tableOfItems)
-    );
+    );*/
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
   render() {
-    console.log("table", this.state.tableOfItems)
+    console.log("table", this.state.tableOfItems);
     return (
       <>
         <button
@@ -37,9 +43,7 @@ class ColumnKata extends React.Component {
           Create new entry
         </button>
         {this.state.showCreate && (
-          <CreateNewFragment
-            addToList={(newObject) => this.addToList(newObject)}
-          />
+          <CreateDate addToList={(newObject) => this.addToList(newObject)} />
         )}
 
         <table>
@@ -53,38 +57,51 @@ class ColumnKata extends React.Component {
               <th>total</th>
               <th></th>
             </tr>
-            {doubleSort(this.state.tableOfItems).map((day, index) => {
+            {Object.entries(this.state.tableOfItems).map(([date, exercises]) => {
               // day === 1, index === 0th
               return (
                 <>
-                  {day.exercises.map((exercise, exerciseIdx) => {
-                    let date = undefined;
-                    if (exerciseIdx === 0) {
-                      date = <td rowSpan="2">{day.date}</td>;
-                    }
-                    return (
-                      <>
-                        <tr>
-                          {date}
-                          <td>{exercise.description}</td>
-                          <td>{exercise.reps}</td>
-                          <td>{exercise.sets}</td>
-                          <td>{exercise.weight}</td>
-                          <td>
-                            {exercise.weight * exercise.sets * exercise.reps}
-                          </td>
-                          <td>
-                            <button
-                              className="warningColor"
-                              onClick={() => this.removeFromList(index)}
-                            >
-                              delete
-                            </button>
-                          </td>
-                        </tr>
-                      </>
-                    );
-                  })}
+                  <tr>
+                    <td>{date}</td>
+                    <AddExercise addExercise={(newObject) => this.addToList(newObject)} />
+                    <td>
+                      <button
+                        className="warningColor"
+                        onClick={() => this.removeFromList(date)}
+                      >
+                        delete
+                      </button>
+                    </td>
+                  </tr>
+                  {exercises &&
+                    exercises.map((exercise, exerciseIdx) => {
+                      let date = undefined;
+                      if (exerciseIdx === 0) {
+                        date = <td>{date}</td>;
+                      }
+                      return (
+                        <>
+                          <tr>
+                            {date}
+                            <td>{exercise.description}</td>
+                            <td>{exercise.reps}</td>
+                            <td>{exercise.sets}</td>
+                            <td>{exercise.weight}</td>
+                            <td>
+                              {exercise.weight * exercise.sets * exercise.reps}
+                            </td>
+                            <td>
+                              <button
+                                className="warningColor"
+                                onClick={() => this.removeFromList(date)}
+                              >
+                                delete
+                              </button>
+                            </td>
+                          </tr>
+                        </>
+                      );
+                    })}
                 </>
               );
             })}
@@ -94,7 +111,7 @@ class ColumnKata extends React.Component {
     );
   }
 }
-export default ColumnKata;
+export default ExerciseWebsite;
 // newObject (exercises:"", date:"")
 // tableOfItems should be listOfObjects
 // line 26 {day.date} {day.exercises}
