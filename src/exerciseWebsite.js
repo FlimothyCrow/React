@@ -24,8 +24,10 @@ class ExerciseWebsite extends React.Component {
     this.setState({ tableOfItems: this.state.tableOfItems} )
   }
 
-  removeFromList(index) {
-    this.state.tableOfItems.splice(index, 1);
+  removeFromList(date, exerciseIdx) { // this needs a date string as key, then the index of the list of exerciseObjects
+    console.log(date)  // in this configuration, date is a string, not an object
+    this.state.tableOfItems[date].splice(exerciseIdx, 1);
+    //this.state.tableOfItems.splice(index, 1);
     /*localStorage.setItem(
       "tableOfItems",
       JSON.stringify(this.state.tableOfItems)
@@ -33,7 +35,7 @@ class ExerciseWebsite extends React.Component {
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
-  render() {
+  render() {  
     console.log("table", this.state.tableOfItems);
     return (
       <>
@@ -95,7 +97,7 @@ class ExerciseWebsite extends React.Component {
                             <td>
                               <button
                                 className="warningColor"
-                                onClick={() => this.removeFromList(date)}
+                                onClick={() => this.removeFromList(date, exerciseIdx)}
                               >
                                 delete
                               </button>
@@ -151,3 +153,4 @@ export default ExerciseWebsite;
 
 // localStorage can only accept strings
 // why not edit a previous entry?
+
