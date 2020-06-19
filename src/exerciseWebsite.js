@@ -12,22 +12,20 @@ class ExerciseWebsite extends React.Component {
     };
   }
   addToList(input) {
-    console.log(input)
     this.state.tableOfItems[input] = [];
     // localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
-  addToDate(exerciseObject, date){
-    var target = this.state.tableOfItems[date] ;
-    this.state.tableOfItems[date] = target.concat([exerciseObject]) ;
-    this.setState({ tableOfItems: this.state.tableOfItems} )
+  addToDate(exerciseObject, date) {
+    var target = this.state.tableOfItems[date];
+    this.state.tableOfItems[date] = target.concat([exerciseObject]);
+    this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
-  removeFromList(date, exerciseIdx) { // this needs a date string as key, then the index of the list of exerciseObjects
-    console.log(date)  // in this configuration, date is a string, not an object
+  removeFromList(date, exerciseIdx) {
+    console.log("date", date); // in this configuration, date is a string, not an object
     this.state.tableOfItems[date].splice(exerciseIdx, 1);
-    //this.state.tableOfItems.splice(index, 1);
     /*localStorage.setItem(
       "tableOfItems",
       JSON.stringify(this.state.tableOfItems)
@@ -35,7 +33,7 @@ class ExerciseWebsite extends React.Component {
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
-  render() {  
+  render() {
     console.log("table", this.state.tableOfItems);
     return (
       <>
@@ -59,34 +57,35 @@ class ExerciseWebsite extends React.Component {
               <th>sets</th>
               <th>weight</th>
               <th>total</th>
-              <th></th>
+              <th>add</th>
+              <th>delete</th>
             </tr>
-            {Object.entries(this.state.tableOfItems).map(([date, exercises]) => {
-              // day === 1, index === 0th
-              return (
-                <>
-                  <tr>
-                    <td>{date}</td>
-                    <AddExercise addExerciseFn={(newObject) => this.addToDate(newObject, date)} />
-                    <td>
-                      <button
-                        className="warningColor"
-                        onClick={() => this.removeFromList(date)}
-                      >
-                        delete
-                      </button>
-                    </td>
-                  </tr>
-                  {exercises &&
-                    exercises.map((exercise, exerciseIdx) => {
-                      let date = undefined;
-                      if (exerciseIdx === 0) {
-                        date = <td>{date}</td>;
-                      }
-                      return (
-                        <>
-                          <tr>
-                            {date}
+            {Object.entries(this.state.tableOfItems).map(
+              ([date, exercises]) => {
+                // day === 1, index === 0th
+                return (
+                  <>
+                    <tr key={date + "text"}>
+                      <td>{date}</td>
+                      <AddExercise
+                        addExerciseFn={(newObject) =>
+                          this.addToDate(newObject, date)
+                        }
+                      />
+                      <td>
+                        <button
+                          className="warningColor"
+                          onClick={() => this.removeFromList(date)}
+                        >
+                          delete
+                        </button>
+                      </td>
+                    </tr>
+                    {exercises &&
+                      exercises.map((exercise, exerciseIdx) => {
+                        return (
+                          <tr key={exerciseIdx + "string"}>
+                            <td>{date}</td>
                             <td>{exercise.description}</td>
                             <td>{exercise.reps}</td>
                             <td>{exercise.sets}</td>
@@ -94,21 +93,24 @@ class ExerciseWebsite extends React.Component {
                             <td>
                               {exercise.weight * exercise.sets * exercise.reps}
                             </td>
+                            <td></td>
                             <td>
                               <button
                                 className="warningColor"
-                                onClick={() => this.removeFromList(date, exerciseIdx)}
+                                onClick={() =>
+                                  this.removeFromList(date, exerciseIdx)
+                                }
                               >
                                 delete
                               </button>
                             </td>
                           </tr>
-                        </>
-                      );
-                    })}
-                </>
-              );
-            })}
+                        );
+                      })}
+                  </>
+                );
+              }
+            )}
           </tbody>
         </table>
       </>
@@ -154,3 +156,4 @@ export default ExerciseWebsite;
 // localStorage can only accept strings
 // why not edit a previous entry?
 
+// add deleteDate
