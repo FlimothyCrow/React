@@ -13,29 +13,36 @@ class ExerciseWebsite extends React.Component {
   }
   addToList(input) {
     this.state.tableOfItems[input] = [];
-    // localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
+    localStorage.setItem(
+      "tableOfItems",
+      JSON.stringify(this.state.tableOfItems)
+    );
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
   addToDate(exerciseObject, date) {
     var target = this.state.tableOfItems[date];
+    localStorage.setItem(
+      "tableOfItems",
+      JSON.stringify(this.state.tableOfItems)
+    );
     this.state.tableOfItems[date] = target.concat([exerciseObject]);
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
-  removeFromList(date, exerciseIdx) {
+  deleteExercise(date, exerciseIdx) {
     console.log("date", this.state.tableOfItems[date]); // in this configuration, date is a string, not an object
     this.state.tableOfItems[date].splice(exerciseIdx, 1);
-    /*localStorage.setItem(
+    localStorage.setItem(
       "tableOfItems",
       JSON.stringify(this.state.tableOfItems)
-    );*/
+    );
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
   deleteDate(date) {
-    delete this.state.tableOfItems[date]
-    // localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
+    delete this.state.tableOfItems[date];
+    localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
@@ -104,7 +111,7 @@ class ExerciseWebsite extends React.Component {
                               <button
                                 className="warningColor"
                                 onClick={() =>
-                                  this.removeFromList(date, exerciseIdx)
+                                  this.deleteExercise(date, exerciseIdx)
                                 }
                               >
                                 delete
@@ -147,7 +154,6 @@ export default ExerciseWebsite;
 // the end user is seeing it "hosted"
 // the "server" in this case is our file system
 // any file on the system is "served" to the browser
-
 
 // const returnedTarget = Object.assign(target, source);
 
