@@ -24,13 +24,19 @@ class ExerciseWebsite extends React.Component {
   }
 
   removeFromList(date, exerciseIdx) {
-    console.log("date", date); // in this configuration, date is a string, not an object
+    console.log("date", this.state.tableOfItems[date]); // in this configuration, date is a string, not an object
     this.state.tableOfItems[date].splice(exerciseIdx, 1);
     /*localStorage.setItem(
       "tableOfItems",
       JSON.stringify(this.state.tableOfItems)
     );*/
     this.setState({ tableOfItems: this.state.tableOfItems });
+  }
+
+  deleteDate(date) {
+    delete this.state.tableOfItems[date]
+    // localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
+    this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
   render() {
@@ -75,7 +81,7 @@ class ExerciseWebsite extends React.Component {
                       <td>
                         <button
                           className="warningColor"
-                          onClick={() => this.removeFromList(date)}
+                          onClick={() => this.deleteDate(date)}
                         >
                           delete
                         </button>
@@ -142,18 +148,14 @@ export default ExerciseWebsite;
 // the "server" in this case is our file system
 // any file on the system is "served" to the browser
 
-// Date
-// exercises
-// sets
-// reps
-// weight
 
 // const returnedTarget = Object.assign(target, source);
-// atom plugin rainbows parens
-// line 79 && returns the second input
+
 // line 79, if you want multiple function calls within a thiccboi, you have to {} each statement
 
 // localStorage can only accept strings
 // why not edit a previous entry?
 
 // add deleteDate
+// line 69 > should createDate have a built in <td> for a daily total?
+// tableOfItems is an object of objects, so we have to search by date string, not index
