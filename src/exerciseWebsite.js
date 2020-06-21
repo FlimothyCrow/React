@@ -79,8 +79,8 @@ class ExerciseWebsite extends React.Component {
             <tr>
               <th>date</th>
               <th>exercise</th>
-              <th>reps</th>
               <th>sets</th>
+              <th>reps</th>
               <th>weight</th>
               <th>total</th>
               <th>add</th>
@@ -113,8 +113,8 @@ class ExerciseWebsite extends React.Component {
                           <tr key={exerciseIdx + "string"}>
                             <td>{date}</td>
                             <td>{exercise.description}</td>
-                            <td>{exercise.reps}</td>
                             <td>{exercise.sets}</td>
+                            <td>{exercise.reps}</td>
                             <td>{exercise.weight}</td>
                             <td>
                               {exercise.weight * exercise.sets * exercise.reps}
