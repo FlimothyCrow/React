@@ -11,38 +11,44 @@ class ExerciseWebsite extends React.Component {
       showCreate: false,
     };
   }
-  addToList(input) {
-    this.state.tableOfItems[input] = [];
+
+  saveLocally(){
     localStorage.setItem(
       "tableOfItems",
       JSON.stringify(this.state.tableOfItems)
     );
+  }
+
+  deleteStorage(){
+    localStorage.setItem(
+      "tableOfItems",
+      "{}"
+    );
+  }
+
+  addToList(input) {
+    this.state.tableOfItems[input] = [];
+    this.saveLocally()
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
   addToDate(exerciseObject, date) {
     var target = this.state.tableOfItems[date];
-    localStorage.setItem(
-      "tableOfItems",
-      JSON.stringify(this.state.tableOfItems)
-    );
     this.state.tableOfItems[date] = target.concat([exerciseObject]);
+    this.saveLocally()
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
   deleteExercise(date, exerciseIdx) {
     console.log("date", this.state.tableOfItems[date]); // in this configuration, date is a string, not an object
     this.state.tableOfItems[date].splice(exerciseIdx, 1);
-    localStorage.setItem(
-      "tableOfItems",
-      JSON.stringify(this.state.tableOfItems)
-    );
+    this.saveLocally()
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
   deleteDate(date) {
     delete this.state.tableOfItems[date];
-    localStorage.setItem("tableOfItems", JSON.stringify(this.state.tableOfItems));
+    this.saveLocally()
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
@@ -56,6 +62,13 @@ class ExerciseWebsite extends React.Component {
           }}
         >
           Create new entry
+        </button>
+        <button
+          onClick={() => {
+            this.deleteStorage();
+            this.setState({"tableOfItems":{}})
+          }}
+        >Delete local storage
         </button>
         {this.state.showCreate && (
           <CreateDate addToList={(newObject) => this.addToList(newObject)} />
@@ -162,6 +175,7 @@ export default ExerciseWebsite;
 // localStorage can only accept strings
 // why not edit a previous entry?
 
-// add deleteDate
+
 // line 69 > should createDate have a built in <td> for a daily total?
-// tableOfItems is an object of objects, so we have to search by date string, not index
+
+// sets and reps prints are swapped
