@@ -7,7 +7,8 @@ class AddExercise extends React.Component {
         description:"", 
         sets:"",
         reps:"",
-        weight:""
+        weight:"",
+        total:""
     };
   }
 
