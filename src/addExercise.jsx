@@ -8,17 +8,16 @@ class AddExercise extends React.Component {
         sets:"",
         reps:"",
         weight:"",
-        total:""
     };
   }
 
 
-  inputField(key, value) {
+  inputField(key, type) {
     return (
           <td>
           <input
             id={key}
-            type={value}
+            type={type}
             value={this.state[key]}
             onChange={(event) => this.setState({ [key]: event.target.value })}
           />
@@ -30,11 +29,8 @@ class AddExercise extends React.Component {
   render() {
     return (
       <>
-      {this.inputField("description", "curls")}
-      {this.inputField("sets", "5")}
-      {this.inputField("reps", "4")}
-      {this.inputField("weight", "3")}
-        <td></td>
+      {this.inputField("description", "text")} {this.inputField("sets", "number")} {this.inputField("reps", "number")} {this.inputField("weight", "number")}
+        <td>{this.props.dailyTotal}</td>
         <td>
           <button onClick={() => this.props.addExerciseFn(this.state)}>Add</button>
         </td>
@@ -53,3 +49,6 @@ export default AddExercise;
 // what if we don't want to fill one of those out, like with leglifts or squats?
 // it has to take from each input field and concatenate that data into an exercise object
 // so state data has to be listOfExObjects:[]
+// line 36 the word "props" tells the parameter from the parent component where to go
+// line 38 is "propping" from exerciseWebsite's line 98
+// line 32 has all four inputs "lined up" because that's the order they print to the right on the page 

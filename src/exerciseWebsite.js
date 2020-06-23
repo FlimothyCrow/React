@@ -12,48 +12,45 @@ class ExerciseWebsite extends React.Component {
     };
   }
 
-  saveLocally(){
+  saveLocally() {
     localStorage.setItem(
       "tableOfItems",
       JSON.stringify(this.state.tableOfItems)
     );
   }
 
-  deleteStorage(){
-    localStorage.setItem(
-      "tableOfItems",
-      "{}"
-    );
+  deleteStorage() {
+    localStorage.setItem("tableOfItems", "{}");
   }
 
   addToList(input) {
     this.state.tableOfItems[input] = [];
-    this.saveLocally()
+    this.saveLocally();
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
   addToDate(exerciseObject, date) {
     var target = this.state.tableOfItems[date];
+    exerciseObject.total =
+      exerciseObject.sets * exerciseObject.reps * exerciseObject.weight;
     this.state.tableOfItems[date] = target.concat([exerciseObject]);
-    this.saveLocally()
+    this.saveLocally();
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
   deleteExercise(date, exerciseIdx) {
-    console.log("date", this.state.tableOfItems[date]); // in this configuration, date is a string, not an object
     this.state.tableOfItems[date].splice(exerciseIdx, 1);
-    this.saveLocally()
+    this.saveLocally();
     this.setState({ tableOfItems: this.state.tableOfItems });
   }
 
   deleteDate(date) {
     delete this.state.tableOfItems[date];
-    this.saveLocally()
+    this.saveLocally();
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
 
   render() {
-    console.log("table", this.state.tableOfItems);
     return (
       <>
         <button
@@ -66,9 +63,10 @@ class ExerciseWebsite extends React.Component {
         <button
           onClick={() => {
             this.deleteStorage();
-            this.setState({"tableOfItems":{}})
+            this.setState({ tableOfItems: {} });
           }}
-        >Delete local storage
+        >
+          Delete local storage
         </button>
         {this.state.showCreate && (
           <CreateDate addToList={(newObject) => this.addToList(newObject)} />
@@ -94,10 +92,13 @@ class ExerciseWebsite extends React.Component {
                     <tr key={date + "text"}>
                       <td>{date}</td>
                       <AddExercise
-                        addExerciseFn={(newObject) =>
-                          {this.addToDate(newObject, date)
-                          console.log("total test", this.state.tableOfItems)}
-                        }
+                        dailyTotal={exercises.reduce(
+                          (acc, next) => acc + next.total,
+                          0
+                        )}
+                        addExerciseFn={(newObject) => {
+                          this.addToDate(newObject, date);
+                        }}
                       />
                       <td>
                         <button
@@ -117,9 +118,7 @@ class ExerciseWebsite extends React.Component {
                             <td>{exercise.sets}</td>
                             <td>{exercise.reps}</td>
                             <td>{exercise.weight}</td>
-                            <td>
-                              {exercise.weight * exercise.sets * exercise.reps}
-                            </td>
+                            <td>{exercise.total}</td>
                             <td></td>
                             <td>
                               <button
@@ -176,10 +175,12 @@ export default ExerciseWebsite;
 // localStorage can only accept strings
 // why not edit a previous entry?
 
-
 // line 69 > should createDate have a built in <td> for a daily total?
 
 // sets and reps prints are swapped
 // we added a variable in exerciseObject for total weight so we can concat on the header row?
 // how about when we call addExercise, it pushes the total into the state var dailyTotal ?
 // we need addExercise to calculate total BEFORE the render
+
+// props is a way of saying parameters to a child fragment
+// 96 render React child component
