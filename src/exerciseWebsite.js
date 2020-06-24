@@ -8,7 +8,7 @@ class ExerciseWebsite extends React.Component {
     super(props);
     this.state = {
       tableOfItems: JSON.parse(localStorage.getItem("tableOfItems") || "{}"),
-      showCreate: false,
+      showCreate: false
     };
   }
 
@@ -49,6 +49,7 @@ class ExerciseWebsite extends React.Component {
     this.saveLocally();
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
+
 
   render() {
     return (
@@ -133,6 +134,14 @@ class ExerciseWebsite extends React.Component {
                           </tr>
                         );
                       })}
+                    <tr>totals
+                      <td>stuff</td>
+                      <td>stuff</td>
+                      <td>stuff</td>
+                      <td>stuff</td>
+                      <td>stuff</td>
+                      {console.log(this.state.tableOfItems)}
+                    </tr>
                   </>
                 );
               }
@@ -184,3 +193,5 @@ export default ExerciseWebsite;
 
 // props is a way of saying parameters to a child fragment
 // 96 render React child component
+
+// "total"s under each header
