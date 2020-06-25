@@ -76,78 +76,76 @@ class ExerciseWebsite extends React.Component {
           <CreateDate addToList={(newObject) => this.addToList(newObject)} />
         )}
 
-        <table>
-          <tbody>
-            <tr>
-              <th>date</th>
-              <th>exercise</th>
-              <th>sets</th>
-              <th>reps</th>
-              <th>weight</th>
-              <th>total</th>
-              <th>add</th>
-              <th>delete</th>
-            </tr>
-            {Object.entries(this.state.tableOfItems).map(
-              ([date, exercises]) => {
-                // day === 1, index === 0th
-                return (
-                  <>
-                    <tr key={date + "text"}>
-                      <td>{date}</td>
+        {Object.entries(this.state.tableOfItems).map(([date, exercises]) => {
+          // day === 1, index === 0th
+          return (
+            <>
+              <table style={{width:"90%", maxWidth:"90%"}}>
+                <tbody>
+                  <tr>
+                    <th>date</th>
+                    <th>exercise</th>
+                    <th>sets</th>
+                    <th>reps</th>
+                    <th>weight</th>
+                    <th>total</th>
+                    <th>add</th>
+                    <th>delete</th>
+                  </tr>
+                  <tr key={date + "text"}>
+                    <td>{date}</td>
 
-                      <AddExercise
-                        addExerciseFn={(newObject) => {
-                          this.addToDate(newObject, date);
-                        }}
-                      />
-                      <td>
-                        <button
-                          className="warningColor"
-                          onClick={() => this.deleteDate(date)}
-                        >
-                          delete
-                        </button>
-                      </td>
-                    </tr>
-                    {exercises &&
-                      exercises.map((exercise, exerciseIdx) => {
-                        return (
-                          <tr key={exerciseIdx + "string"}>
-                            <td>{date}</td>
-                            <td>{exercise.description}</td>
-                            <td>{exercise.sets}</td>
-                            <td>{exercise.reps}</td>
-                            <td>{exercise.weight}</td>
-                            <td>{exercise.total}</td>
-                            <td></td>
-                            <td>
-                              <button
-                                className="warningColor"
-                                onClick={() =>
-                                  this.deleteExercise(date, exerciseIdx)
-                                }
-                              >
-                                delete
-                              </button>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    <tr>
-                      <td>totals</td>
-                      <td></td>
-                      <td>{this.columnTotals(exercises, "sets")}</td>
-                      <td>{this.columnTotals(exercises, "reps")}</td>
-                      <td>{this.columnTotals(exercises, "weight")}</td>
-                      <td>{this.columnTotals(exercises, "total")}</td>
-                    </tr>
-                  </>
-                );
-              }
-            )}
-          </tbody>
-        </table>
+                    <AddExercise
+                      addExerciseFn={(newObject) => {
+                        this.addToDate(newObject, date);
+                      }}
+                    />
+                    <td>
+                      <button
+                        className="warningColor"
+                        onClick={() => this.deleteDate(date)}
+                      >
+                        delete
+                      </button>
+                    </td>
+                  </tr>
+                  {exercises &&
+                    exercises.map((exercise, exerciseIdx) => {
+                      return (
+                        <tr key={exerciseIdx + "string"}>
+                          <td>{date}</td>
+                          <td>{exercise.description}</td>
+                          <td>{exercise.sets}</td>
+                          <td>{exercise.reps}</td>
+                          <td>{exercise.weight}</td>
+                          <td>{exercise.total}</td>
+                          <td></td>
+                          <td>
+                            <button
+                              className="warningColor"
+                              onClick={() =>
+                                this.deleteExercise(date, exerciseIdx)
+                              }
+                            >
+                              delete
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  <tr>
+                    <td>totals</td>
+                    <td></td>
+                    <td>{this.columnTotals(exercises, "sets")}</td>
+                    <td>{this.columnTotals(exercises, "reps")}</td>
+                    <td>{this.columnTotals(exercises, "weight")}</td>
+                    <td>{this.columnTotals(exercises, "total")}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </>
+          );
+        })}
       </>
     );
   }
