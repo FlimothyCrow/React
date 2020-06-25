@@ -8,7 +8,7 @@ class ExerciseWebsite extends React.Component {
     super(props);
     this.state = {
       tableOfItems: JSON.parse(localStorage.getItem("tableOfItems") || "{}"),
-      showCreate: false
+      showCreate: false,
     };
   }
 
@@ -27,6 +27,10 @@ class ExerciseWebsite extends React.Component {
     this.state.tableOfItems[input] = [];
     this.saveLocally();
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
+  }
+
+  columnTotals(exercises, header) {
+    return exercises.reduce((acc, next) => acc + parseInt(next[header]), 0);
   }
 
   addToDate(exerciseObject, date) {
@@ -49,7 +53,6 @@ class ExerciseWebsite extends React.Component {
     this.saveLocally();
     this.setState({ tableOfItems: this.state.tableOfItems, showCreate: false });
   }
-
 
   render() {
     return (
@@ -92,11 +95,8 @@ class ExerciseWebsite extends React.Component {
                   <>
                     <tr key={date + "text"}>
                       <td>{date}</td>
+
                       <AddExercise
-                        dailyTotal={exercises.reduce(
-                          (acc, next) => acc + next.total,
-                          0
-                        )}
                         addExerciseFn={(newObject) => {
                           this.addToDate(newObject, date);
                         }}
@@ -134,13 +134,13 @@ class ExerciseWebsite extends React.Component {
                           </tr>
                         );
                       })}
-                    <tr>totals
-                      <td>stuff</td>
-                      <td>stuff</td>
-                      <td>stuff</td>
-                      <td>stuff</td>
-                      <td>stuff</td>
-                      {console.log(this.state.tableOfItems)}
+                    <tr>
+                      <td>totals</td>
+                      <td></td>
+                      <td>{this.columnTotals(exercises, "sets")}</td>
+                      <td>{this.columnTotals(exercises, "reps")}</td>
+                      <td>{this.columnTotals(exercises, "weight")}</td>
+                      <td>{this.columnTotals(exercises, "total")}</td>
                     </tr>
                   </>
                 );
