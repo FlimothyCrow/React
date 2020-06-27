@@ -192,4 +192,6 @@ export default ExerciseWebsite;
 // props is a way of saying parameters to a child fragment
 // 96 render React child component
 
-// "total"s under each header
+// button to collapse each table
+// state variable = [{date:false}]
+// studied SICP.js
