@@ -30,7 +30,7 @@ class AddExercise extends React.Component {
     return (
       <>
       {this.inputField("description", "text")} {this.inputField("sets", "number")} {this.inputField("reps", "number")} {this.inputField("weight", "number")}
-        <td></td>
+        <td bgcolor="white"></td>
         <td>
           <button onClick={() => this.props.addExerciseFn(this.state)}>Add</button>
         </td>

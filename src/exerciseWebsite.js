@@ -119,7 +119,7 @@ class ExerciseWebsite extends React.Component {
                           <td>{exercise.reps}</td>
                           <td>{exercise.weight}</td>
                           <td>{exercise.total}</td>
-                          <td></td>
+                          <td bgcolor="white"></td>
                           <td>
                             <button
                               className="warningColor"
@@ -135,11 +135,13 @@ class ExerciseWebsite extends React.Component {
                     })}
                   <tr>
                     <td>totals</td>
-                    <td></td>
+                    <td bgcolor="white"></td>
                     <td>{this.columnTotals(exercises, "sets")}</td>
                     <td>{this.columnTotals(exercises, "reps")}</td>
                     <td>{this.columnTotals(exercises, "weight")}</td>
                     <td>{this.columnTotals(exercises, "total")}</td>
+                    <td bgcolor="white"></td>
+                    <td bgcolor="white"></td>
                   </tr>
                 </tbody>
               </table>
