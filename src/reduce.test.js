@@ -1,4 +1,4 @@
-import {reduceFun, longReduce, doubleSort} from './reduce.js' // ./ means "this directory"
+import {reduceFun, longReduce, doubleSort, largerTwo} from './reduce.js' // ./ means "this directory"
 
 
 test('reduceFun0', () => {
@@ -95,4 +95,14 @@ test('doubleSort1', () => {
               {date:"small", description:"small", doneness:false},
               {date:"b", description:"b", doneness:true},
               {date:"z", description:"z", doneness:true}]);
+});
+
+// ---------------------
+
+test('largerTwo', () => {
+  var first = 1
+  var second = 2
+  var third = 3
+  var x = largerTwo(first, second, third)
+  expect(x).toBe(13);
 });

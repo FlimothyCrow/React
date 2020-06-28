@@ -12,6 +12,7 @@ class ExerciseWebsite extends React.Component {
     };
   }
 
+
   saveLocally() {
     localStorage.setItem(
       "tableOfItems",
@@ -142,6 +143,7 @@ class ExerciseWebsite extends React.Component {
                     <td>{this.columnTotals(exercises, "total")}</td>
                     <td bgcolor="white"></td>
                     <td bgcolor="white"></td>
+                    
                   </tr>
                 </tbody>
               </table>
@@ -196,4 +198,3 @@ export default ExerciseWebsite;
 
 // button to collapse each table
 // state variable = [{date:false}]
-// studied SICP.js

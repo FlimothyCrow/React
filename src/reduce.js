@@ -35,3 +35,9 @@ export function alphabetizeOrder(a, b) {
     }
     return 0; // if a === b
   }
+
+export function largerTwo(first, second, third){
+ if (first > second || second < third){
+   return (second * second) + (third * third)
+ }
+};
