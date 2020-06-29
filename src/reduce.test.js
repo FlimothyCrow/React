@@ -100,9 +100,56 @@ test('doubleSort1', () => {
 // ---------------------
 
 test('largerTwo', () => {
-  var first = 1
-  var second = 2
-  var third = 3
-  var x = largerTwo(first, second, third)
-  expect(x).toBe(13);
+  var x = largerTwo(1, 2, 3)
+  expect(x).toBe(5); // second and third 
+});
+
+test('largerTwo0', () => {
+  var x = largerTwo(6, 2, 3)
+  expect(x).toBe(9); // first and third 
+});
+
+test('largerTwo1', () => {
+  var x = largerTwo(4, 7, 2)
+  expect(x).toBe(11); // first and second
+});
+
+test('largerTwo3', () => {
+  var x = largerTwo(1, 3, 2)
+  expect(x).toBe(5); // first and second
+});
+
+test('largerTwo4', () => {
+  var x = largerTwo(7, 4, 2)
+  expect(x).toBe(11); // first and second
+});
+
+test('largerTwo7', () => {
+  var x = largerTwo(2, 1, 3)
+  expect(x).toBe(5); // first and second
+});
+
+test('largerTwo9', () => {
+  var x = largerTwo(3, 8, 3)
+  expect(x).toBe(11); // first and second
+});
+
+test('largerTwo2', () => {
+  var x = largerTwo(4, 4, 4)
+  expect(x).toBe(8); // first and second
+});
+
+test('largerTwo8', () => {
+  var x = largerTwo(5, 4, 5)
+  expect(x).toBe(10); // first and second
+});
+
+test('largerTwo6', () => {
+  var x = largerTwo(2, 5, 5)
+  expect(x).toBe(10); // first and second
+});
+
+test('largerTwo5', () => {
+  var x = largerTwo(4, 4, 5)
+  expect(x).toBe(9); // first and second
 });
