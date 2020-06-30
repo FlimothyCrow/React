@@ -72,3 +72,8 @@ export function largerTwo(x, y, z) {
   }
   return x + y + z - smallest
 }
+
+export function putInArray(x, y, z){
+  var newArray = [x, y, z]
+  return newArray[0]
+}
