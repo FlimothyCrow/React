@@ -142,8 +142,8 @@ class ExerciseWebsite extends React.Component {
                     <td>{this.columnTotals(exercises, "weight")}</td>
                     <td>{this.columnTotals(exercises, "total")}</td>
                     {this.columnTotals(exercises, "total") > 255 
-                    ? <td bgcolor="green"></td> 
-                    : <td bgcolor="red"></td>   
+                    ? <td bgcolor="green">You're done!</td> 
+                    : <td bgcolor="red">Keep lifting!</td>   
                     }
                     <td bgcolor="white"></td>
                     
@@ -191,7 +191,6 @@ export default ExerciseWebsite;
 
 // line 69 > should createDate have a built in <td> for a daily total?
 
-// sets and reps prints are swapped
 // we added a variable in exerciseObject for total weight so we can concat on the header row?
 // how about when we call addExercise, it pushes the total into the state var dailyTotal ?
 // we need addExercise to calculate total BEFORE the render
