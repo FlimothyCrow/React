@@ -141,7 +141,10 @@ class ExerciseWebsite extends React.Component {
                     <td>{this.columnTotals(exercises, "reps")}</td>
                     <td>{this.columnTotals(exercises, "weight")}</td>
                     <td>{this.columnTotals(exercises, "total")}</td>
-                    <td bgcolor="white"></td>
+                    {this.columnTotals(exercises, "total") > 255 
+                    ? <td bgcolor="green"></td> 
+                    : <td bgcolor="red"></td>   
+                    }
                     <td bgcolor="white"></td>
                     
                   </tr>
