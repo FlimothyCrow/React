@@ -1,11 +1,10 @@
-import randomNumber from "./fizzBuzz.js"
+import nuFizz from "./fizzBuzz.js"
+import deepEqual from 'deepequal'
 
-
-test('randomNomber', () => {
-  var x = randomNumber(1, 6);
-  var i;
-  for (i = 0; i < 101; i++) {
-    console.log(randomNumber(1, 6))
-  }
-  //  expect(x).toBe(3);
+test('nuFizz0', () => {
+  var upperLimit = 6
+  var x = nuFizz(upperLimit);
+  
+  console.log(x)
+  expect(deepEqual(x, [1, "fizz", "buzz", "fizz", 5, "fizzBuzz"])).toBe(true)
 });
