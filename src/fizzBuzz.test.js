@@ -1,9 +1,11 @@
-import fizzBuzz from './fizzBuzz.js'
+import randomNumber from "./fizzBuzz.js"
 
-test('fizzs the buzz', () => {
-  var x = fizzBuzz();
-  expect(x[1]).toBe(1);
-  expect(x[3]).toBe("fizz");
-  expect(x[4]).toBe("buzz");
-  expect(x[12]).toBe("fizz buzz");
+
+test('randomNomber', () => {
+  var x = randomNumber(1, 6);
+  var i;
+  for (i = 0; i < 101; i++) {
+    console.log(randomNumber(1, 6))
+  }
+  //  expect(x).toBe(3);
 });
