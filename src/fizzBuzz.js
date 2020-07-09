@@ -30,5 +30,4 @@ function spicyFizz(upperLimit){
 
 
 
-
 export default spicyFizz

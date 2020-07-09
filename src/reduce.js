@@ -77,4 +77,4 @@ export function putInArray(x, y, z){
   var newArray = [x, y, z]
   return newArray[0]
 }
-// interview questions prepping because we're prepping for interviews
+// applications
