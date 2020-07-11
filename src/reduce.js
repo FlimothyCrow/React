@@ -78,3 +78,7 @@ export function putInArray(x, y, z){
   return newArray[0]
 }
 // applications
+
+export function arrayPlusFive(arrayOfNumbers){
+  return arrayOfNumbers.reduce((a, b) => a + b, 5)
+}

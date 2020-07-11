@@ -1,4 +1,5 @@
-import {reduceFun, longReduce, doubleSort, largerTwo, putInArray} from './reduce.js' // ./ means "this directory"
+import {reduceFun, longReduce, doubleSort, largerTwo, putInArray, arrayPlusFive} from './reduce.js' // ./ means "this directory"
+import { addReduce } from "./addReduce";
 
 
 test('reduceFun0', () => {
@@ -157,4 +158,10 @@ test('largerTwo5', () => {
 test('putInArray', () => {
   var x = putInArray(4, 4, 5)
   expect(x).toBe(4); // first and second
+});
+// -----------------------
+test('arrayPlusFive0', () => {
+  var arrayOfNumbers = [4, 4, 5]
+  var x = arrayPlusFive(arrayOfNumbers)
+  expect(x).toBe(18); // first and second
 });
