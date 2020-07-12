@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import Horse from './Horse.js';
 import FizzBuzzPrinter from './fizzBuzzPrinter.js';
 import ExerciseWebsite from './exerciseWebsite';
+import HelloWorld from './HelloWorld';
 import './App.css';
 // npm start
 // npm test
@@ -12,8 +13,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-          <ExerciseWebsite></ExerciseWebsite>
-
+          {false && <ExerciseWebsite></ExerciseWebsite>}
+          <HelloWorld></HelloWorld>
       </header>
     </div>
   );

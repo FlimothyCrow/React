@@ -165,3 +165,9 @@ test('arrayPlusFive0', () => {
   var x = arrayPlusFive(arrayOfNumbers)
   expect(x).toBe(18); // first and second
 });
+// -----------------------
+test('returnAbove4', () => {
+  var arrayOfNumbers = [4, 4, 5, 1, 0, 9]
+  var x = arrayPlusFive(arrayOfNumbers)
+  expect(x).toBe([5, 9]); // first and second
+});
