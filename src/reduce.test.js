@@ -1,6 +1,7 @@
-import {reduceFun, longReduce, doubleSort, largerTwo, putInArray, arrayPlusFive} from './reduce.js' // ./ means "this directory"
+import {reduceFun, returnAbove4, doubleSort, largerTwo, 
+        returnPrimes, putInArray, arrayPlusFive, isPrime} from './reduce.js' // ./ means "this directory"
 import { addReduce } from "./addReduce";
-
+import deepEqual from 'deepequal'
 
 test('reduceFun0', () => {
   var listOfInts = [1, 2]
@@ -168,6 +169,30 @@ test('arrayPlusFive0', () => {
 // -----------------------
 test('returnAbove4', () => {
   var arrayOfNumbers = [4, 4, 5, 1, 0, 9]
-  var x = arrayPlusFive(arrayOfNumbers)
-  expect(x).toBe([5, 9]); // first and second
+  var x = returnAbove4(arrayOfNumbers)
+  expect(deepEqual(x, [5, 9])).toBe(true)
+});
+
+test('returnAbove4', () => {
+  var arrayOfNumbers = [4, 4, 5, 5, 1, 0, -9]
+  var x = returnAbove4(arrayOfNumbers)
+  //console.log(x)
+  expect(deepEqual(x, [5, 5])).toBe(true)
+});
+//---------------------------
+test('returnPrimes0', ()=>{
+  var upperLimit = 10
+  var primes = returnPrimes(upperLimit)
+  console.log(primes)
+  expect(deepEqual(primes, [1, 3, 5, 7])).toBe(true)
+});
+//-------------------
+test('isPrime0', ()=>{
+  var number = isPrime(5)
+  expect(number).toBe(true)
+});
+
+test('isPrime0', ()=>{
+  var number = isPrime(4)
+  expect(number).toBe(false)
 });

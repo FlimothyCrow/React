@@ -82,3 +82,31 @@ export function putInArray(x, y, z){
 export function arrayPlusFive(arrayOfNumbers){
   return arrayOfNumbers.reduce((a, b) => a + b, 5)
 }
+
+export function returnAbove4(arrayOfNumbers){
+  return arrayOfNumbers.filter(element => element > 4)
+}
+
+
+export function isPrime(value) {
+  for(var i = 2; i < value; i++) {
+      if(value % i === 0) {
+          return false;
+      }
+  }
+  return value > 1;
+}
+
+
+export function returnPrimes(upperLimit){
+  var newArray = []
+  for (var i = 1; i <= upperLimit; i++){
+    newArray.push(i)
+  }
+  var filteredArray = newArray.filter(element => {
+    if (isPrime(element)){
+      return element
+    }
+  })
+  return filteredArray
+}
