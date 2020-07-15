@@ -99,6 +99,7 @@ export function returnPrimes(upperLimit) {
 
 export function isPrime(value) {
   for (var i = 2; i < value; i++) {
-    value === 1 || value === 2 ? false :
+    return (i === 1 || i === 2) ? false :
     (value % i === 0) ? false : value > 1;
+  }
 }

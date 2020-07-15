@@ -1,5 +1,5 @@
 import {reduceFun, returnAbove4, doubleSort, largerTwo, 
-        returnPrimes, putInArray, arrayPlusFive, isPrime} from './reduce.js' // ./ means "this directory"
+        returnPrimes, putInArray, arrayPlusFive, isPrime, isPrime0} from './reduce.js' // ./ means "this directory"
 import { addReduce } from "./addReduce";
 import deepEqual from 'deepequal'
 
