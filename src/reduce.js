@@ -86,7 +86,7 @@ export function arrayPlusFive(arrayOfNumbers) {
 export function returnAbove4(arrayOfNumbers) {
   return arrayOfNumbers.filter((element) => element > 4);
 }
-
+/*
 export function returnPrimes(upperLimit) {
   var newArray = [];
   for (var i = 1; i <= upperLimit; i++) {
@@ -98,8 +98,22 @@ export function returnPrimes(upperLimit) {
 
 
 export function isPrime(value) {
-  for (var i = 2; i < value; i++) {
-    return (i === 1 || i === 2) ? false :
+  return (i === 1 || i === 2) ? false :
+    for (var i = 2; i < value; i++) {
     (value % i === 0) ? false : value > 1;
   }
+} 
+
+
+
+function isIstanbul(){
+  const antinople = istanbul
+  const antinople = ! istanbul
+  if (permission === "turks"){
+    return whyConstantinopleGotTheWorks
+  }
+  else {
+    return "that's nobody's business but the turks"
+  }
 }
+*/
