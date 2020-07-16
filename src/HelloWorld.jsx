@@ -3,11 +3,11 @@ import React from "react";
 class HelloWorld extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { sum: "", number1: "", number2: "" };
+    this.state = { sum: "", number1: "", number0: "" };
   }
 
-  add(number1, number2) {
-    fetch("http://localhost:3000/addTwoInputs/" + number1 + "/" + number2)
+  add(number0, number1) {
+    fetch("http://localhost:3000/addTwoInputs/" + number0 + "/" + number1)
       .then((result) => {
         return result.json();
       })
@@ -21,20 +21,21 @@ class HelloWorld extends React.Component {
         <div>
           <input
             type={"text"}
-            value={this.state.number1}
-            onChange={(event) => this.setState({ number1: event.target.value })}
+            value={this.state.number0}
+            onChange={(event) => this.setState({ number0: event.target.value })}
           />
         </div>
         <div>
           <input
             type={"text"}
-            value={this.state.number2}
-            onChange={(event) => this.setState({ number2: event.target.value })}
+            value={this.state.number1}
+            onChange={(event) => this.setState({ number1: event.target.value })}
           />
         </div>
         <button
           onClick={() => {
-            this.add(this.state.number1, this.state.number2);
+            this.add(this.state.number0, this.state.number1);
+            this.setState({number0:"", number1:""})
           }}
         >
           Add
@@ -53,3 +54,4 @@ export default HelloWorld;
 // flask returns a json string
 // .json converts to object
 // timmy "fat stacks" gambini
+// conditional for empty string onclick
