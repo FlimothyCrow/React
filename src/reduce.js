@@ -96,7 +96,6 @@ export function returnPrimes(upperLimit) {
   return filteredArray;
 }
 
-
 export function isPrime(value) {
   return (i === 1 || i === 2) ? false :
     for (var i = 2; i < value; i++) {
@@ -117,3 +116,7 @@ function isIstanbul(){
   }
 }
 */
+
+export function createObject(key, value){
+  return {key:key, value:value}
+}
