@@ -1,3 +1,5 @@
+import _ from "lodash"
+
 export function reduceFun(listOfThings, reduceFN, seed) {
   return listOfThings.reduce(reduceFN, seed);
 }
@@ -79,44 +81,3 @@ export function putInArray(x, y, z) {
 }
 // applicationssss
 
-export function arrayPlusFive(arrayOfNumbers) {
-  return arrayOfNumbers.reduce((a, b) => a + b, 5);
-}
-
-export function returnAbove4(arrayOfNumbers) {
-  return arrayOfNumbers.filter((element) => element > 4);
-}
-/*
-export function returnPrimes(upperLimit) {
-  var newArray = [];
-  for (var i = 1; i <= upperLimit; i++) {
-    newArray.push(i);
-  }
-  var filteredArray = newArray.filter((element) => isPrime(element));
-  return filteredArray;
-}
-
-export function isPrime(value) {
-  return (i === 1 || i === 2) ? false :
-    for (var i = 2; i < value; i++) {
-    (value % i === 0) ? false : value > 1;
-  }
-} 
-
-
-
-function isIstanbul(){
-  const antinople = istanbul
-  const antinople = ! istanbul
-  if (permission === "turks"){
-    return whyConstantinopleGotTheWorks
-  }
-  else {
-    return "that's nobody's business but the turks"
-  }
-}
-*/
-
-export function createObject(key, value){
-  return {key:key, value:value}
-}
