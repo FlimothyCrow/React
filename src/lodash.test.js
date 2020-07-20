@@ -1,7 +1,26 @@
-import {returnRange} from './lodash.js'
+import {returnRange, isPrime, chonkyBoi} from './lodash.js'
 import deepEqual from 'deepequal'
 
 
+
+
+test('returnRange0', ()=>{
+  var arrayOfNumbers = returnRange(4)
+  //console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, [0, 1, 2, 3])).toBe(true)
+});
+
+test('chonkyboi0', ()=>{
+  var arrayOfNumbers = chonkyBoi(4, 2)
+  //console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, [[0, 1], [2, 3]])).toBe(true)
+});
+
+test('chonkyboi1', ()=>{
+  var arrayOfNumbers = chonkyBoi(5, 3)
+  console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, [[0, 1, 2], [3, 4]])).toBe(true)
+});
   //---------------------------
   /*test('returnPrimes0', ()=>{
     var upperLimit = 10
@@ -33,8 +52,3 @@ import deepEqual from 'deepequal'
   
   */
   
-  test('returnRange0', ()=>{
-    var arrayOfNumbers = returnRange(4)
-    console.log(arrayOfNumbers)
-    expect(deepEqual(arrayOfNumbers, [0, 1, 2, 3])).toBe(true)
-  });

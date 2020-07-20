@@ -1,5 +1,19 @@
 import _ from "lodash"
 
+
+  
+  
+  export function returnRange(upperLimit){
+    return _.range(upperLimit)
+  }
+
+  
+  export function chonkyBoi(upperLimit, groupBy){
+    var rangedArray = _.range(upperLimit)
+    return _.chunk(rangedArray, groupBy)
+  }
+
+
   /*
   export function returnPrimes(upperLimit) {
     var newArray = [];
@@ -11,26 +25,12 @@ import _ from "lodash"
   }
   
   
+  
   export function isPrime(value) {
     return (value === 1 || value === 2) ? false :
       for (var i = 3; i < value; i++) {
       (value % i === 0) ? false : value > 1;
     }
   } 
-  
-  
-  function isIstanbul(){
-    const antinople = istanbul
-    const antinople = ! istanbul
-    if (permission === "turks"){
-      return whyConstantinopleGotTheWorks
-    }
-    else {
-      return "that's nobody's business but the turks"
-    }
-  }
+
   */
-  
-  export function returnRange(upperLimit){
-    return _.range(upperLimit)
-  }
