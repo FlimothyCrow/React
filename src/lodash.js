@@ -14,6 +14,11 @@ import _ from "lodash"
   }
 
 
+  export function sliceyBoi(arrayOfObjects, startIndex, endIndex){
+    return _.slice(arrayOfObjects, startIndex, endIndex)
+  }
+
+
   /*
   export function returnPrimes(upperLimit) {
     var newArray = [];

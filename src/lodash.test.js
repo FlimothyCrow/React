@@ -1,4 +1,4 @@
-import {returnRange, isPrime, chonkyBoi} from './lodash.js'
+import {returnRange, isPrime, chonkyBoi, sliceyBoi} from './lodash.js'
 import deepEqual from 'deepequal'
 
 
@@ -18,9 +18,17 @@ test('chonkyboi0', ()=>{
 
 test('chonkyboi1', ()=>{
   var arrayOfNumbers = chonkyBoi(5, 3)
-  console.log(arrayOfNumbers)
+  //console.log(arrayOfNumbers)
   expect(deepEqual(arrayOfNumbers, [[0, 1, 2], [3, 4]])).toBe(true)
 });
+
+test('sliceyBoi0', ()=>{
+  var arrayOfObjects = [{"n":1}, {"f":3}, {"b":0}, {"thing":22}]
+  var slicedArray = sliceyBoi(arrayOfObjects, 0, 3)
+  console.log(slicedArray)
+  expect(deepEqual(slicedArray, [{"n":1}, {"f":3}, {"b":0}])).toBe(true)
+});
+
   //---------------------------
   /*test('returnPrimes0', ()=>{
     var upperLimit = 10
