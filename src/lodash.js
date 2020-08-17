@@ -19,6 +19,21 @@ import _ from "lodash"
   }
 
 
+  export function arithmeticBoi(int0, int1, operator){
+    if (operator === "add"){
+      return int0 + int1
+    }
+    else if (operator === "subt"){
+      return int0 - int1
+    }
+    else if (operator === "multi"){
+      return int0 * int1
+    }
+    else if (operator === "div"){
+      return int0 / int1
+    }
+  }
+
   /*
   export function returnPrimes(upperLimit) {
     var newArray = [];
@@ -39,3 +54,4 @@ import _ from "lodash"
   } 
 
   */
+
