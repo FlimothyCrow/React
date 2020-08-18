@@ -29,8 +29,11 @@ import _ from "lodash"
     else if (operator === "multi"){
       return int0 * int1
     }
-    else if (operator === "div"){
+    else if (operator === "div" && int0 % int1 === 0){
       return int0 / int1
+    }
+    else if (operator === "div"){
+      return int0 % int1
     }
   }
 

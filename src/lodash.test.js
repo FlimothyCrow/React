@@ -1,4 +1,4 @@
-import {returnRange, isPrime, chonkyBoi, sliceyBoi} from './lodash.js'
+import {returnRange, isPrime, chonkyBoi, sliceyBoi, arithmeticBoi} from './lodash.js'
 import deepEqual from 'deepequal'
 
 
@@ -25,11 +25,43 @@ test('chonkyboi1', ()=>{
 test('sliceyBoi0', ()=>{
   var arrayOfObjects = [{"n":1}, {"f":3}, {"b":0}, {"thing":22}]
   var slicedArray = sliceyBoi(arrayOfObjects, 0, 3)
-  console.log(slicedArray)
+  //console.log(slicedArray)
   expect(deepEqual(slicedArray, [{"n":1}, {"f":3}, {"b":0}])).toBe(true)
 });
 
   //---------------------------
+
+test('arithmeticBoi', ()=>{
+  var arrayOfNumbers = arithmeticBoi(5, 3, "add")
+  //console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, 8)).toBe(true)
+});  
+
+test('arithmeticBoi0', ()=>{
+  var arrayOfNumbers = arithmeticBoi(5, 3, "subt")
+  //console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, 2)).toBe(true)
+});  
+
+test('arithmeticBoi1', ()=>{
+  var arrayOfNumbers = arithmeticBoi(5, 3, "multi")
+  //console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, 15)).toBe(true)
+});  
+
+test('arithmeticBoi2', ()=>{
+  var arrayOfNumbers = arithmeticBoi(10, 2, "div")
+  //console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, 5)).toBe(true)
+});  
+
+test('arithmeticBoi3', ()=>{
+  var arrayOfNumbers = arithmeticBoi(10, 3, "div")
+  //console.log(arrayOfNumbers)
+  expect(deepEqual(arrayOfNumbers, 1)).toBe(true)
+});  
+
+
   /*test('returnPrimes0', ()=>{
     var upperLimit = 10
     var primes = returnPrimes(upperLimit)
