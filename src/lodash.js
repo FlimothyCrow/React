@@ -37,6 +37,12 @@ import _ from "lodash"
     }
   }
 
+  export function sortNumerically(array){
+    return array.sort((a, b) => a - b
+    )
+  }
+
+
   /*
   export function returnPrimes(upperLimit) {
     var newArray = [];
