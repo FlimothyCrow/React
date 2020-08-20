@@ -43,6 +43,18 @@ import _ from "lodash"
   }
 
 
+  export function sortByKey(arrayOfObjects){
+    var ordered = {};   
+    _(arrayOfObjects).keys().sort().each(function (key) {
+      ordered[key] = arrayOfObjects[key];
+    });  
+    return ordered
+  }
+
+  
+
+
+
   /*
   export function returnPrimes(upperLimit) {
     var newArray = [];
