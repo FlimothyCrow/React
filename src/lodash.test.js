@@ -69,10 +69,12 @@ test('sortNumerically', ()=>{
 });  
 
 test('sortByKey', ()=>{
-  var arrayOfNumbers = [{2: 39}, {1: 3}, {50: 1}]
+  var arrayOfNumbers = [{value: 50, count: 39}, {value: 1, count: 3}, 
+                        {value:50, count: 1}]
   var sorted = sortByKey(arrayOfNumbers)
   console.log(sorted)
-  expect(deepEqual(sorted, [{50: 1}, {2: 39}, {1: 3}])).toBe(true)
+  expect(deepEqual(sorted,[{value: 50, count: 1}, {value: 50, count: 39}, 
+    {value:1, count: 3}])).toBe(true)
 });  
 
   /*test('returnPrimes0', ()=>{

@@ -44,14 +44,12 @@ import _ from "lodash"
 
 
   export function sortByKey(arrayOfObjects){
-    var ordered = {};   
-    _(arrayOfObjects).keys().sort().each(function (key) {
-      ordered[key] = arrayOfObjects[key];
-    });  
-    return ordered
+    //return _.sortBy(arrayOfObjects)
+    return _.orderBy(arrayOfObjects, [(x)=> x.value, (x)=> x.count], ['desc', 'asc']);
+    //return arrayOfObjects.sort((a, b) => b.key - a.key)
   }
-
-  
+// never ever ever have a heterogenuous list of data
+// all lists / arrays   
 
 
 
