@@ -1,4 +1,4 @@
-import {returnRange, isPrime, chonkyBoi, sortByKey, sliceyBoi, arithmeticBoi, sortNumerically} from './lodash.js'
+import {returnRange, isPrime, chonkyBoi, sortByValue, sortByKey, sliceyBoi, arithmeticBoi, sortNumerically} from './lodash.js'
 import deepEqual from 'deepequal'
 
 
@@ -72,11 +72,20 @@ test('sortByKey', ()=>{
   var arrayOfNumbers = [{value: 50, count: 39}, {value: 1, count: 3}, 
                         {value:50, count: 1}]
   var sorted = sortByKey(arrayOfNumbers)
-  console.log(sorted)
+  //console.log(sorted)
   expect(deepEqual(sorted,[{value: 50, count: 1}, {value: 50, count: 39}, 
     {value:1, count: 3}])).toBe(true)
 });  
 
+
+test('sortByValue', ()=>{
+  var arrayOfNumbers = [{value: 20, count: 20}, {value: 1, count: 3}, 
+                        {value:50, count: 1}]
+  var sorted = sortByValue(arrayOfNumbers)
+  console.log(sorted)
+  expect(deepEqual(sorted,[{value: 20, count: 20}, {value: 1, count: 3}, 
+    {value:50, count: 1}])).toBe(true)
+});  
   /*test('returnPrimes0', ()=>{
     var upperLimit = 10
     var primes = returnPrimes(upperLimit)

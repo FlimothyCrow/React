@@ -45,12 +45,15 @@ import _ from "lodash"
 
   export function sortByKey(arrayOfObjects){
     //return _.sortBy(arrayOfObjects)
-    return _.orderBy(arrayOfObjects, [(x)=> x.value, (x)=> x.count], ['desc', 'asc']);
+    return _.orderBy(arrayOfObjects, 
+      [(x)=> x.value, (x)=> x.count], ['desc', 'asc']);
     //return arrayOfObjects.sort((a, b) => b.key - a.key)
   }
 // never ever ever have a heterogenuous list of data
-// all lists / arrays   
-
+// all lists / arrays have to have all their data in THE SAME SHAPE
+  export function sortByValue(arrayOfObjects){
+    return _.orderBy(arrayOfObjects, [(x)=> x.count], ['desc']);
+  }
 
 
   /*
@@ -73,4 +76,3 @@ import _ from "lodash"
   } 
 
   */
-
