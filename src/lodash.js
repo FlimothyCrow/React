@@ -51,8 +51,8 @@ import _ from "lodash"
   }
 // never ever ever have a heterogenuous list of data
 // all lists / arrays have to have all their data in THE SAME SHAPE
-  export function sortByValue(arrayOfObjects){
-    return _.orderBy(arrayOfObjects, [(x)=> x.count], ['desc']);
+  export function sortByValue(arrayOfObjects, target, order){
+    return _.orderBy(arrayOfObjects, [(x)=> x.target], [order]);
   }
 
 

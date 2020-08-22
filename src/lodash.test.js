@@ -81,7 +81,7 @@ test('sortByKey', ()=>{
 test('sortByValue', ()=>{
   var arrayOfNumbers = [{value: 20, count: 20}, {value: 1, count: 3}, 
                         {value:50, count: 1}]
-  var sorted = sortByValue(arrayOfNumbers)
+  var sorted = sortByValue(arrayOfNumbers, "count", "desc")
   console.log(sorted)
   expect(deepEqual(sorted,[{value: 20, count: 20}, {value: 1, count: 3}, 
     {value:50, count: 1}])).toBe(true)
