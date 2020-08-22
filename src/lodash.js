@@ -57,6 +57,18 @@ export function sortByValue(arrayOfObjects, target, order){
     // return _.orderBy(arrayOfObjects, [target], [order]);
 
 
+
+export function pullNames(arrayOfObjects, startsWith){
+  var arrayOfNames = _.map(arrayOfObjects, function(x) {
+    return x.name
+  })
+  return _.filter(arrayOfNames, function(x) {
+    if (x[0] === startsWith) return x
+  });
+  //  return arrayOfNames
+}
+
+
   /*
   export function returnPrimes(upperLimit) {
     var newArray = [];
