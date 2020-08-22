@@ -82,9 +82,17 @@ test('sortByValue', ()=>{
   var arrayOfNumbers = [{value: 20, count: 20}, {value: 1, count: 3}, 
                         {value:50, count: 1}]
   var sorted = sortByValue(arrayOfNumbers, "count", "desc")
-  console.log(sorted)
+  //console.log(sorted)
   expect(deepEqual(sorted,[{value: 20, count: 20}, {value: 1, count: 3}, 
     {value:50, count: 1}])).toBe(true)
+});  
+
+test('sortByValue', ()=>{
+  var arrayOfObjects = [{name: "Freduardo"}, {name: "Billiam"}, 
+                        {name: "Jimothy"}, {name: "Rosstopher"}]
+  var sorted = sortByValue(arrayOfObjects)
+  console.log(sorted)
+  expect(deepEqual(sorted,["Freduardo", "Billiam", "Jimothy", "Rosstopher"])).toBe(true)
 });  
   /*test('returnPrimes0', ()=>{
     var upperLimit = 10
