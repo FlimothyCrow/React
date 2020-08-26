@@ -68,24 +68,11 @@ export function pullNames(arrayOfObjects, startsWith){
   //  return arrayOfNames
 }
 
+export function chonkTarget(arrayOfObjects, length){
+  return _.chunk(arrayOfObjects, [length])
+}
 
-  /*
-  export function returnPrimes(upperLimit) {
-    var newArray = [];
-    for (var i = 1; i <= upperLimit; i++) {
-      newArray.push(i);
-    }
-    var filteredArray = newArray.filter((element) => isPrime(element));
-    return filteredArray;
-  }
-  
-  
-  
-  export function isPrime(value) {
-    return (value === 1 || value === 2) ? false :
-      for (var i = 3; i < value; i++) {
-      (value % i === 0) ? false : value > 1;
-    }
-  } 
 
-  */
+export function lodashConcat(arrayOfThings, cat0, cat1){
+  return _.concat(arrayOfThings, [cat0, cat1])
+}
