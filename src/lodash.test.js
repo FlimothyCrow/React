@@ -1,4 +1,4 @@
-import {returnRange, isPrime, lodashConcat, chonkTarget, pullNames, chonkyBoi, sortByValue, sortByKey, sliceyBoi, arithmeticBoi, sortNumerically} from './lodash.js'
+import {returnRange, lodashCompact, lodashConcat, chonkTarget, pullNames, chonkyBoi, sortByValue, sortByKey, sliceyBoi, arithmeticBoi, sortNumerically} from './lodash.js'
 import deepEqual from 'deepequal'
 
 
@@ -110,7 +110,13 @@ test('lodashConcat', ()=>{
   var arrayOfObjects = ["a", "b", "c", "d", "e"]
   var sorted = chonkTarget(arrayOfObjects, 2)
   var concatted = lodashConcat(sorted, [2, 3], [[1]])
-  console.log(sorted)
+  //console.log(sorted)
   expect(deepEqual(concatted,[["a", "b"], ["c", "d"], ["e"], 
                               [2, 3], [[1]]])).toBe(true)});
+                           
+test('lodashCompact', ()=>{
+  var arrayOfElements = ["a", 0, "", 1, "e", {}]
+  var sorted = lodashCompact(arrayOfElements)  
+  console.log(sorted)
+  expect(deepEqual(sorted,["a", 1, "e", {}])).toBe(true)});
                            

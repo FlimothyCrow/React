@@ -76,3 +76,7 @@ export function chonkTarget(arrayOfObjects, length){
 export function lodashConcat(arrayOfThings, cat0, cat1){
   return _.concat(arrayOfThings, [cat0, cat1])
 }
+
+export function lodashCompact(arrayOfElements){
+  return _.compact(arrayOfElements)
+}
