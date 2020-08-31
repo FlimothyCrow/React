@@ -16,6 +16,14 @@ export function drawHand(deck){
   return _.pullAt(deck, _.range(5).map(x => _.random(0, deck.length)))
 }
 
+export function handEval(hand){
+  return hand.map(card => {
+    if (card.face === "a"){
+      return "pair"
+    }
+  })
+}
+
 export function addFive(x){
   x = x + 5
   return x
