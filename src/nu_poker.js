@@ -16,12 +16,11 @@ export function drawHand(deck){
   return _.pullAt(deck, _.range(5).map(x => _.random(0, deck.length)))
 }
 
-export function handEval(hand){
-  return hand.map(card => {
-    if (card.face === "a"){
-      return "pair"
-    }
-  })
+export function faceCount(hand){
+  var grouped = _.map(_.countBy(hand, "face"), (val, key) => ({ face: key, amount: val }))
+  if (grouped[0].amount === "2"){
+    return "pair of" + grouped[0].face
+  }
 }
 
 export function addFive(x){

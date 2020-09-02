@@ -1,4 +1,4 @@
-import {deckMaker, drawHand, addFive, addSix, handEval} from './nu_poker.js'
+import {deckMaker, drawHand, addFive, addSix, faceCount} from './nu_poker.js'
 import deepEqual from 'deepequal'
 
 
@@ -37,11 +37,11 @@ test('passByRef', ()=>{
   
 });
 
-test('handEval', ()=>{
-  var hand = [{face:"2", suit:"d"}, 
-              {face:"a", suit:"c"},
+test('faceCount', ()=>{
+  var hand = [{face:"a", suit:"d"}, 
+              {face:"9", suit:"c"},
               {face:"a", suit:"s"}]
-  var evaluated = handEval(hand)              
-  expect(evaluated).toEqual("pair")
-  
+  var evaluated = faceCount(hand)              
+  expect(evaluated).toEqual("pair of a")
+  //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
