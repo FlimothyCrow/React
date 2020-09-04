@@ -44,7 +44,6 @@ test('faceCount0', ()=>{
               {face:"k", suit:"s"},
               {face:"q", suit:"s"}]
   var evaluated = faceCount(hand)              
-  console.log(evaluated)
   expect(evaluated).toEqual(["2a", "19"])
   //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
@@ -56,7 +55,6 @@ test('faceCount1', ()=>{
               {face:"j", suit:"c"},
               {face:"9", suit:"s"}]
   var evaluated = faceCount(hand)              
-  console.log(evaluated)
   expect(evaluated).toEqual(["39", "15"])
   //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
@@ -68,7 +66,6 @@ test('faceCount2', ()=>{
               {face:"5", suit:"s"},
               {face:"9", suit:"h"}]
   var evaluated = faceCount(hand)              
-  console.log(evaluated)
   expect(evaluated).toEqual(["49", "15"])
   //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
@@ -80,7 +77,6 @@ test('faceCount3', ()=>{
               {face:"5", suit:"s"},
               {face:"5", suit:"h"}]
   var evaluated = faceCount(hand)              
-  console.log(evaluated)
   expect(evaluated).toEqual(["39", "25"])
   //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
-});
+})
