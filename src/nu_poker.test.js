@@ -129,7 +129,18 @@ test('straightCheck1', ()=>{
               {face:"k", suit:"d"},
               {face:"9", suit:"d"}]
   var evaluated = straightCheck(hand)              
-  console.log(evaluated)
+  //console.log(evaluated)
   expect(evaluated).toEqual("9 through 13")
+})
+
+test('straightCheck2', ()=>{
+  var hand = [{face:"a", suit:"c"}, // [4]
+              {face:"2", suit:"s"}, // [0]
+              {face:"3", suit:"d"}, // [1]
+              {face:"4", suit:"d"}, // [2]
+              {face:"5", suit:"d"}] // [3]
+  var evaluated = straightCheck(hand)              
+  console.log(evaluated)
+  expect(evaluated).toEqual("1 through 5")
 })
 // -----------------------------

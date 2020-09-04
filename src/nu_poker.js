@@ -60,6 +60,9 @@ export function straightCheck(hand){
   if (arrayOfInts[4] - arrayOfInts[0] === 4){
     return _.toString(arrayOfInts[0] + " through " + arrayOfInts[4])
   }
+  else if (arrayOfInts[3] - arrayOfInts[0] === 3 && arrayOfInts[0] === 2 && arrayOfInts[4] === 14) {
+    return "1 through 5"
+  }
 }
 // remove suit info
 // concat faces into array
