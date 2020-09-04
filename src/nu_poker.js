@@ -19,7 +19,13 @@ export function drawHand(deck){
 export function faceCount(hand){
   var grouped = _.map(_.countBy(hand, "face"), (val, key) => ({ face: key, amount: val }))
   var orderedByAmount = _.orderBy(grouped, ["amount"], ["desc"]);    
-  if (orderedByAmount[0].amount === 2){
+  var arrayToReturn = []
+   arrayToReturn.push(_.toString(orderedByAmount[0].amount + orderedByAmount[0].face))
+   arrayToReturn.push(_.toString(orderedByAmount[1].amount + orderedByAmount[1].face))
+  return arrayToReturn          
+                    
+  }
+  /*if (orderedByAmount[0].amount === 2){
     return "pair of " + orderedByAmount[0].face
   }
   else if (orderedByAmount[0].amount === 3){
@@ -27,10 +33,10 @@ export function faceCount(hand){
   }
   else if (orderedByAmount[0].amount === 4){
     return "four of " + orderedByAmount[0].face
-  }
+  }*/
   //return "pair of" + grouped[0].face
   
-}
+
 
 export function addFive(x){
   x = x + 5

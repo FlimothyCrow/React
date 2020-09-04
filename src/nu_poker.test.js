@@ -40,20 +40,24 @@ test('passByRef', ()=>{
 test('faceCount0', ()=>{
   var hand = [{face:"a", suit:"d"}, 
               {face:"9", suit:"c"},
-              {face:"a", suit:"s"}]
+              {face:"a", suit:"s"},
+              {face:"k", suit:"s"},
+              {face:"q", suit:"s"}]
   var evaluated = faceCount(hand)              
   console.log(evaluated)
-  expect(evaluated).toEqual("pair of a")
+  expect(evaluated).toEqual(["2a", "19"])
   //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
 
 test('faceCount1', ()=>{
   var hand = [{face:"9", suit:"d"}, 
               {face:"9", suit:"c"},
+              {face:"5", suit:"c"},
+              {face:"j", suit:"c"},
               {face:"9", suit:"s"}]
   var evaluated = faceCount(hand)              
   console.log(evaluated)
-  expect(evaluated).toEqual("three of 9")
+  expect(evaluated).toEqual(["39", "15"])
   //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
 
@@ -65,6 +69,18 @@ test('faceCount2', ()=>{
               {face:"9", suit:"h"}]
   var evaluated = faceCount(hand)              
   console.log(evaluated)
-  expect(evaluated).toEqual("four of 9")
+  expect(evaluated).toEqual(["49", "15"])
+  //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
+});
+
+test('faceCount3', ()=>{
+  var hand = [{face:"9", suit:"d"}, 
+              {face:"9", suit:"c"},
+              {face:"9", suit:"s"},
+              {face:"5", suit:"s"},
+              {face:"5", suit:"h"}]
+  var evaluated = faceCount(hand)              
+  console.log(evaluated)
+  expect(evaluated).toEqual(["39", "25"])
   //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
