@@ -1,4 +1,4 @@
-import {deckMaker, drawHand, addFive, addSix, faceCount} from './nu_poker.js'
+import {deckMaker, drawHand, addFive, addSix, faceCount, suitCount} from './nu_poker.js'
 import deepEqual from 'deepequal'
 
 
@@ -44,9 +44,8 @@ test('faceCount0', ()=>{
               {face:"k", suit:"s"},
               {face:"q", suit:"s"}]
   var evaluated = faceCount(hand)              
-  expect(evaluated).toEqual(["2a", "19"])
-  //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
-});
+  expect(evaluated).toEqual(["2a", "19"]) 
+}); // first element in array === amount, second === face value
 
 test('faceCount1', ()=>{
   var hand = [{face:"9", suit:"d"}, 
@@ -56,7 +55,6 @@ test('faceCount1', ()=>{
               {face:"9", suit:"s"}]
   var evaluated = faceCount(hand)              
   expect(evaluated).toEqual(["39", "15"])
-  //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
 
 test('faceCount2', ()=>{
@@ -67,7 +65,6 @@ test('faceCount2', ()=>{
               {face:"9", suit:"h"}]
   var evaluated = faceCount(hand)              
   expect(evaluated).toEqual(["49", "15"])
-  //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
 });
 
 test('faceCount3', ()=>{
@@ -77,6 +74,27 @@ test('faceCount3', ()=>{
               {face:"5", suit:"s"},
               {face:"5", suit:"h"}]
   var evaluated = faceCount(hand)              
-  expect(evaluated).toEqual(["39", "25"])
-  //expect(evaluated).toEqual([{"amount":2, "face":"a"}])
+  expect(evaluated).toEqual(["39", "25"]) 
+})
+// -----------------------------
+test('suitCount0', ()=>{
+  var hand = [{face:"a", suit:"d"}, 
+              {face:"9", suit:"d"},
+              {face:"2", suit:"d"},
+              {face:"a", suit:"d"},
+              {face:"q", suit:"d"}]
+  var evaluated = suitCount(hand)              
+  //console.log(evaluated)
+  expect(evaluated).toEqual("5d")
+})
+
+test('suitCount1', ()=>{
+  var hand = [{face:"q", suit:"c"}, 
+              {face:"j", suit:"s"},
+              {face:"2", suit:"d"},
+              {face:"a", suit:"d"},
+              {face:"q", suit:"d"}]
+  var evaluated = suitCount(hand)              
+  console.log(evaluated)
+  expect(evaluated).toEqual("3d")
 })

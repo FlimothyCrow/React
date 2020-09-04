@@ -23,7 +23,11 @@ export function faceCount(hand){
           _.toString(orderedByAmount[1].amount + orderedByAmount[1].face)]
   }
 
-
+export function suitCount(hand){
+  var grouped = _.map(_.countBy(hand, "suit"), (val, key) => ({ suit: key, amount: val }))
+  var orderedByAmount = _.orderBy(grouped, ["amount"], ["desc"])
+  return _.toString(orderedByAmount[0].amount + orderedByAmount[0].suit)
+}
 
 export function addFive(x){
   x = x + 5
