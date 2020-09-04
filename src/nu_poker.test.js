@@ -99,17 +99,6 @@ test('suitCount1', ()=>{
   expect(evaluated).toEqual("3d")
 })
 // -----------------------------
-/*test('straightCheck0', ()=>{
-  var hand = [{face:"a", suit:"c"}, 
-              {face:"4", suit:"s"},
-              {face:"2", suit:"d"},
-              {face:"3", suit:"d"},
-              {face:"5", suit:"d"}]
-  var evaluated = straightCheck(hand)              
-  console.log(evaluated)
-  expect(evaluated).toEqual("a through 5")
-})*/
-// -----------------------------
 test('faceToInt', ()=>{
   var hand = [{face:"a", suit:"c"},
               {face:"k", suit:"c"},
@@ -118,6 +107,29 @@ test('faceToInt', ()=>{
               {face:"t", suit:"c"},            
               {face:"q", suit:"c"}]
   var evaluated = faceToInt(hand)              
-  console.log(evaluated)
+  //console.log(evaluated)
   expect(evaluated).toEqual([5, 10, 11, 12, 13, 14])
 })
+// -----------------------------
+test('straightCheck0', ()=>{
+  var hand = [{face:"6", suit:"c"}, 
+              {face:"4", suit:"s"},
+              {face:"2", suit:"d"},
+              {face:"3", suit:"d"},
+              {face:"5", suit:"d"}]
+  var evaluated = straightCheck(hand)              
+  //console.log(evaluated)
+  expect(evaluated).toEqual("2 through 6")
+})
+
+test('straightCheck1', ()=>{
+  var hand = [{face:"q", suit:"c"}, 
+              {face:"t", suit:"s"},
+              {face:"j", suit:"d"},
+              {face:"k", suit:"d"},
+              {face:"9", suit:"d"}]
+  var evaluated = straightCheck(hand)              
+  console.log(evaluated)
+  expect(evaluated).toEqual("9 through 13")
+})
+// -----------------------------

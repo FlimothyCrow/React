@@ -56,11 +56,10 @@ export function faceToInt(hand){
 
 
 export function straightCheck(hand){
-  var arrayOfFaces = []
-  _.flatMap(hand, card => {
-    arrayOfFaces.push(card.face)    
-  })
-  return arrayOfFaces
+  var arrayOfInts = faceToInt(hand)
+  if (arrayOfInts[4] - arrayOfInts[0] === 4){
+    return _.toString(arrayOfInts[0] + " through " + arrayOfInts[4])
+  }
 }
 // remove suit info
 // concat faces into array
