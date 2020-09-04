@@ -1,4 +1,4 @@
-import {deckMaker, drawHand, addFive, addSix, faceCount, suitCount} from './nu_poker.js'
+import {deckMaker, drawHand, addFive, faceToInt, straightCheck, addSix, faceCount, suitCount} from './nu_poker.js'
 import deepEqual from 'deepequal'
 
 
@@ -55,7 +55,7 @@ test('faceCount1', ()=>{
               {face:"9", suit:"s"}]
   var evaluated = faceCount(hand)              
   expect(evaluated).toEqual(["39", "15"])
-});
+}); // three of a kind
 
 test('faceCount2', ()=>{
   var hand = [{face:"9", suit:"d"}, 
@@ -65,7 +65,7 @@ test('faceCount2', ()=>{
               {face:"9", suit:"h"}]
   var evaluated = faceCount(hand)              
   expect(evaluated).toEqual(["49", "15"])
-});
+}); // four of a kind
 
 test('faceCount3', ()=>{
   var hand = [{face:"9", suit:"d"}, 
@@ -75,7 +75,7 @@ test('faceCount3', ()=>{
               {face:"5", suit:"h"}]
   var evaluated = faceCount(hand)              
   expect(evaluated).toEqual(["39", "25"]) 
-})
+}) // full house
 // -----------------------------
 test('suitCount0', ()=>{
   var hand = [{face:"a", suit:"d"}, 
@@ -95,6 +95,29 @@ test('suitCount1', ()=>{
               {face:"a", suit:"d"},
               {face:"q", suit:"d"}]
   var evaluated = suitCount(hand)              
-  console.log(evaluated)
+  //console.log(evaluated)
   expect(evaluated).toEqual("3d")
+})
+// -----------------------------
+/*test('straightCheck0', ()=>{
+  var hand = [{face:"a", suit:"c"}, 
+              {face:"4", suit:"s"},
+              {face:"2", suit:"d"},
+              {face:"3", suit:"d"},
+              {face:"5", suit:"d"}]
+  var evaluated = straightCheck(hand)              
+  console.log(evaluated)
+  expect(evaluated).toEqual("a through 5")
+})*/
+// -----------------------------
+test('faceToInt', ()=>{
+  var hand = [{face:"a", suit:"c"},
+              {face:"k", suit:"c"},
+              {face:"5", suit:"c"},
+              {face:"j", suit:"c"},
+              {face:"t", suit:"c"},            
+              {face:"q", suit:"c"}]
+  var evaluated = faceToInt(hand)              
+  console.log(evaluated)
+  expect(evaluated).toEqual([5, 10, 11, 12, 13, 14])
 })

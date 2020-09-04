@@ -29,6 +29,46 @@ export function suitCount(hand){
   return _.toString(orderedByAmount[0].amount + orderedByAmount[0].suit)
 }
 
+export function faceToInt(hand){
+  var arrayOfInts = []
+  _.flatMap(hand, card => {
+    if (parseInt(card.face)) {
+      arrayOfInts.push(parseInt(card.face))
+    }
+    else if (card.face === "t") {
+      arrayOfInts.push(10)
+    }
+    else if (card.face === "j") {
+      arrayOfInts.push(11)
+    }
+    else if (card.face === "q") {
+      arrayOfInts.push(12)
+    }
+    else if (card.face === "k") {
+      arrayOfInts.push(13)
+    }
+    else if (card.face === "a") {
+      arrayOfInts.push(14)
+    }
+  })
+  return _.orderBy(arrayOfInts, _.floor, "asc")
+}
+
+
+export function straightCheck(hand){
+  var arrayOfFaces = []
+  _.flatMap(hand, card => {
+    arrayOfFaces.push(card.face)    
+  })
+  return arrayOfFaces
+}
+// remove suit info
+// concat faces into array
+// order array
+// ???
+
+
+
 export function addFive(x){
   x = x + 5
   return x
