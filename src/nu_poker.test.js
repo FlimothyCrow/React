@@ -1,4 +1,4 @@
-import {deckMaker, drawHand, addFive, faceToInt, straightCheck, addSix, faceCount, suitCount} from './nu_poker.js'
+import {deckMaker, handEval, drawHand, addFive, faceToInt, straightCheck, addSix, faceCount, suitCount} from './nu_poker.js'
 import deepEqual from 'deepequal'
 
 
@@ -140,7 +140,49 @@ test('straightCheck2', ()=>{
               {face:"4", suit:"d"}, // [2]
               {face:"5", suit:"d"}] // [3]
   var evaluated = straightCheck(hand)              
-  console.log(evaluated)
+  //console.log(evaluated)
   expect(evaluated).toEqual("1 through 5")
-})
+}) 
 // -----------------------------
+test('handEval0', ()=>{
+  var hand = [{face:"3", suit:"c"}, // [4]
+              {face:"t", suit:"s"}, // [0]
+              {face:"3", suit:"d"}, // [1]
+              {face:"5", suit:"d"}, // [2]
+              {face:"5", suit:"d"}] // [3]
+  var evaluated = handEval(hand)
+  //console.log(evaluated)
+  expect(evaluated).toEqual("two 3, two 5")
+});
+
+test('handEval1', ()=>{
+  var hand = [{face:"4", suit:"c"}, // [4]
+              {face:"t", suit:"s"}, // [0]
+              {face:"9", suit:"d"}, // [1]
+              {face:"4", suit:"d"}, // [2]
+              {face:"2", suit:"d"}] // [3]
+  var evaluated = handEval(hand)
+  //console.log(evaluated)
+  expect(evaluated).toEqual("two of 4")
+});
+
+test('handEval2', ()=>{
+  var hand = [{face:"4", suit:"c"}, // [4]
+              {face:"t", suit:"s"}, // [0]
+              {face:"4", suit:"d"}, // [1]
+              {face:"4", suit:"d"}, // [2]
+              {face:"5", suit:"d"}] // [3]
+  var evaluated = handEval(hand)
+  expect(evaluated).toEqual("three of 4")
+});
+
+test('handEval3', ()=>{
+  var hand = [{face:"4", suit:"c"}, // [4]
+              {face:"t", suit:"s"}, // [0]
+              {face:"4", suit:"d"}, // [1]
+              {face:"4", suit:"d"}, // [2]
+              {face:"4", suit:"d"}] // [3]
+  var evaluated = handEval(hand)
+  expect(evaluated).toEqual("four of 4")
+});
+

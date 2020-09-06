@@ -54,6 +54,14 @@ export function faceToInt(hand){
   return _.orderBy(arrayOfInts, _.floor, "asc")
 }
 
+export function handEval(hand){
+  var counted = faceCount(hand)
+  var toReturn = _.toString("two " + counted[0][1]  + _.toString(", two " + counted[1][1]))
+  return counted[0][0] === "2" && counted[1][0] === "2" ? toReturn : counted[0][0] === "2" ? 
+  _.toString("two of " + counted[0][1]) : counted[0][0] === "3" ? _.toString("three of " + counted[0][1]) : 
+  counted[0][0] === "4" ? _.toString("four of " + counted[0][1]) : undefined
+}
+
 
 export function straightCheck(hand){
   var arrayOfInts = faceToInt(hand)
