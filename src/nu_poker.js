@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 export function deckMaker() {
-  var faces = ["a", "2", "3", "4", "5", "6", "7", "8", "9", "t", "j", "q", "k"];
+  var faces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   var suits = ["d", "c", "s", "h"];
   return _.flatMap(suits, (suit) => {
     return faces.map((face) => {
@@ -17,66 +17,84 @@ export function drawHand(deck){
 }
 
 export function faceCount(hand){
-  var grouped = _.map(_.countBy(hand, "face"), (val, key) => ({ face: key, amount: val }))
-  var orderedByAmount = _.orderBy(grouped, ["amount"], ["desc"]);    
-  return [_.toString(orderedByAmount[0].amount + orderedByAmount[0].face),
-          _.toString(orderedByAmount[1].amount + orderedByAmount[1].face)]
-  }
-
-export function suitCount(hand){
-  var grouped = _.map(_.countBy(hand, "suit"), (val, key) => ({ suit: key, amount: val }))
-  var orderedByAmount = _.orderBy(grouped, ["amount"], ["desc"])
-  return _.toString(orderedByAmount[0].amount + orderedByAmount[0].suit)
+  var grouped = _.map(_.countBy(hand, "face"), (val, key) => ({ face: parseInt(key), amount: val }))
+  return _.orderBy(grouped, ["amount", "face"], ["desc", "asc"]);    
 }
 
-export function faceToInt(hand){
-  var arrayOfInts = []
-  _.flatMap(hand, card => {
-    if (parseInt(card.face)) {
-      arrayOfInts.push(parseInt(card.face))
-    }
-    else if (card.face === "t") {
-      arrayOfInts.push(10)
-    }
-    else if (card.face === "j") {
-      arrayOfInts.push(11)
-    }
-    else if (card.face === "q") {
-      arrayOfInts.push(12)
-    }
-    else if (card.face === "k") {
-      arrayOfInts.push(13)
-    }
-    else if (card.face === "a") {
-      arrayOfInts.push(14)
-    }
-  })
-  return _.orderBy(arrayOfInts, _.floor, "asc")
+export function isFlush(hand){
+  var grouped = _.map(_.countBy(hand, "suit"), (val, key) => ({ suit: key, amount: val }))
+  var orderedByAmount = _.orderBy(grouped, ["amount"], ["desc"])
+  return orderedByAmount[0].amount === 5 ? orderedByAmount[0].suit : undefined
+}
+
+export function isStraight(hand){
+  var arrayOfFaces = _.orderBy(_.map(hand, card => card.face))
+  if (arrayOfFaces[4] - arrayOfFaces[0] === 4){
+    return [arrayOfFaces[4], arrayOfFaces[0]]
+  } 
+  else if (arrayOfFaces[4] - arrayOfFaces[1] === 3 && arrayOfFaces[0] === 1 && arrayOfFaces[4] === 13) {
+    return [14, 10]
+  }
 }
 
 export function handEval(hand){
   var counted = faceCount(hand)
-  var toReturn = _.toString("two " + counted[0][1]  + _.toString(", two " + counted[1][1]))
-  return counted[0][0] === "2" && counted[1][0] === "2" ? toReturn : counted[0][0] === "2" ? 
-  _.toString("two of " + counted[0][1]) : counted[0][0] === "3" ? _.toString("three of " + counted[0][1]) : 
-  counted[0][0] === "4" ? _.toString("four of " + counted[0][1]) : undefined
+  if (counted[0].amount === 2 && counted[1].amount === 2){
+    return {type : "two pair", values: [counted[1].face, counted[0].face]}
+  }
+  else if (counted[0].amount === 3 && counted[1].amount === 2){
+    return {type : "full house", values: [counted[0].face, counted[1].face]}
+  }
+  else if (counted[0].amount === 2){
+    return {type : "pair", values: [counted[0].face]}
+  }
+  else if (counted[0].amount === 3){
+    return {type : "three", values: [counted[0].face]}
+  }
+  else if (counted[0].amount === 4){
+    return {type : "four", values: [counted[0].face]}
+  }
+  else if (isFlush(hand) && isStraight(hand)){
+    return {type:"straight flush", values: isStraight(hand)}
+  }
+  else if (isFlush(hand)){
+    return {type:"flush", values: [isFlush(hand)]}
+  }
+  else if (isStraight(hand)){
+    return {type:"straight", values: isStraight(hand)}
+  }
 }
 
-
-export function straightCheck(hand){
-  var arrayOfInts = faceToInt(hand)
-  if (arrayOfInts[4] - arrayOfInts[0] === 4){
-    return _.toString(arrayOfInts[0] + " through " + arrayOfInts[4])
+export function handToString(hand){
+  var evaluated = handEval(hand)
+  if (evaluated.type === "pair"){
+    return _.toString("pair of " + evaluated.values + "s")
   }
-  else if (arrayOfInts[3] - arrayOfInts[0] === 3 && arrayOfInts[0] === 2 && arrayOfInts[4] === 14) {
-    return "1 through 5"
+  else if (evaluated.type === "three"){
+    return _.toString("three of " + evaluated.values + "s")
+  }
+  else if (evaluated.type === "four"){
+    return _.toString("four of " + evaluated.values + "s")
+  }
+  else if (evaluated.type === "flush" && evaluated.values[0] === "c"){
+    return _.toString("flush of " + "clubs")
+  }
+  else if (evaluated.type === "flush" && evaluated.values[0] === "d"){
+    return _.toString("flush of " + "diamonds")
+  }
+  else if (evaluated.type === "flush" && evaluated.values[0] === "h"){
+    return _.toString("flush of " + "hearts")
+  }
+  else if (evaluated.type === "flush" && evaluated.values[0] === "s"){
+    return _.toString("flush of " + "spades")
+  }
+  else if (evaluated.type === "straight"){
+    return _.toString("straight " + evaluated.values[1] + " through " + evaluated.values[0])
+  }
+  else if (evaluated.type === "straight flush"){
+    return _.toString("straight flush " + evaluated.values[1] + " through " + evaluated.values[0])
   }
 }
-// remove suit info
-// concat faces into array
-// order array
-// ???
-
 
 
 export function addFive(x){
@@ -88,10 +106,32 @@ export function addFive(x){
 // pass by value clones
 // mutation by reference is NOT GOOD
 // maintainability
-
-
-
 export function addSix(x, z){
   x.push(6)
   z.push(6)
+}
+
+export function faceToInt(hand){
+  var arrayOfFaces = []
+  _.flatMap(hand, card => {
+    if (parseInt(card.face)) {
+      arrayOfFaces.push(parseInt(card.face))
+    }
+    else if (card.face === "t") {
+      arrayOfFaces.push(10)
+    }
+    else if (card.face === "j") {
+      arrayOfFaces.push(11)
+    }
+    else if (card.face === "q") {
+      arrayOfFaces.push(12)
+    }
+    else if (card.face === "k") {
+      arrayOfFaces.push(13)
+    }
+    else if (card.face === "a") {
+      arrayOfFaces.push(14)
+    }
+  })
+  return _.orderBy(arrayOfFaces, _.floor, "asc")
 }

@@ -1,188 +1,339 @@
-import {deckMaker, handEval, drawHand, addFive, faceToInt, straightCheck, addSix, faceCount, suitCount} from './nu_poker.js'
-import deepEqual from 'deepequal'
+import {
+  deckMaker,
+  drawHand,
+  handToString,
+  handEval,
+  addFive,
+  faceToInt,
+  isStraight,
+  addSix,
+  faceCount,
+  isFlush,
+} from "./nu_poker.js";
+import deepEqual from "deepequal";
 
-
-
-test('deckMaker', ()=>{
-  var deckObject = deckMaker()
+// test.skip
+// test.only
+test("deckMaker", () => {
+  var deckObject = deckMaker();
   //console.log(deckObject)
-  expect(deepEqual(deckObject[0], {face:"a", suit:"d"})).toBe(true)
-  expect(deepEqual(deckObject[8], {face:"9", suit:"d"})).toBe(true)
-  expect(deepEqual(deckObject[13], {face:"a", suit:"c"})).toBe(true)
-  expect(deepEqual(deckObject.length, 52)).toBe(true)
+  expect(deepEqual(deckObject[0], { face: 1, suit: "d" })).toBe(true);
+  expect(deepEqual(deckObject[8], { face: 9, suit: "d" })).toBe(true);
+  expect(deepEqual(deckObject[13], { face: 1, suit: "c" })).toBe(true);
+  expect(deepEqual(deckObject.length, 52)).toBe(true);
 });
 
-test('drawHand', ()=>{
-  var deck = deckMaker()
-  var hand = drawHand(deck)
-  //console.log(hand)
-  expect(hand.length).toBe(5)
-  expect(deck.length).toBe(47)
-});
-
-
-test('passByValue', ()=>{
-  var y = 10
-  var ret = addFive(y)
-  expect(ret).toBe(15)
-  expect(y).toBe(10)
-});
-
-test('passByRef', ()=>{
-  var y = [10]
-  var z = [11]
-  addSix(y, z)
-  expect(y).toEqual([10, 6])
-  expect(z).toEqual([11, 6])
-  
-});
-
-test('faceCount0', ()=>{
-  var hand = [{face:"a", suit:"d"}, 
-              {face:"9", suit:"c"},
-              {face:"a", suit:"s"},
-              {face:"k", suit:"s"},
-              {face:"q", suit:"s"}]
-  var evaluated = faceCount(hand)              
-  expect(evaluated).toEqual(["2a", "19"]) 
+test("faceCount0", () => {
+  var hand = [
+    { face: 1, suit: "d" },
+    { face: 9, suit: "c" },
+    { face: 1, suit: "s" },
+    { face: 13, suit: "s" },
+    { face: 12, suit: "s" },
+  ];
+  var evaluated = faceCount(hand);
+  console.log(evaluated);
+  expect(evaluated).toEqual([
+    { face: 1, amount: 2 },
+    { face: 9, amount: 1 },
+    { face: 12, amount: 1 },
+    { face: 13, amount: 1 },
+  ]);
 }); // first element in array === amount, second === face value
 
-test('faceCount1', ()=>{
-  var hand = [{face:"9", suit:"d"}, 
-              {face:"9", suit:"c"},
-              {face:"5", suit:"c"},
-              {face:"j", suit:"c"},
-              {face:"9", suit:"s"}]
-  var evaluated = faceCount(hand)              
-  expect(evaluated).toEqual(["39", "15"])
-}); // three of a kind
-
-test('faceCount2', ()=>{
-  var hand = [{face:"9", suit:"d"}, 
-              {face:"9", suit:"c"},
-              {face:"9", suit:"s"},
-              {face:"5", suit:"s"},
-              {face:"9", suit:"h"}]
-  var evaluated = faceCount(hand)              
-  expect(evaluated).toEqual(["49", "15"])
-}); // four of a kind
-
-test('faceCount3', ()=>{
-  var hand = [{face:"9", suit:"d"}, 
-              {face:"9", suit:"c"},
-              {face:"9", suit:"s"},
-              {face:"5", suit:"s"},
-              {face:"5", suit:"h"}]
-  var evaluated = faceCount(hand)              
-  expect(evaluated).toEqual(["39", "25"]) 
-}) // full house
 // -----------------------------
-test('suitCount0', ()=>{
-  var hand = [{face:"a", suit:"d"}, 
-              {face:"9", suit:"d"},
-              {face:"2", suit:"d"},
-              {face:"a", suit:"d"},
-              {face:"q", suit:"d"}]
-  var evaluated = suitCount(hand)              
-  //console.log(evaluated)
-  expect(evaluated).toEqual("5d")
-})
-
-test('suitCount1', ()=>{
-  var hand = [{face:"q", suit:"c"}, 
-              {face:"j", suit:"s"},
-              {face:"2", suit:"d"},
-              {face:"a", suit:"d"},
-              {face:"q", suit:"d"}]
-  var evaluated = suitCount(hand)              
-  //console.log(evaluated)
-  expect(evaluated).toEqual("3d")
-})
-// -----------------------------
-test('faceToInt', ()=>{
-  var hand = [{face:"a", suit:"c"},
-              {face:"k", suit:"c"},
-              {face:"5", suit:"c"},
-              {face:"j", suit:"c"},
-              {face:"t", suit:"c"},            
-              {face:"q", suit:"c"}]
-  var evaluated = faceToInt(hand)              
-  //console.log(evaluated)
-  expect(evaluated).toEqual([5, 10, 11, 12, 13, 14])
-})
-// -----------------------------
-test('straightCheck0', ()=>{
-  var hand = [{face:"6", suit:"c"}, 
-              {face:"4", suit:"s"},
-              {face:"2", suit:"d"},
-              {face:"3", suit:"d"},
-              {face:"5", suit:"d"}]
-  var evaluated = straightCheck(hand)              
-  //console.log(evaluated)
-  expect(evaluated).toEqual("2 through 6")
-})
-
-test('straightCheck1', ()=>{
-  var hand = [{face:"q", suit:"c"}, 
-              {face:"t", suit:"s"},
-              {face:"j", suit:"d"},
-              {face:"k", suit:"d"},
-              {face:"9", suit:"d"}]
-  var evaluated = straightCheck(hand)              
-  //console.log(evaluated)
-  expect(evaluated).toEqual("9 through 13")
-})
-
-test('straightCheck2', ()=>{
-  var hand = [{face:"a", suit:"c"}, // [4]
-              {face:"2", suit:"s"}, // [0]
-              {face:"3", suit:"d"}, // [1]
-              {face:"4", suit:"d"}, // [2]
-              {face:"5", suit:"d"}] // [3]
-  var evaluated = straightCheck(hand)              
-  //console.log(evaluated)
-  expect(evaluated).toEqual("1 through 5")
-}) 
-// -----------------------------
-test('handEval0', ()=>{
-  var hand = [{face:"3", suit:"c"}, // [4]
-              {face:"t", suit:"s"}, // [0]
-              {face:"3", suit:"d"}, // [1]
-              {face:"5", suit:"d"}, // [2]
-              {face:"5", suit:"d"}] // [3]
-  var evaluated = handEval(hand)
-  //console.log(evaluated)
-  expect(evaluated).toEqual("two 3, two 5")
+test.only("isFlush", () => {
+  var hand = [
+    { face: 1,  suit: "d" },
+    { face: 9,  suit: "d" },
+    { face: 2,  suit: "d" },
+    { face: 13, suit: "d" },
+    { face: 12, suit: "d" },
+  ];
+  var evaluated = isFlush(hand);
+  expect(evaluated).toEqual("d");
 });
 
-test('handEval1', ()=>{
-  var hand = [{face:"4", suit:"c"}, // [4]
-              {face:"t", suit:"s"}, // [0]
-              {face:"9", suit:"d"}, // [1]
-              {face:"4", suit:"d"}, // [2]
-              {face:"2", suit:"d"}] // [3]
-  var evaluated = handEval(hand)
-  //console.log(evaluated)
-  expect(evaluated).toEqual("two of 4")
+// -----------------------------
+
+// -----------------------------
+test.only("isStraight0", () => {
+  var hand = [
+    { face: 6, suit: "c" },
+    { face: 4, suit: "s" },
+    { face: 2, suit: "d" },
+    { face: 3, suit: "d" },
+    { face: 5, suit: "d" },
+  ];
+  var evaluated = isStraight(hand);
+  expect(evaluated).toEqual([6, 2]);
 });
 
-test('handEval2', ()=>{
-  var hand = [{face:"4", suit:"c"}, // [4]
-              {face:"t", suit:"s"}, // [0]
-              {face:"4", suit:"d"}, // [1]
-              {face:"4", suit:"d"}, // [2]
-              {face:"5", suit:"d"}] // [3]
-  var evaluated = handEval(hand)
-  expect(evaluated).toEqual("three of 4")
+test.only("isStraight > ace high", () => {
+  var hand = [
+    { face: 12, suit: "c" },
+    { face: 1, suit: "s" },
+    { face: 11, suit: "d" },
+    { face: 13, suit: "d" },
+    { face: 10, suit: "d" },
+  ];
+  var evaluated = isStraight(hand);
+  expect(evaluated).toEqual([14, 10]);
 });
 
-test('handEval3', ()=>{
-  var hand = [{face:"4", suit:"c"}, // [4]
-              {face:"t", suit:"s"}, // [0]
-              {face:"4", suit:"d"}, // [1]
-              {face:"4", suit:"d"}, // [2]
-              {face:"4", suit:"d"}] // [3]
-  var evaluated = handEval(hand)
-  expect(evaluated).toEqual("four of 4")
+test.only("isStraight > ace low", () => {
+  var hand = [
+    { face: 1, suit: "c" },
+    { face: 2, suit: "s" },
+    { face: 3, suit: "d" },
+    { face: 4, suit: "d" },
+    { face: 5, suit: "d" },
+  ];
+  var evaluated = isStraight(hand);
+
+  expect(evaluated).toEqual([5, 1]);
+});
+// -----------------------------
+
+test.only("handEval > two pair", () => {
+  var hand = [
+    { face: 3, suit: "c" },
+    { face: 10, suit: "s" },
+    { face: 3, suit: "d" },
+    { face: 5, suit: "d" },
+    { face: 5, suit: "d" },
+  ];
+  var evaluated = handEval(hand);
+
+  expect(evaluated).toEqual({ type: "two pair", values: [5, 3] });
 });
 
+test.only("handEval > pair", () => {
+  var hand = [
+    { face: 3, suit: "c" },
+    { face: 10, suit: "s" },
+    { face: 3, suit: "d" },
+    { face: 11, suit: "d" },
+    { face: 5, suit: "d" },
+  ];
+  var evaluated = handEval(hand);
+
+  expect(evaluated).toEqual({ type: "pair", values: [3] });
+});
+
+test.only("handEval > three of a kind", () => {
+  var hand = [
+    { face: 3, suit: "c" },
+    { face: 10, suit: "s" },
+    { face: 3, suit: "d" },
+    { face: 11, suit: "d" },
+    { face: 3, suit: "d" },
+  ];
+  var evaluated = handEval(hand);
+  expect(evaluated).toEqual({ type: "three", values: [3] });
+});
+
+test.only("handEval > four of ", () => {
+  var hand = [
+    { face: 10, suit: "c" },
+    { face: 10, suit: "s" },
+    { face: 10, suit: "d" },
+    { face: 10, suit: "d" },
+    { face: 3, suit: "d" },
+  ];
+  var evaluated = handEval(hand);
+  expect(evaluated).toEqual({ type: "four", values: [10] });
+});
+
+test.only("handEval > full house", () => {
+  var hand = [
+    { face: 10, suit: "c" },
+    { face: 3, suit: "s" },
+    { face: 10, suit: "d" },
+    { face: 3, suit: "d" },
+    { face: 3, suit: "d" },
+  ];
+  var evaluated = handEval(hand);
+  expect(evaluated).toEqual({ type: "full house", values: [3, 10] });
+});
+
+test.only("handEval > flush", () => {
+  var hand = [
+    { face: 10, suit: "c" },
+    { face: 5, suit: "c" },
+    { face: 1, suit: "c" },
+    { face: 13, suit: "c" },
+    { face: 3, suit: "c" },
+  ];
+  var evaluated = handEval(hand);
+  expect(evaluated).toEqual({ type: "flush", values: ["c"] });
+});
+
+test.only("handEval > straight", () => {
+  var hand = [
+    { face: 4, suit: "c" },
+    { face: 5, suit: "d" },
+    { face: 1, suit: "c" },
+    { face: 2, suit: "c" },
+    { face: 3, suit: "c" },
+  ];
+  var evaluated = handEval(hand);
+  expect(evaluated).toEqual({ type: "straight", values: [5, 1] });
+});
+
+test.only("handEval > straight flush", () => {
+  var hand = [
+    { face: 4, suit: "c" },
+    { face: 5, suit: "c" },
+    { face: 1, suit: "c" },
+    { face: 2, suit: "c" },
+    { face: 3, suit: "c" },
+  ];
+  var evaluated = handEval(hand);
+  expect(evaluated).toEqual({ type: "straight flush", values: [5, 1] });
+});
+// -------------------------------------------
+
+test.only("handToString > pair", () => {
+  var hand = [
+    { face: 4, suit: "s" },
+    { face: 2, suit: "d" },
+    { face: 1, suit: "c" },
+    { face: 2, suit: "c" },
+    { face: 3, suit: "c" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("pair of 2s");
+});
+
+test.only("handToString > three", () => {
+  var hand = [
+    { face: 4, suit: "s" },
+    { face: 2, suit: "d" },
+    { face: 1, suit: "c" },
+    { face: 2, suit: "c" },
+    { face: 2, suit: "c" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("three of 2s");
+});
+
+test.only("handToString > four", () => {
+  var hand = [
+    { face: 4, suit: "s" },
+    { face: 2, suit: "d" },
+    { face: 2, suit: "c" },
+    { face: 2, suit: "c" },
+    { face: 2, suit: "c" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("four of 2s");
+});
+
+test.only("handToString > clubs", () => {
+  var hand = [
+    { face: 4, suit: "c" },
+    { face: 5, suit: "c" },
+    { face: 14, suit: "c" },
+    { face: 12, suit: "c" },
+    { face: 2, suit: "c" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("flush of clubs");
+});
+
+test.only("handToString > diamonds", () => {
+  var hand = [
+    { face: 4, suit: "d" },
+    { face: 5, suit: "d" },
+    { face: 14, suit: "d" },
+    { face: 12, suit: "d" },
+    { face: 2, suit: "d" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("flush of diamonds");
+});
+
+test.only("handToString > spades", () => {
+  var hand = [
+    { face: 4, suit: "s" },
+    { face: 5, suit: "s" },
+    { face: 14, suit: "s" },
+    { face: 12, suit: "s" },
+    { face: 2, suit: "s" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("flush of spades");
+});
+
+test.only("handToString > hearts", () => {
+  var hand = [
+    { face: 4, suit: "h" },
+    { face: 5, suit: "h" },
+    { face: 14, suit: "h" },
+    { face: 12, suit: "h" },
+    { face: 2, suit: "h" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("flush of hearts");
+});
+
+test.only("handToString > straight", () => {
+  var hand = [
+    { face: 2, suit: "s" },
+    { face: 5, suit: "d" },
+    { face: 4, suit: "h" },
+    { face: 6, suit: "h" },
+    { face: 3, suit: "h" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("straight 2 through 6");
+});
+
+test.only("handToString > straight flush", () => {
+  var hand = [
+    { face: 2, suit: "h" },
+    { face: 5, suit: "h" },
+    { face: 4, suit: "h" },
+    { face: 6, suit: "h" },
+    { face: 3, suit: "h" },
+  ];
+  var evaluated = handToString(hand);
+  expect(evaluated).toEqual("straight flush 2 through 6 hearts");
+});
+// -------------------------------------------
+test("drawHand", () => {
+  var deck = deckMaker();
+  var hand = drawHand(deck);
+  expect(hand.length).toBe(5);
+  expect(deck.length).toBe(47);
+});
+
+test("passByValue", () => {
+  var y = 10;
+  var ret = addFive(y);
+  expect(ret).toBe(15);
+  expect(y).toBe(10);
+});
+
+test("passByRef", () => {
+  var y = [10];
+  var z = [11];
+  addSix(y, z);
+  expect(y).toEqual([10, 6]);
+  expect(z).toEqual([11, 6]);
+});
+
+
+test("faceToInt", () => {
+  var hand = [
+    { face: 1, suit: "c" },
+    { face: 13, suit: "c" },
+    { face: 5, suit: "c" },
+    { face: 1, suit: "c" },
+    { face: 10, suit: "c" },
+  ];
+  var evaluated = faceToInt(hand);
+
+  expect(evaluated).toEqual([5, 10, 11, 12, 13, 14]);
+});
