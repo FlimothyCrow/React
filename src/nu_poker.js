@@ -97,41 +97,8 @@ export function handToString(hand){
 }
 
 
-export function addFive(x){
-  x = x + 5
-  return x
+export function recursiveOrder(array){
+  return _.orderBy(_.map(array, subArray => _.orderBy(subArray)))
 }
 
-// pass by reference does NOT clone object
-// pass by value clones
-// mutation by reference is NOT GOOD
-// maintainability
-export function addSix(x, z){
-  x.push(6)
-  z.push(6)
-}
-
-export function faceToInt(hand){
-  var arrayOfFaces = []
-  _.flatMap(hand, card => {
-    if (parseInt(card.face)) {
-      arrayOfFaces.push(parseInt(card.face))
-    }
-    else if (card.face === "t") {
-      arrayOfFaces.push(10)
-    }
-    else if (card.face === "j") {
-      arrayOfFaces.push(11)
-    }
-    else if (card.face === "q") {
-      arrayOfFaces.push(12)
-    }
-    else if (card.face === "k") {
-      arrayOfFaces.push(13)
-    }
-    else if (card.face === "a") {
-      arrayOfFaces.push(14)
-    }
-  })
-  return _.orderBy(arrayOfFaces, _.floor, "asc")
-}
+// _.orderBy(users, ['user', 'age'], ['asc', 'desc']);

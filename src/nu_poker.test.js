@@ -1,12 +1,10 @@
 import {
   deckMaker,
   drawHand,
+  recursiveOrder,
   handToString,
   handEval,
-  addFive,
-  faceToInt,
   isStraight,
-  addSix,
   faceCount,
   isFlush,
 } from "./nu_poker.js";
@@ -290,7 +288,7 @@ test.only("handToString > straight", () => {
   expect(evaluated).toEqual("straight 2 through 6");
 });
 
-test.only("handToString > straight flush", () => {
+test("handToString > straight flush", () => {
   var hand = [
     { face: 2, suit: "h" },
     { face: 5, suit: "h" },
@@ -309,31 +307,14 @@ test("drawHand", () => {
   expect(deck.length).toBe(47);
 });
 
-test("passByValue", () => {
-  var y = 10;
-  var ret = addFive(y);
-  expect(ret).toBe(15);
-  expect(y).toBe(10);
+test.only("recursiveOrder", () => {
+  var nestedArray = [["n", "x", "b"], 
+                     ["a", "z", "d"], 
+                     ["z", "t", "c"]]
+  var ordered = recursiveOrder(nestedArray)    
+  console.log(ordered)                 
+  expect(ordered).toEqual([["a", "d", "z"], 
+                           ["b", "n", "x"],
+                           ["c", "t", "z"]]);
 });
 
-test("passByRef", () => {
-  var y = [10];
-  var z = [11];
-  addSix(y, z);
-  expect(y).toEqual([10, 6]);
-  expect(z).toEqual([11, 6]);
-});
-
-
-test("faceToInt", () => {
-  var hand = [
-    { face: 1, suit: "c" },
-    { face: 13, suit: "c" },
-    { face: 5, suit: "c" },
-    { face: 1, suit: "c" },
-    { face: 10, suit: "c" },
-  ];
-  var evaluated = faceToInt(hand);
-
-  expect(evaluated).toEqual([5, 10, 11, 12, 13, 14]);
-});
