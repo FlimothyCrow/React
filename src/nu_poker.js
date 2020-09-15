@@ -101,4 +101,32 @@ export function recursiveOrder(array){
   return _.orderBy(_.map(array, subArray => _.orderBy(subArray)))
 }
 
-// _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
+export function highCard(hand){
+  return _.orderBy(hand, ["face", "suit"], ["desc", "desc"])[0]
+}
+
+export function cheatBust(hand){
+  return _.uniqBy(hand, card => {
+   // return JSON.stringify(card) // to avoid deepEqual
+    return card.face + card.suit // to avoid deepEqual
+  }).length
+}
+
+export function newCheatBust(hand){
+  var uniqueCards = new Set() // by def, Set can't have duplicates
+  hand.forEach(card => {
+    uniqueCards.add(card.face + card.suit) // Set.add removes duplicates but won't check for structural equality
+  });
+  return uniqueCards.size
+}
+
+export function nuCheat(hand){
+  var uniqueCards = {} // by def, Set can't have duplicates
+  hand.forEach(card => {
+    var strung = card.face + card.suit // + converts int to string via weak typing
+    uniqueCards[strung] = true // Set.add removes duplicates but won't check for structural equality
+  }); // [] on 126 because we're define a key with a var, we don't want "strung"
+  //console.log(uniqueCards)
+  return Object.keys(uniqueCards).length
+}
+
