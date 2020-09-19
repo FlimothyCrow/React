@@ -130,3 +130,17 @@ export function nuCheat(hand){
   return Object.keys(uniqueCards).length
 }
 
+export function compareHands(hands){
+  var highed = _.map(hands, highCard)
+  var highest = Math.max.apply(null, highed.map(card => card.face));
+  if (highed[0].face === highed[1].face){
+    return "tie"
+  }
+  else {
+    return hands[_.indexOf(highed.map(card => card.face), highest)]
+  }
+  
+  
+}
+
+// return index of 
