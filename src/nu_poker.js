@@ -126,7 +126,6 @@ export function nuCheat(hand){
     var strung = card.face + card.suit // + converts int to string via weak typing
     uniqueCards[strung] = true // Set.add removes duplicates but won't check for structural equality
   }); // [] on 126 because we're define a key with a var, we don't want "strung"
-  //console.log(uniqueCards)
   return Object.keys(uniqueCards).length
 }
 
@@ -134,13 +133,15 @@ export function compareHands(hands){
   var highed = _.map(hands, highCard)
   var highest = Math.max.apply(null, highed.map(card => card.face));
   if (highed[0].face === highed[1].face){
-    return "tie"
+    return (areSuitsDesc(highed[0], highed[1]) ? hands[0] : hands[1])
   }
   else {
     return hands[_.indexOf(highed.map(card => card.face), highest)]
   }
-  
-  
 }
 
-// return index of 
+
+export function areSuitsDesc(card0, card1){ // implement into sortBy for multiple hands
+  var suitRanks = {s: 3, h: 2, d: 1, c: 0}
+  return suitRanks[card0.suit] > suitRanks[card1.suit]
+}

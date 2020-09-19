@@ -10,13 +10,11 @@ import {
   isFlush,
   newCheatBust,
   nuCheat,
-  cheatBust
+  cheatBust,
 } from "./nu_poker.js";
 import deepEqual from "deepequal";
 
 import * as poker from "./nu_poker.js"; // * === all, name to poker
- 
-
 
 // test.skip
 // test.only
@@ -49,9 +47,9 @@ test.only("faceCount0", () => {
 // -----------------------------
 test.only("isFlush", () => {
   var hand = [
-    { face: 1,  suit: "d" },
-    { face: 9,  suit: "d" },
-    { face: 2,  suit: "d" },
+    { face: 1, suit: "d" },
+    { face: 9, suit: "d" },
+    { face: 2, suit: "d" },
     { face: 13, suit: "d" },
     { face: 12, suit: "d" },
   ];
@@ -317,113 +315,128 @@ test("drawHand", () => {
 // -------------------------------------------
 test.only("highCard", () => {
   var hand = [
-     { face: 2, suit: "s" },
+    { face: 2, suit: "s" },
     { face: 13, suit: "h" },
-     { face: 4, suit: "d" },
+    { face: 4, suit: "d" },
     { face: 10, suit: "d" },
-     { face: 3, suit: "c" },
+    { face: 3, suit: "c" },
   ];
   var evaluated = highCard(hand);
-  expect(evaluated).toEqual({face: 13, suit:"h"});
+  expect(evaluated).toEqual({ face: 13, suit: "h" });
 });
 
 test.only("highCard > ace", () => {
   var hand = [
-     { face: 2, suit: "s" },
+    { face: 2, suit: "s" },
     { face: 14, suit: "s" },
-     { face: 4, suit: "d" },
-     { face: 9, suit: "d" },
-     { face: 2, suit: "c" },
+    { face: 4, suit: "d" },
+    { face: 9, suit: "d" },
+    { face: 2, suit: "c" },
   ];
   var evaluated = highCard(hand);
-  expect(evaluated).toEqual({face: 14, suit:"s"});
+  expect(evaluated).toEqual({ face: 14, suit: "s" });
 });
 
 test.only("highCard > highCard", () => {
   var hand = [
-     { face: 2, suit: "s" },
-     { face: 9, suit: "s" },
-     { face: 4, suit: "d" },
-     { face: 9, suit: "d" },
-     { face: 2, suit: "c" },
+    { face: 2, suit: "s" },
+    { face: 9, suit: "s" },
+    { face: 4, suit: "d" },
+    { face: 9, suit: "d" },
+    { face: 2, suit: "c" },
   ];
   var evaluated = highCard(hand);
-  expect(evaluated).toEqual({face: 9, suit:"s"});
+  expect(evaluated).toEqual({ face: 9, suit: "s" });
 }); // suits ranked are "s", "h", "d", "c"
 // -------------------------------------------
 test.only("cheatBust > true", () => {
   var hand = [
-     { face: 2, suit: "s" },
-     { face: 5, suit: "s" },
-     { face: 4, suit: "d" },
-     { face: 6, suit: "d" },
-     { face: 3, suit: "c" },
+    { face: 2, suit: "s" },
+    { face: 5, suit: "s" },
+    { face: 4, suit: "d" },
+    { face: 6, suit: "d" },
+    { face: 3, suit: "c" },
   ];
   var evaluated = newCheatBust(hand);
   expect(evaluated).toEqual(5);
-}); 
+});
 
 test.only("cheatBust > false", () => {
   var hand = [
-     { face: 9, suit: "s" },
-     { face: 9, suit: "s" },
-     { face: 4, suit: "d" },
-     { face: 8, suit: "d" },
-     { face: 2, suit: "c" },
-  ];
-  var evaluated = poker.cheatBust(hand);
-  expect(evaluated).toEqual(4);
-}); 
-
-// -------------------------------------------
-test.only("recursiveOrder", () => {
-  var nestedArray = [["n", "x", "b"], 
-                     ["a", "z", "d"], 
-                     ["z", "t", "c"]]
-  var ordered = recursiveOrder(nestedArray)    
-  expect(ordered).toEqual([["a", "d", "z"], 
-                           ["b", "n", "x"],
-                           ["c", "t", "z"]]);
-});
-
-// -------------------------------------------
-test.only("compareHands > highCard", () => {
-  var hands = [[
-    { face: 10, suit: "s" },
-    { face: 9, suit: "h" },
-    { face: 4, suit: "d" },
-    { face: 8, suit: "d" },
-    { face: 2, suit: "c" },
-    ],
-    [ 
-    { face: 13, suit: "s" },
+    { face: 9, suit: "s" },
     { face: 9, suit: "s" },
     { face: 4, suit: "d" },
     { face: 8, suit: "d" },
-    { face: 2, suit: "c" }
-    ]]
+    { face: 2, suit: "c" },
+  ];
+  var evaluated = poker.cheatBust(hand);
+  expect(evaluated).toEqual(4);
+});
+
+// -------------------------------------------
+test.only("recursiveOrder", () => {
+  var nestedArray = [
+    ["n", "x", "b"],
+    ["a", "z", "d"],
+    ["z", "t", "c"],
+  ];
+  var ordered = recursiveOrder(nestedArray);
+  expect(ordered).toEqual([
+    ["a", "d", "z"],
+    ["b", "n", "x"],
+    ["c", "t", "z"],
+  ]);
+});
+// -------------------------------------------
+test.only("areSuitsDesc", () => {
+  var card0 = { face: 13, suit: "s" }
+  var card1 = { face: 13, suit: "d" }
+
+  var compared = poker.areSuitsDesc(card0, card1);
+  // suits ranked are "s", "h", "d", "c"
+  expect(compared).toEqual(true);
+});
+// -------------------------------------------
+test.only("compareHands > highCard", () => {
+  var hands = [
+    [
+      { face: 10, suit: "s" },
+      { face: 9, suit: "h" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+    [
+      { face: 13, suit: "s" },
+      { face: 9, suit: "s" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+  ];
 
   var compared = poker.compareHands(hands);
   expect(compared).toEqual(hands[1]);
 });
 
 test.only("compareHands > highCard + suit", () => {
-  var hands = [[
-    { face: 13, suit: "c" },
-    { face: 9, suit: "h" },
-    { face: 4, suit: "d" },
-    { face: 8, suit: "d" },
-    { face: 2, suit: "c" },
+  var hands = [
+    [
+      { face: 13, suit: "c" },
+      { face: 9, suit: "h" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
     ],
-    [ 
-    { face: 13, suit: "s" },
-    { face: 9, suit: "s" },
-    { face: 4, suit: "d" },
-    { face: 8, suit: "d" },
-    { face: 2, suit: "c" }
-    ]]
+    [
+      { face: 13, suit: "s" },
+      { face: 9, suit: "s" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+  ];
 
   var compared = poker.compareHands(hands);
-  console.log(compared)
   expect(compared).toEqual(hands[1]);
 });
