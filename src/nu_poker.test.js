@@ -57,7 +57,6 @@ test.only("isFlush", () => {
   expect(evaluated).toEqual("d");
 });
 
-// -----------------------------
 
 // -----------------------------
 test.only("isStraight0", () => {
@@ -97,6 +96,17 @@ test.only("isStraight > ace low", () => {
   expect(evaluated).toEqual([5, 1]);
 });
 // -----------------------------
+test.only("handEval > high card", () => {
+  var hand = [
+    { face: 9, suit: "c" },
+    { face: 5, suit: "d" },
+    { face: 1, suit: "c" },
+    { face: 2, suit: "c" },
+    { face: 3, suit: "c" },
+  ];
+  var evaluated = handEval(hand);
+  expect(evaluated).toEqual({ type: "high card", values: [9, "c"] });
+});
 
 test.only("handEval > two pair", () => {
   var hand = [
@@ -120,7 +130,6 @@ test.only("handEval > pair", () => {
     { face: 5, suit: "d" },
   ];
   var evaluated = handEval(hand);
-
   expect(evaluated).toEqual({ type: "pair", values: [3] });
 });
 
@@ -195,6 +204,8 @@ test.only("handEval > straight flush", () => {
   var evaluated = handEval(hand);
   expect(evaluated).toEqual({ type: "straight flush", values: [5, 1] });
 });
+
+
 // -------------------------------------------
 
 test.only("handToString > pair", () => {
@@ -439,4 +450,26 @@ test.only("compareHands > highCard + suit", () => {
 
   var compared = poker.compareHands(hands);
   expect(compared).toEqual(hands[1]);
+});
+
+test.only("compareHands > pairs", () => {
+  var hands = [
+    [
+      { face: 13, suit: "c" },
+      { face: 13, suit: "h" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+    [
+      { face: 13, suit: "s" },
+      { face: 9, suit: "s" },
+      { face: 8, suit: "d" },
+      { face: 8, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+  ];
+
+  var compared = poker.compareHands(hands);
+  expect(compared).toEqual(hands[0]);
 });

@@ -63,6 +63,9 @@ export function handEval(hand){
   else if (isStraight(hand)){
     return {type:"straight", values: isStraight(hand)}
   }
+  else {
+    return {type: "high card", values : [highCard(hand).face, highCard(hand).suit]}
+  }
 }
 
 export function handToString(hand){
@@ -129,10 +132,26 @@ export function nuCheat(hand){
   return Object.keys(uniqueCards).length
 }
 
+
+export function areSuitsDesc(card0, card1){ // implement into sortBy for multiple hands
+  var suitRanks = {s: 3, h: 2, d: 1, c: 0}
+  return suitRanks[card0.suit] > suitRanks[card1.suit]
+}
+
 export function compareHands(hands){
+  var eval0 = handEval(hands[0])
+  var eval1 = handEval(hands[1])
   var highed = _.map(hands, highCard)
   var highest = Math.max.apply(null, highed.map(card => card.face));
-  if (highed[0].face === highed[1].face){
+  if (eval0.type === "pair" && eval1.type === "pair"){
+    if (parseInt(eval0.values) > parseInt(eval1.values)){
+      return hands[0]
+    }
+    else {
+      return hands[1]
+    }
+  }
+  else if (highed[0].face === highed[1].face){
     return (areSuitsDesc(highed[0], highed[1]) ? hands[0] : hands[1])
   }
   else {
@@ -140,8 +159,3 @@ export function compareHands(hands){
   }
 }
 
-
-export function areSuitsDesc(card0, card1){ // implement into sortBy for multiple hands
-  var suitRanks = {s: 3, h: 2, d: 1, c: 0}
-  return suitRanks[card0.suit] > suitRanks[card1.suit]
-}
