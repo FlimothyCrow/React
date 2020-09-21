@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { handEval, highCard, playerOneHigher } from "./handEval.js";
 
 export function deckMaker() {
   var faces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -10,152 +11,107 @@ export function deckMaker() {
   });
 }
 
-export function drawHand(deck){
-  //return _.pullAt(_.shuffle(deck), _.range(5)) 
+export function drawHand(deck) {
+  //return _.pullAt(_.shuffle(deck), _.range(5))
   // to do, secret third spicy option for maintainabilito
-  return _.pullAt(deck, _.range(5).map(x => _.random(0, deck.length)))
+  return _.pullAt(
+    deck,
+    _.range(5).map((x) => _.random(0, deck.length))
+  );
 }
 
-export function faceCount(hand){
-  var grouped = _.map(_.countBy(hand, "face"), (val, key) => ({ face: parseInt(key), amount: val }))
-  return _.orderBy(grouped, ["amount", "face"], ["desc", "asc"]);    
-}
-
-export function isFlush(hand){
-  var grouped = _.map(_.countBy(hand, "suit"), (val, key) => ({ suit: key, amount: val }))
-  var orderedByAmount = _.orderBy(grouped, ["amount"], ["desc"])
-  return orderedByAmount[0].amount === 5 ? orderedByAmount[0].suit : undefined
-}
-
-export function isStraight(hand){
-  var arrayOfFaces = _.orderBy(_.map(hand, card => card.face))
-  if (arrayOfFaces[4] - arrayOfFaces[0] === 4){
-    return [arrayOfFaces[4], arrayOfFaces[0]]
-  } 
-  else if (arrayOfFaces[4] - arrayOfFaces[1] === 3 && arrayOfFaces[0] === 1 && arrayOfFaces[4] === 13) {
-    return [14, 10]
-  }
-}
-
-export function handEval(hand){
-  var counted = faceCount(hand)
-  if (counted[0].amount === 2 && counted[1].amount === 2){
-    return {type : "two pair", values: [counted[1].face, counted[0].face]}
-  }
-  else if (counted[0].amount === 3 && counted[1].amount === 2){
-    return {type : "full house", values: [counted[0].face, counted[1].face]}
-  }
-  else if (counted[0].amount === 2){
-    return {type : "pair", values: [counted[0].face]}
-  }
-  else if (counted[0].amount === 3){
-    return {type : "three", values: [counted[0].face]}
-  }
-  else if (counted[0].amount === 4){
-    return {type : "four", values: [counted[0].face]}
-  }
-  else if (isFlush(hand) && isStraight(hand)){
-    return {type:"straight flush", values: isStraight(hand)}
-  }
-  else if (isFlush(hand)){
-    return {type:"flush", values: [isFlush(hand)]}
-  }
-  else if (isStraight(hand)){
-    return {type:"straight", values: isStraight(hand)}
-  }
-  else {
-    return {type: "high card", values : [highCard(hand).face, highCard(hand).suit]}
+export function handToString(hand) {
+  var evaluated = handEval(hand);
+  if (evaluated.type === "pair") {
+    return _.toString("pair of " + evaluated.values + "s");
+  } else if (evaluated.type === "three") {
+    return _.toString("three of " + evaluated.values + "s");
+  } else if (evaluated.type === "four") {
+    return _.toString("four of " + evaluated.values + "s");
+  } else if (evaluated.type === "flush" && evaluated.values[0] === "c") {
+    return _.toString("flush of " + "clubs");
+  } else if (evaluated.type === "flush" && evaluated.values[0] === "d") {
+    return _.toString("flush of " + "diamonds");
+  } else if (evaluated.type === "flush" && evaluated.values[0] === "h") {
+    return _.toString("flush of " + "hearts");
+  } else if (evaluated.type === "flush" && evaluated.values[0] === "s") {
+    return _.toString("flush of " + "spades");
+  } else if (evaluated.type === "straight") {
+    return _.toString(
+      "straight " + evaluated.values[1] + " through " + evaluated.values[0]
+    );
+  } else if (evaluated.type === "straight flush") {
+    return _.toString(
+      "straight flush " +
+        evaluated.values[1] +
+        " through " +
+        evaluated.values[0]
+    );
   }
 }
 
-export function handToString(hand){
-  var evaluated = handEval(hand)
-  if (evaluated.type === "pair"){
-    return _.toString("pair of " + evaluated.values + "s")
-  }
-  else if (evaluated.type === "three"){
-    return _.toString("three of " + evaluated.values + "s")
-  }
-  else if (evaluated.type === "four"){
-    return _.toString("four of " + evaluated.values + "s")
-  }
-  else if (evaluated.type === "flush" && evaluated.values[0] === "c"){
-    return _.toString("flush of " + "clubs")
-  }
-  else if (evaluated.type === "flush" && evaluated.values[0] === "d"){
-    return _.toString("flush of " + "diamonds")
-  }
-  else if (evaluated.type === "flush" && evaluated.values[0] === "h"){
-    return _.toString("flush of " + "hearts")
-  }
-  else if (evaluated.type === "flush" && evaluated.values[0] === "s"){
-    return _.toString("flush of " + "spades")
-  }
-  else if (evaluated.type === "straight"){
-    return _.toString("straight " + evaluated.values[1] + " through " + evaluated.values[0])
-  }
-  else if (evaluated.type === "straight flush"){
-    return _.toString("straight flush " + evaluated.values[1] + " through " + evaluated.values[0])
-  }
+export function cheatBust(hand) {
+  return _.uniqBy(hand, (card) => {
+    // return JSON.stringify(card) // to avoid deepEqual
+    return card.face + card.suit; // to avoid deepEqual
+  }).length;
 }
 
-
-export function recursiveOrder(array){
-  return _.orderBy(_.map(array, subArray => _.orderBy(subArray)))
-}
-
-export function highCard(hand){
-  return _.orderBy(hand, ["face", "suit"], ["desc", "desc"])[0]
-}
-
-export function cheatBust(hand){
-  return _.uniqBy(hand, card => {
-   // return JSON.stringify(card) // to avoid deepEqual
-    return card.face + card.suit // to avoid deepEqual
-  }).length
-}
-
-export function newCheatBust(hand){
-  var uniqueCards = new Set() // by def, Set can't have duplicates
-  hand.forEach(card => {
-    uniqueCards.add(card.face + card.suit) // Set.add removes duplicates but won't check for structural equality
+export function newCheatBust(hand) {
+  var uniqueCards = new Set(); // by def, Set can't have duplicates
+  hand.forEach((card) => {
+    uniqueCards.add(card.face + card.suit); // Set.add removes duplicates but won't check for structural equality
   });
-  return uniqueCards.size
+  return uniqueCards.size;
 }
 
-export function nuCheat(hand){
-  var uniqueCards = {} // by def, Set can't have duplicates
-  hand.forEach(card => {
-    var strung = card.face + card.suit // + converts int to string via weak typing
-    uniqueCards[strung] = true // Set.add removes duplicates but won't check for structural equality
+export function nuCheat(hand) {
+  var uniqueCards = {}; // by def, Set can't have duplicates
+  hand.forEach((card) => {
+    var strung = card.face + card.suit; // + converts int to string via weak typing
+    uniqueCards[strung] = true; // Set.add removes duplicates but won't check for structural equality
   }); // [] on 126 because we're define a key with a var, we don't want "strung"
-  return Object.keys(uniqueCards).length
+  return Object.keys(uniqueCards).length;
 }
 
-
-export function areSuitsDesc(card0, card1){ // implement into sortBy for multiple hands
-  var suitRanks = {s: 3, h: 2, d: 1, c: 0}
-  return suitRanks[card0.suit] > suitRanks[card1.suit]
+export function areSuitsDesc(card0, card1) {
+  // implement into sortBy for multiple hands
+  var suitRanks = { s: 3, h: 2, d: 1, c: 0 };
+  return suitRanks[card0.suit] > suitRanks[card1.suit];
 }
 
-export function compareHands(hands){
-  var eval0 = handEval(hands[0])
-  var eval1 = handEval(hands[1])
-  var highed = _.map(hands, highCard)
-  var highest = Math.max.apply(null, highed.map(card => card.face));
-  if (eval0.type === "pair" && eval1.type === "pair"){
-    if (parseInt(eval0.values) > parseInt(eval1.values)){
-      return hands[0]
+export function compareHands(hands) {
+  var eval0 = handEval(hands[0]);
+  var eval1 = handEval(hands[1]);
+  var highed = _.map(hands, highCard);
+  var highest = Math.max.apply(
+    null,
+    highed.map((card) => card.face)
+  );
+  if (eval0.type === "two pair" && eval1.type === "two pair") {
+    if (eval0.values[0] === eval1.values[0]) {
+      return eval0.values[1] > eval1.values[1] ? hands[0] : hands[1]
     }
     else {
-      return hands[1]
+      return eval0.values[0] > eval1.values[0] ? hands[0] : hands[1];
     }
-  }
-  else if (highed[0].face === highed[1].face){
-    return (areSuitsDesc(highed[0], highed[1]) ? hands[0] : hands[1])
+  } else if (
+    (eval0.type === "pair" && eval1.type === "pair") ||
+    (eval0.type === "three" && eval1.type === "three") ||
+    (eval0.type === "four" && eval1.type === "four")
+  ) {
+    return eval0.values[0] > eval1.values[0] ? hands[0] : hands[1];
+  } else if (highed[0].face === highed[1].face) {
+    return areSuitsDesc(highed[0], highed[1]) ? hands[0] : hands[1];
+  } else if (eval0.type === "high card" && eval1.type === "high card"){
+    return hands[
+      _.indexOf(
+        highed.map((card) => card.face),
+        highest
+      )
+    ];
   }
   else {
-    return hands[_.indexOf(highed.map(card => card.face), highest)]
+    return playerOneHigher(eval0, eval1) ? hands[0] : hands[1]
   }
 }
-
