@@ -45,8 +45,8 @@ test("handToString > four", () => {
   var hand = [
     { face: 4, suit: "s" },
     { face: 2, suit: "d" },
-    { face: 2, suit: "c" },
-    { face: 2, suit: "c" },
+    { face: 2, suit: "h" },
+    { face: 2, suit: "s" },
     { face: 2, suit: "c" },
   ];
   var evaluated = poker.handToString(hand);
@@ -134,7 +134,7 @@ test.skip("drawHand", () => { // FIX THIS 47 != 49
 
 
 // -------------------------------------------
-test("cheatBust > true", () => {
+test("isCheating > false", () => {
   var hand = [
     { face: 2, suit: "s" },
     { face: 5, suit: "s" },
@@ -142,11 +142,11 @@ test("cheatBust > true", () => {
     { face: 6, suit: "d" },
     { face: 3, suit: "c" },
   ];
-  var evaluated = poker.newCheatBust(hand);
-  expect(evaluated).toEqual(5);
+  var evaluated = poker.isCheating(hand);
+  expect(evaluated).toEqual(false);
 });
 
-test("cheatBust > false", () => {
+test("isCheating > true", () => {
   var hand = [
     { face: 9, suit: "s" },
     { face: 9, suit: "s" },
@@ -154,10 +154,21 @@ test("cheatBust > false", () => {
     { face: 8, suit: "d" },
     { face: 2, suit: "c" },
   ];
-  var evaluated = poker.cheatBust(hand);
-  expect(evaluated).toEqual(4);
+  var evaluated = poker.isCheating(hand);
+  expect(evaluated).toEqual(true);
 });
 
+test("isCheating > true", () => {
+  var hand = [
+    { face: 13, suit: "c" },
+    { face: 13, suit: "c" },
+    { face: 2, suit: "d" },
+    { face: 13, suit: "s" },
+    { face: 2, suit: "c" },
+  ]
+  var evaluated = poker.isCheating(hand);
+  expect(evaluated).toEqual(true);
+});
 
 // -------------------------------------------
 test("areSuitsDesc", () => {
@@ -246,7 +257,7 @@ test("compareHands > two pair matching", () => {
     ],
     [
       { face: 13, suit: "s" },
-      { face: 13, suit: "s" },
+      { face: 13, suit: "c" },
       { face: 8, suit: "d" },
       { face: 8, suit: "s" },
       { face: 2, suit: "c" },
@@ -268,7 +279,7 @@ test("compareHands > two pair unmatched", () => {
     ],
     [
       { face: 8, suit: "s" },
-      { face: 8, suit: "s" },
+      { face: 8, suit: "c" },
       { face: 3, suit: "d" },
       { face: 3, suit: "s" },
       { face: 2, suit: "c" },
@@ -292,7 +303,7 @@ test("compareHands > three", () => {
       { face: 13, suit: "s" },
       { face: 8, suit: "s" },
       { face: 8, suit: "d" },
-      { face: 8, suit: "s" },
+      { face: 8, suit: "c" },
       { face: 2, suit: "c" },
     ],
   ];
@@ -312,9 +323,9 @@ test("compareHands > four", () => {
     ],
     [
       { face: 8, suit: "s" },
-      { face: 8, suit: "s" },
+      { face: 8, suit: "c" },
       { face: 8, suit: "d" },
-      { face: 8, suit: "s" },
+      { face: 8, suit: "h" },
       { face: 2, suit: "c" },
     ],
   ];
@@ -343,4 +354,48 @@ test("compareHands > pair vs two pair", () => {
 
   var compared = poker.compareHands(hands);
   expect(compared).toEqual(hands[0]);
+});
+
+test("compareHands > full house vs straight", () => {
+  var hands = [
+    [
+      { face: 13, suit: "c" },
+      { face: 13, suit: "h" },
+      { face: 2, suit: "d" },
+      { face: 13, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+    [
+      { face: 3, suit: "s" },
+      { face: 5, suit: "s" },
+      { face: 4, suit: "d" },
+      { face: 6, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+  ];
+
+  var compared = poker.compareHands(hands);
+  expect(compared).toEqual(hands[0]);
+});
+
+test("compareHands > cheating full house vs three", () => {
+  var hands = [
+    [
+      { face: 13, suit: "c" },
+      { face: 13, suit: "c" },
+      { face: 2, suit: "d" },
+      { face: 13, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+    [
+      { face: 3, suit: "s" },
+      { face: 3, suit: "c" },
+      { face: 3, suit: "d" },
+      { face: 6, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+  ];
+
+  var compared = poker.compareHands(hands);
+  expect(compared).toEqual("player 1 disqualified");
 });

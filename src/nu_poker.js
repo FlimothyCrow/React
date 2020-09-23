@@ -50,29 +50,14 @@ export function handToString(hand) {
   }
 }
 
-export function cheatBust(hand) {
-  return _.uniqBy(hand, (card) => {
+export function isCheating(hand) {
+  var uniqueLength = _.uniqBy(hand, (card) => {
     // return JSON.stringify(card) // to avoid deepEqual
     return card.face + card.suit; // to avoid deepEqual
   }).length;
+  return uniqueLength === 5 ? false : true
 }
 
-export function newCheatBust(hand) {
-  var uniqueCards = new Set(); // by def, Set can't have duplicates
-  hand.forEach((card) => {
-    uniqueCards.add(card.face + card.suit); // Set.add removes duplicates but won't check for structural equality
-  });
-  return uniqueCards.size;
-}
-
-export function nuCheat(hand) {
-  var uniqueCards = {}; // by def, Set can't have duplicates
-  hand.forEach((card) => {
-    var strung = card.face + card.suit; // + converts int to string via weak typing
-    uniqueCards[strung] = true; // Set.add removes duplicates but won't check for structural equality
-  }); // [] on 126 because we're define a key with a var, we don't want "strung"
-  return Object.keys(uniqueCards).length;
-}
 
 export function areSuitsDesc(card0, card1) {
   // implement into sortBy for multiple hands
@@ -88,6 +73,12 @@ export function compareHands(hands) {
     null,
     highed.map((card) => card.face)
   );
+  if (isCheating(hands[0]) === true){
+    return "player 1 disqualified"
+  }
+  else if (isCheating(hands[1]) === true){
+    return "player 2 disqualified"
+  }
   if (eval0.type === "two pair" && eval1.type === "two pair") {
     if (eval0.values[0] === eval1.values[0]) {
       return eval0.values[1] > eval1.values[1] ? hands[0] : hands[1]
