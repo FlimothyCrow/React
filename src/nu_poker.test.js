@@ -16,6 +16,13 @@ test("deckMaker", () => {
 });
 
 // -----------------------------
+test.skip("drawHand", () => { // 
+  var deck = poker.deckMaker();
+  var hand = poker.drawHand(deck);
+  expect(hand.length).toBe(5);
+  expect(deck.length).toBe(47);
+});
+// -------------------------------------------
 
 test("handToString > pair", () => {
   var hand = [
@@ -124,14 +131,6 @@ test("handToString > straight flush", () => {
   var evaluated = poker.handToString(hand);
   expect(evaluated).toEqual("straight flush 2 through 6");
 });
-// -------------------------------------------
-test.skip("drawHand", () => { // FIX THIS 47 != 49
-  var deck = poker.deckMaker();
-  var hand = poker.drawHand(deck);
-  expect(hand.length).toBe(5);
-  expect(deck.length).toBe(47);
-});
-
 
 // -------------------------------------------
 test("isCheating > false", () => {
