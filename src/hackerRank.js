@@ -57,15 +57,7 @@ export function reduceTreeAcc(input) {
     nodes.push(input.left);
     nodes.push(input.right);
   }
-  return acc;
-}
-
-// reduceTree(input: Tree) : number           <- typeScript
-export function reduceTree(input) {
-  if (input === null) {
-    return 0;
-  }
-  return input.val + reduceTree(input.left) + reduceTree(input.right);
+  return acc; // Math.max(leftSum, rightSum)
 }
 
 
@@ -75,3 +67,12 @@ export function lengthNestedArrays(input) {
   }
   return 1 + lengthNestedArrays(input.next);
 }
+
+// reduceTree(input: Tree) : number           <- typeScript
+export function lengthTree(input) {
+  if (input === null) {
+    return 0;
+  }
+  return 1 + Math.max(lengthTree(input.left), lengthTree(input.right));
+}
+

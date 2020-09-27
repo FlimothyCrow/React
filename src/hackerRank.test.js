@@ -2,8 +2,9 @@ import {
   repeatingString,
   reduceNestedArrays,
   reduceListOne,
-  reduceTreeAcc,
   lengthNestedArrays,
+  reduceTree,
+  lengthTree
 } from "./hackerRank.js";
 
 test("repeatingString 0", () => {
@@ -47,16 +48,20 @@ test("lengthNestedArrays 0", () => {
   expect(results).toEqual(expected);
 });
 // ---------------------------------------------------
-test("reduceNestedArrays 2", () => {
+test("lengthTree 0", () => {
   let node = function (n, l, r) {
     return { val: n, left: l, right: r };
   };
-  let input = node(
-    5,
-    node(2, node(1, null, null), node(3, null, null)),
-    node(7, node(6, null, null), node(8, null, null))
-  );
+  let input = node(5,
+                node(2, 
+                  node(1, null, null), 
+                  node(3, null, null)),
+                node(7, 
+                  node(6, null, null), 
+                  node(8, 
+                    node(9, null, null),
+                    node(10, null, null))))
 
-  var results = reduceTreeAcc(input);
-  expect(results).toEqual(32); // calculate height of tree
+  var results = lengthTree(input);
+  expect(results).toEqual(4); // calculate height of tree
 });
