@@ -76,3 +76,10 @@ export function lengthTree(input) {
   return 1 + Math.max(lengthTree(input.left), lengthTree(input.right));
 }
 
+
+export function whilePractice(int){
+  while (int < 6){
+    console.log("int")
+    return whilePractice(int + 1)
+  }
+}

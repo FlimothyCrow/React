@@ -65,3 +65,4 @@ test("lengthTree 0", () => {
   var results = lengthTree(input);
   expect(results).toEqual(4); // calculate height of tree
 });
+
