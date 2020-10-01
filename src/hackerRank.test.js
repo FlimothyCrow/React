@@ -4,7 +4,7 @@ import {
   reduceListOne,
   lengthNestedArrays,
   reduceTree,
-  lengthTree
+  lengthTree, splitArray, iterArray
 } from "./hackerRank.js";
 
 test("repeatingString 0", () => {
@@ -64,5 +64,23 @@ test("lengthTree 0", () => {
 
   var results = lengthTree(input);
   expect(results).toEqual(4); // calculate height of tree
-});
+})
+
+test("splitArray 2", () => {
+  let targetArray = ["a", "b", "c", "d", "e", "f"]
+  let results = splitArray(targetArray, 3);
+  expect(results).toEqual([["a", "b", "c"], ["d", "e", "f"]]); 
+})
+
+test("splitArray 3", () => {
+  let targetArray = ["a", "b", "c", "d", "e"]
+  let results = splitArray(targetArray, 2);
+  expect(results).toEqual([["a", "b"], ["c", "d"], ["e"]]); 
+})
+
+test("iterArray", () => {
+  let targetArray = ["a", "b", "c", "d", "e", "f"]
+  let results = iterArray(targetArray);
+  expect(results).toEqual([["a", "b", "c"], ["d", "e", "f"]]); 
+})
 

@@ -1,3 +1,5 @@
+import _ from "lodash"
+
 export function repeatingString(smallString, firstN, toCount) {
   var timesToRepeat =
     Math.floor(firstN / smallString.length) + (firstN % smallString.length);
@@ -82,4 +84,18 @@ export function whilePractice(int){
     console.log("int")
     return whilePractice(int + 1)
   }
+}
+
+export function splitArray(wholeArray, subArrayLength){
+  return _.chunk(wholeArray, subArrayLength)
+}
+
+
+export function iterArray(wholeArray){
+  let wholeCopy = wholeArray
+  let newArray = []
+  for (var i = 0; i <= wholeArray.length / 2; i++){
+    newArray.push(wholeCopy.shift())
+  }
+  return [newArray, wholeCopy]
 }
