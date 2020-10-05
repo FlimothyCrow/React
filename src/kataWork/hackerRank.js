@@ -50,7 +50,6 @@ export function reduceTreeAcc(input) {
   let acc = 0;
   let nodes = [input];
   while (nodes.length > 0) {
-    //console.log(nodes.length);
     input = nodes.pop();
     if (input === null) {
       continue;
@@ -81,7 +80,6 @@ export function lengthTree(input) {
 
 export function whilePractice(int){
   while (int < 6){
-    console.log("int")
     return whilePractice(int + 1)
   }
 }

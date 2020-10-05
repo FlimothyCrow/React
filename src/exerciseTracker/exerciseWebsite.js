@@ -1,5 +1,5 @@
 import React from "react";
-import { doubleSort } from "./reduce.js";
+import { doubleSort } from "../kataWork/reduce.js";
 import CreateDate from "./createDate";
 import AddExercise from "./addExercise.jsx";
 

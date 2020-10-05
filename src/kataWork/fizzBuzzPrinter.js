@@ -8,7 +8,6 @@ class FizzBuzzPrinter extends React.Component {
           fizzBussList:fizzBuzz().map(this.itemToObject),
           newItem:""
         };
-        console.log(this.state.fizzBussList)
   }
 
   itemToObject(string){
@@ -31,7 +30,6 @@ class FizzBuzzPrinter extends React.Component {
   }
 
   render(){
-    console.log(this.state.fizzBussList)
     return(
       <>
       <input type="text" value={this.state.newItem}

@@ -8,7 +8,6 @@ import * as poker from "./nu_poker.js"; // * === all, name to poker
 // test.only
 test("deckMaker", () => {
   var deckObject = poker.deckMaker();
-  //console.log(deckObject)
   expect(deepEqual(deckObject[0], { face: 1, suit: "d" })).toBe(true);
   expect(deepEqual(deckObject[8], { face: 9, suit: "d" })).toBe(true);
   expect(deepEqual(deckObject[13], { face: 1, suit: "c" })).toBe(true);
