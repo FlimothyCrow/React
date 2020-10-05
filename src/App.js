@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import ExerciseWebsite from './exerciseTracker/exerciseWebsite';
+import HandRanker from './nuPoker/HandRanker'
 import './App.css';
 // npm start
 // npm test
@@ -9,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-          {false && <ExerciseWebsite></ExerciseWebsite>}
+          <HandRanker></HandRanker>
       </header>
+      
     </div>
   );
 }
