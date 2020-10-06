@@ -42,13 +42,13 @@ export function playerOneHigher(eval0, eval1){
   return (rank0 > rank1)
 }
 
-
+// ?.
 export function handEval(hand){
     var counted = faceCount(hand)
-    if (counted[0].amount === 2 && counted[1].amount === 2){
+    if (counted[0].amount === 2 && counted[1]?.amount === 2){
       return {type : "two pair", values: [counted[1].face, counted[0].face]}
     }
-    else if (counted[0].amount === 3 && counted[1].amount === 2){
+    else if (counted[0].amount === 3 && counted[1]?.amount === 2){
       return {type : "full house", values: [counted[0].face, counted[1].face]}
     }
     else if (counted[0].amount === 2){

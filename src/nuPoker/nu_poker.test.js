@@ -35,6 +35,18 @@ test("handToString > pair", () => {
   expect(evaluated).toEqual("pair of 2s");
 });
 
+test("handToString > two pair", () => {
+  var hand = [
+    { face: 4, suit: "s" },
+    { face: 4, suit: "d" },
+    { face: 2, suit: "c" },
+    { face: 2, suit: "s" },
+    { face: 3, suit: "c" },
+  ];
+  var evaluated = poker.handToString(hand);
+  expect(evaluated).toEqual("two pair 4 and 2");
+});
+
 test("handToString > three", () => {
   var hand = [
     { face: 4, suit: "s" },

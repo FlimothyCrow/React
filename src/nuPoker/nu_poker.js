@@ -26,6 +26,8 @@ export function handToString(hand) {
     return _.toString("pair of " + evaluated.values + "s");
   } else if (evaluated.type === "three") {
     return _.toString("three of " + evaluated.values + "s");
+  } else if (evaluated.type === "two pair") {
+    return _.toString("two pair " + evaluated.values[0] + " and " + evaluated.values[1]);
   } else if (evaluated.type === "four") {
     return _.toString("four of " + evaluated.values + "s");
   } else if (evaluated.type === "flush" && evaluated.values[0] === "c") {

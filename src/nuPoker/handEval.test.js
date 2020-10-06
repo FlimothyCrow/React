@@ -59,7 +59,19 @@ test("faceCount0", () => {
       { face: 12, amount: 1 },
       { face: 13, amount: 1 },
     ]);
+    
   }); // first element in array === amount, second === face value
+  
+  test("faceCount 2 cards", () => {
+    var hand = [
+      { face: 4, suit: "d" },
+      { face: 4, suit: "c" }
+    ];
+    var evaluated = faceCount(hand);
+    expect(evaluated).toEqual([
+      { face: 4, amount: 2 },
+    ]);
+  });
   
   // -----------------------------
   test("isFlush", () => {
@@ -220,6 +232,26 @@ test("handEval > high card", () => {
     ];
     var evaluated = handEval(hand);
     expect(evaluated).toEqual({ type: "straight flush", values: [5, 1] });
+  });
+
+
+  test("handEval > two card", () => {
+    var hand = [
+      { face: 4, suit: "c" },
+      { face: 4, suit: "d" }
+    ];
+    var evaluated = handEval(hand);
+    expect(evaluated).toEqual({ type: "pair", values: [4]});
+  });
+
+  test("handEval > three card", () => {
+    var hand = [
+      { face: 4, suit: "c" },
+      { face: 4, suit: "d" },
+      { face: 4, suit: "h" }
+    ];
+    var evaluated = handEval(hand);
+    expect(evaluated).toEqual({ type: "three", values: [4]});
   });
 // --------------------------------
   
