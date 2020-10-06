@@ -1,6 +1,4 @@
-import {
-
-} from "./nu_poker.js";
+import {} from "./nu_poker.js";
 import deepEqual from "deepequal";
 import * as poker from "./nu_poker.js"; // * === all, name to poker
 
@@ -15,7 +13,8 @@ test("deckMaker", () => {
 });
 
 // -----------------------------
-test.skip("drawHand", () => { // 
+test.skip("drawHand", () => {
+  //
   var deck = poker.deckMaker();
   var hand = poker.drawHand(deck);
   expect(hand.length).toBe(5);
@@ -143,6 +142,18 @@ test("handToString > straight flush", () => {
   expect(evaluated).toEqual("straight flush 2 through 6");
 });
 
+test("handToString > full house", () => {
+  var hand = [
+    { face: 2, suit: "h" },
+    { face: 3, suit: "s" },
+    { face: 3, suit: "c" },
+    { face: 2, suit: "c" },
+    { face: 3, suit: "h" },
+  ];
+  var evaluated = poker.handToString(hand);
+  expect(evaluated).toEqual("full house 3 and 2");
+});
+
 // -------------------------------------------
 test("isCheating > false", () => {
   var hand = [
@@ -175,15 +186,15 @@ test("isCheating > true", () => {
     { face: 2, suit: "d" },
     { face: 13, suit: "s" },
     { face: 2, suit: "c" },
-  ]
+  ];
   var evaluated = poker.isCheating(hand);
   expect(evaluated).toEqual(true);
 });
 
 // -------------------------------------------
 test("areSuitsDesc", () => {
-  var card0 = { face: 13, suit: "s" }
-  var card1 = { face: 13, suit: "d" }
+  var card0 = { face: 13, suit: "s" };
+  var card1 = { face: 13, suit: "d" };
 
   var compared = poker.areSuitsDesc(card0, card1);
   // suits ranked are "s", "h", "d", "c"

@@ -23,32 +23,27 @@ export function drawHand(deck) {
 export function handToString(hand) {
   var evaluated = handEval(hand);
   if (evaluated.type === "pair") {
-    return _.toString("pair of " + evaluated.values + "s");
+    return `pair of ${evaluated.values[0]}s`;
   } else if (evaluated.type === "three") {
-    return _.toString("three of " + evaluated.values + "s");
+    return `three of ${evaluated.values[0]}s`;
   } else if (evaluated.type === "two pair") {
-    return _.toString("two pair " + evaluated.values[0] + " and " + evaluated.values[1]);
+    return `two pair ${evaluated.values[0]} and ${evaluated.values[1]}`;
   } else if (evaluated.type === "four") {
-    return _.toString("four of " + evaluated.values + "s");
+    return "four of " + evaluated.values + "s";
+  } else if (evaluated.type === "full house") {
+    return `full house ${evaluated.values[0]} and ${evaluated.values[1]}`;
   } else if (evaluated.type === "flush" && evaluated.values[0] === "c") {
-    return _.toString("flush of " + "clubs");
+    return `flush of clubs`;
   } else if (evaluated.type === "flush" && evaluated.values[0] === "d") {
-    return _.toString("flush of " + "diamonds");
+    return `flush of diamonds`;
   } else if (evaluated.type === "flush" && evaluated.values[0] === "h") {
-    return _.toString("flush of " + "hearts");
+    return `flush of hearts`;
   } else if (evaluated.type === "flush" && evaluated.values[0] === "s") {
-    return _.toString("flush of " + "spades");
+    return `flush of spades`;
   } else if (evaluated.type === "straight") {
-    return _.toString(
-      "straight " + evaluated.values[1] + " through " + evaluated.values[0]
-    );
+    return `straight ${evaluated.values[1]} through ${evaluated.values[0]}`;
   } else if (evaluated.type === "straight flush") {
-    return _.toString(
-      "straight flush " +
-        evaluated.values[1] +
-        " through " +
-        evaluated.values[0]
-    );
+    return `straight flush ${evaluated.values[1]} through ${evaluated.values[0]}`;
   }
 }
 
@@ -57,9 +52,8 @@ export function isCheating(hand) {
     // return JSON.stringify(card) // to avoid deepEqual
     return card.face + card.suit; // to avoid deepEqual
   }).length;
-  return uniqueLength === 5 ? false : true
+  return uniqueLength === 5 ? false : true;
 }
-
 
 export function areSuitsDesc(card0, card1) {
   // implement into sortBy for multiple hands
@@ -75,17 +69,15 @@ export function compareHands(hands) {
     null,
     highed.map((card) => card.face)
   );
-  if (isCheating(hands[0]) === true){
-    return "player 1 disqualified"
-  }
-  else if (isCheating(hands[1]) === true){
-    return "player 2 disqualified"
+  if (isCheating(hands[0]) === true) {
+    return "player 1 disqualified";
+  } else if (isCheating(hands[1]) === true) {
+    return "player 2 disqualified";
   }
   if (eval0.type === "two pair" && eval1.type === "two pair") {
     if (eval0.values[0] === eval1.values[0]) {
-      return eval0.values[1] > eval1.values[1] ? hands[0] : hands[1]
-    }
-    else {
+      return eval0.values[1] > eval1.values[1] ? hands[0] : hands[1];
+    } else {
       return eval0.values[0] > eval1.values[0] ? hands[0] : hands[1];
     }
   } else if (
@@ -96,15 +88,14 @@ export function compareHands(hands) {
     return eval0.values[0] > eval1.values[0] ? hands[0] : hands[1];
   } else if (highed[0].face === highed[1].face) {
     return areSuitsDesc(highed[0], highed[1]) ? hands[0] : hands[1];
-  } else if (eval0.type === "high card" && eval1.type === "high card"){
+  } else if (eval0.type === "high card" && eval1.type === "high card") {
     return hands[
       _.indexOf(
         highed.map((card) => card.face),
         highest
       )
     ];
-  }
-  else {
-    return playerOneHigher(eval0, eval1) ? hands[0] : hands[1]
+  } else {
+    return playerOneHigher(eval0, eval1) ? hands[0] : hands[1];
   }
 }
