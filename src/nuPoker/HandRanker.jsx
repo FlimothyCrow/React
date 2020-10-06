@@ -8,36 +8,37 @@ export default class HandRanker extends React.Component {
       this.state = {
         currentHand : [],
         isFullHand : false,
-        deck : poker.deckMaker().map(cardObject => cardObject.face + " " + cardObject.suit)
+        deck : poker.deckMaker() //.map(cardObject => cardObject)
     };
     }
 
     addToHand(cardObject){
+        let fullness = this.state.isFullHand
+        if (fullness === true){
+            return
+        }
+        if (this.state.currentHand.length === 4){
+            fullness = true
+        }
         this.state.currentHand.push(cardObject)
-        this.setState({currentHand : this.state.currentHand})
+        this.setState({currentHand : this.state.currentHand, isFullHand : fullness})
     }
 
-    handSize(){
-        if (this.state.currentHand.length === 5){
-            this.setState({isFullHand : true})
-        }
-    }
 
     render(){
         return <div>
             <h3>deck</h3>
             <ul>
                 {this.state.deck.filter(card => !this.state.currentHand.includes(card)).map(card => 
-                <li onClick={()=> this.addToHand(card)}>{card}</li>)}
+                <li onClick={()=> this.addToHand(card)}>{JSON.stringify(card)}</li>)}
             </ul>
             <div>
                 <h3>hand</h3>
-                {console.log(this.state.deck)}
-                <button onClick={() => this.handSize()}>Update hand size</button>
-                <body>{this.state.isFullHand ? 
-                    "true" : "false"}</body>
+                {console.log(this.state.currentHand)}
+                <body>{this.state.isFullHand ?
+                 poker.handToString(this.state.currentHand) : "false"}</body>
                 <ul>
-                    {this.state.currentHand.map(card => <li>{card}</li>)}
+                    {this.state.currentHand.map(card => <li>{JSON.stringify(card)}</li>)}
                 </ul>
             </div>
         </div>
