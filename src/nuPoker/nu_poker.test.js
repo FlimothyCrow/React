@@ -21,7 +21,11 @@ test.skip("drawHand", () => {
   expect(deck.length).toBe(47);
 });
 // -------------------------------------------
-
+test("cardFaceString", () => {
+  let strung = [13, 12, 11, 1, 2].map(poker.cardFaceString);
+  expect(strung).toEqual(["King", "Queen", "Jack", "Ace", 2]);
+});
+// -------------------------------------------
 test("handToString > pair", () => {
   var hand = [
     { face: 4, suit: "s" },
@@ -145,13 +149,13 @@ test("handToString > straight flush", () => {
 test("handToString > full house", () => {
   var hand = [
     { face: 2, suit: "h" },
-    { face: 3, suit: "s" },
-    { face: 3, suit: "c" },
+    { face: 13, suit: "s" },
+    { face: 13, suit: "c" },
     { face: 2, suit: "c" },
-    { face: 3, suit: "h" },
+    { face: 13, suit: "h" },
   ];
   var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("full house 3 and 2");
+  expect(evaluated).toEqual("full house King and 2");
 });
 
 // -------------------------------------------

@@ -23,15 +23,15 @@ export function drawHand(deck) {
 export function handToString(hand) {
   var evaluated = handEval(hand);
   if (evaluated.type === "pair") {
-    return `pair of ${evaluated.values[0]}s`;
+    return `pair of ${cardFaceString(evaluated.values[0])}s`;
   } else if (evaluated.type === "three") {
-    return `three of ${evaluated.values[0]}s`;
+    return `three of ${cardFaceString(evaluated.values[0])}s`;
   } else if (evaluated.type === "two pair") {
-    return `two pair ${evaluated.values[0]} and ${evaluated.values[1]}`;
+    return `two pair ${cardFaceString(evaluated.values[0])} and ${cardFaceString(evaluated.values[1])}`;
   } else if (evaluated.type === "four") {
-    return "four of " + evaluated.values + "s";
+    return "four of " + cardFaceString(evaluated.values) + "s";
   } else if (evaluated.type === "full house") {
-    return `full house ${evaluated.values[0]} and ${evaluated.values[1]}`;
+    return `full house ${cardFaceString(evaluated.values[0])} and ${cardFaceString(evaluated.values[1])}`;
   } else if (evaluated.type === "flush" && evaluated.values[0] === "c") {
     return `flush of clubs`;
   } else if (evaluated.type === "flush" && evaluated.values[0] === "d") {
@@ -41,9 +41,23 @@ export function handToString(hand) {
   } else if (evaluated.type === "flush" && evaluated.values[0] === "s") {
     return `flush of spades`;
   } else if (evaluated.type === "straight") {
-    return `straight ${evaluated.values[1]} through ${evaluated.values[0]}`;
+    return `straight ${cardFaceString(evaluated.values[1])} through ${cardFaceString(evaluated.values[0])}`;
   } else if (evaluated.type === "straight flush") {
-    return `straight flush ${evaluated.values[1]} through ${evaluated.values[0]}`;
+    return `straight flush ${cardFaceString(evaluated.values[1])} through ${cardFaceString(evaluated.values[0])}`;
+  }
+}
+
+export function cardFaceString(int) {
+  if (int === 13) {
+    return "King";
+  } else if (int === 12) {
+    return "Queen";
+  } else if (int === 11) {
+    return "Jack";
+  } else if (int === 1) {
+    return "Ace";
+  } else {
+    return int;
   }
 }
 

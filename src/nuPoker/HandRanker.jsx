@@ -1,6 +1,5 @@
 import React from "react";
 import * as poker from "./nu_poker";
-import * as handEval from "./handEval";
 import * as graphic from "./pokerGraphics.js";
 
 export default class HandRanker extends React.Component {
@@ -36,17 +35,17 @@ export default class HandRanker extends React.Component {
   render() {
     return (
       <div>
-        <h3>deck</h3>
+        <h3>Click to select cards from deck</h3>
         {["s", "d", "c", "h"].map((suit) => (
           <div>
-            <div>{suit}</div>
+            <div>{graphic.suitToString(suit)}</div>
             {this.state.deck
               .filter((card) => !this.state.currentHand.includes(card) && card.suit === suit)
               .map((card) => this.cardToImage(card, (card) => this.addToHand(card)))}
           </div>
         ))}
         <div>
-          <h3>hand</h3>
+          <h3>Current hand</h3>
           {console.log(this.state.currentHand)}
           <div>{this.state.currentHand.length > 0 && poker.handToString(this.state.currentHand)}</div>
           <ul>
@@ -68,3 +67,9 @@ export default class HandRanker extends React.Component {
 // if .length === 5 THEN return handEval
 // return highCard data on line 40 while .length > 0
 // two pair string return isn't working
+// return 1s
+// highlight highest card if no other hand
+
+// how to publish: npm run-script build
+// manual copy files from /build to /docs
+// commit > push
