@@ -1,6 +1,7 @@
 import React from "react";
 import * as poker from "./nu_poker"
 import * as handEval from "./handEval"
+import * as graphic from "./pokerGraphics.js"
 
 export default class HandRanker extends React.Component {
     constructor(props) {
@@ -27,6 +28,7 @@ export default class HandRanker extends React.Component {
 
     render(){
         return <div>
+            <img className="card" src="cardGraphics/2C.jpg" alt="2C"/>
             <h3>deck</h3>
             <ul>
                 {this.state.deck.filter(card => !this.state.currentHand.includes(card)).map(card => 
@@ -35,10 +37,13 @@ export default class HandRanker extends React.Component {
             <div>
                 <h3>hand</h3>
                 {console.log(this.state.currentHand)}
-                <body>{this.state.isFullHand ?
-                 poker.handToString(this.state.currentHand) : "false"}</body>
+                <div>{this.state.isFullHand ?
+                 poker.handToString(this.state.currentHand) : "false"}</div>
                 <ul>
-                    {this.state.currentHand.map(card => <li>{JSON.stringify(card)}</li>)}
+                {this.state.currentHand.map(card => <li>
+                    <img className="card" 
+                    src={"cardGraphics/" + graphic.cardToFileName(card)} alt="2C"/>
+                    </li>)}
                 </ul>
             </div>
         </div>
