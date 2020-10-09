@@ -1,30 +1,30 @@
-import {} from "./nu_poker.js";
-import deepEqual from "deepequal";
-import * as poker from "./nu_poker.js"; // * === all, name to poker
+import {} from "./nu_poker.js"
+import deepEqual from "deepequal"
+import * as poker from "./nu_poker.js" // * === all, name to poker
 
 // test.skip
 // test.only
 test("deckMaker", () => {
-  var deckObject = poker.deckMaker();
-  expect(deepEqual(deckObject[0], { face: 1, suit: "d" })).toBe(true);
-  expect(deepEqual(deckObject[8], { face: 9, suit: "d" })).toBe(true);
-  expect(deepEqual(deckObject[13], { face: 1, suit: "c" })).toBe(true);
-  expect(deepEqual(deckObject.length, 52)).toBe(true);
-});
+  var deckObject = poker.deckMaker()
+  expect(deepEqual(deckObject[0], { face: 1, suit: "d" })).toBe(true)
+  expect(deepEqual(deckObject[8], { face: 9, suit: "d" })).toBe(true)
+  expect(deepEqual(deckObject[13], { face: 1, suit: "c" })).toBe(true)
+  expect(deepEqual(deckObject.length, 52)).toBe(true)
+})
 
 // -----------------------------
 test.skip("drawHand", () => {
   //
-  var deck = poker.deckMaker();
-  var hand = poker.drawHand(deck);
-  expect(hand.length).toBe(5);
-  expect(deck.length).toBe(47);
-});
+  var deck = poker.deckMaker()
+  var hand = poker.drawHand(deck)
+  expect(hand.length).toBe(5)
+  expect(deck.length).toBe(47)
+})
 // -------------------------------------------
 test("cardFaceString", () => {
-  let strung = [13, 12, 11, 1, 2].map(poker.cardFaceString);
-  expect(strung).toEqual(["King", "Queen", "Jack", "Ace", 2]);
-});
+  let strung = [13, 12, 11, 1, 2].map(poker.cardFaceString)
+  expect(strung).toEqual(["King", "Queen", "Jack", "Ace", 2])
+})
 // -------------------------------------------
 test("handToString > pair", () => {
   var hand = [
@@ -33,10 +33,10 @@ test("handToString > pair", () => {
     { face: 1, suit: "c" },
     { face: 2, suit: "c" },
     { face: 3, suit: "c" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("pair of 2s");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("pair of 2s")
+})
 
 test("handToString > two pair", () => {
   var hand = [
@@ -45,10 +45,10 @@ test("handToString > two pair", () => {
     { face: 2, suit: "c" },
     { face: 2, suit: "s" },
     { face: 3, suit: "c" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("two pair 4 and 2");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("two pair 4 and 2")
+})
 
 test("handToString > three", () => {
   var hand = [
@@ -57,10 +57,10 @@ test("handToString > three", () => {
     { face: 1, suit: "c" },
     { face: 2, suit: "c" },
     { face: 2, suit: "c" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("three of 2s");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("three of 2s")
+})
 
 test("handToString > four", () => {
   var hand = [
@@ -69,10 +69,10 @@ test("handToString > four", () => {
     { face: 2, suit: "h" },
     { face: 2, suit: "s" },
     { face: 2, suit: "c" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("four of 2s");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("four of 2s")
+})
 
 test("handToString > clubs", () => {
   var hand = [
@@ -81,10 +81,10 @@ test("handToString > clubs", () => {
     { face: 14, suit: "c" },
     { face: 12, suit: "c" },
     { face: 2, suit: "c" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("flush of clubs");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("flush of clubs")
+})
 
 test("handToString > diamonds", () => {
   var hand = [
@@ -93,10 +93,10 @@ test("handToString > diamonds", () => {
     { face: 14, suit: "d" },
     { face: 12, suit: "d" },
     { face: 2, suit: "d" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("flush of diamonds");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("flush of diamonds")
+})
 
 test("handToString > spades", () => {
   var hand = [
@@ -105,10 +105,10 @@ test("handToString > spades", () => {
     { face: 14, suit: "s" },
     { face: 12, suit: "s" },
     { face: 2, suit: "s" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("flush of spades");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("flush of spades")
+})
 
 test("handToString > hearts", () => {
   var hand = [
@@ -117,10 +117,10 @@ test("handToString > hearts", () => {
     { face: 14, suit: "h" },
     { face: 12, suit: "h" },
     { face: 2, suit: "h" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("flush of hearts");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("flush of hearts")
+})
 
 test("handToString > straight", () => {
   var hand = [
@@ -129,10 +129,10 @@ test("handToString > straight", () => {
     { face: 4, suit: "h" },
     { face: 6, suit: "h" },
     { face: 3, suit: "h" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("straight 2 through 6");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("straight 2 through 6")
+})
 
 test("handToString > straight flush", () => {
   var hand = [
@@ -141,10 +141,10 @@ test("handToString > straight flush", () => {
     { face: 4, suit: "h" },
     { face: 6, suit: "h" },
     { face: 3, suit: "h" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("straight flush 2 through 6");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("straight flush 2 through 6")
+})
 
 test("handToString > full house", () => {
   var hand = [
@@ -153,10 +153,22 @@ test("handToString > full house", () => {
     { face: 13, suit: "c" },
     { face: 2, suit: "c" },
     { face: 13, suit: "h" },
-  ];
-  var evaluated = poker.handToString(hand);
-  expect(evaluated).toEqual("full house King and 2");
-});
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("full house King and 2")
+})
+
+test("handToString > high card", () => {
+  var hand = [
+    { face: 2, suit: "h" },
+    { face: 3, suit: "s" },
+    { face: 10, suit: "c" },
+    { face: 5, suit: "c" },
+    { face: 13, suit: "h" },
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("high card King of Hearts")
+})
 
 // -------------------------------------------
 test("isCheating > false", () => {
@@ -166,10 +178,10 @@ test("isCheating > false", () => {
     { face: 4, suit: "d" },
     { face: 6, suit: "d" },
     { face: 3, suit: "c" },
-  ];
-  var evaluated = poker.isCheating(hand);
-  expect(evaluated).toEqual(false);
-});
+  ]
+  var evaluated = poker.isCheating(hand)
+  expect(evaluated).toEqual(false)
+})
 
 test("isCheating > true", () => {
   var hand = [
@@ -178,10 +190,10 @@ test("isCheating > true", () => {
     { face: 4, suit: "d" },
     { face: 8, suit: "d" },
     { face: 2, suit: "c" },
-  ];
-  var evaluated = poker.isCheating(hand);
-  expect(evaluated).toEqual(true);
-});
+  ]
+  var evaluated = poker.isCheating(hand)
+  expect(evaluated).toEqual(true)
+})
 
 test("isCheating > true", () => {
   var hand = [
@@ -190,20 +202,20 @@ test("isCheating > true", () => {
     { face: 2, suit: "d" },
     { face: 13, suit: "s" },
     { face: 2, suit: "c" },
-  ];
-  var evaluated = poker.isCheating(hand);
-  expect(evaluated).toEqual(true);
-});
+  ]
+  var evaluated = poker.isCheating(hand)
+  expect(evaluated).toEqual(true)
+})
 
 // -------------------------------------------
 test("areSuitsDesc", () => {
-  var card0 = { face: 13, suit: "s" };
-  var card1 = { face: 13, suit: "d" };
+  var card0 = { face: 13, suit: "s" }
+  var card1 = { face: 13, suit: "d" }
 
-  var compared = poker.areSuitsDesc(card0, card1);
+  var compared = poker.areSuitsDesc(card0, card1)
   // suits ranked are "s", "h", "d", "c"
-  expect(compared).toEqual(true);
-});
+  expect(compared).toEqual(true)
+})
 // -------------------------------------------
 test("compareHands > highCard", () => {
   var hands = [
@@ -221,11 +233,11 @@ test("compareHands > highCard", () => {
       { face: 8, suit: "d" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[1]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[1])
+})
 
 test("compareHands > highCard + suit", () => {
   var hands = [
@@ -243,11 +255,11 @@ test("compareHands > highCard + suit", () => {
       { face: 8, suit: "d" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[1]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[1])
+})
 
 test("compareHands > pairs", () => {
   var hands = [
@@ -265,11 +277,11 @@ test("compareHands > pairs", () => {
       { face: 8, suit: "s" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[0]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[0])
+})
 
 test("compareHands > two pair matching", () => {
   var hands = [
@@ -287,11 +299,11 @@ test("compareHands > two pair matching", () => {
       { face: 8, suit: "s" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[1]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[1])
+})
 
 test("compareHands > two pair unmatched", () => {
   var hands = [
@@ -309,11 +321,11 @@ test("compareHands > two pair unmatched", () => {
       { face: 3, suit: "s" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[0]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[0])
+})
 
 test("compareHands > three", () => {
   var hands = [
@@ -331,11 +343,11 @@ test("compareHands > three", () => {
       { face: 8, suit: "c" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[0]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[0])
+})
 
 test("compareHands > four", () => {
   var hands = [
@@ -353,11 +365,11 @@ test("compareHands > four", () => {
       { face: 8, suit: "h" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[0]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[0])
+})
 
 test("compareHands > pair vs two pair", () => {
   var hands = [
@@ -375,11 +387,11 @@ test("compareHands > pair vs two pair", () => {
       { face: 8, suit: "s" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[0]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[0])
+})
 
 test("compareHands > full house vs straight", () => {
   var hands = [
@@ -397,11 +409,11 @@ test("compareHands > full house vs straight", () => {
       { face: 6, suit: "s" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual(hands[0]);
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(hands[0])
+})
 
 test("compareHands > cheating full house vs three", () => {
   var hands = [
@@ -419,8 +431,8 @@ test("compareHands > cheating full house vs three", () => {
       { face: 6, suit: "s" },
       { face: 2, suit: "c" },
     ],
-  ];
+  ]
 
-  var compared = poker.compareHands(hands);
-  expect(compared).toEqual("player 1 disqualified");
-});
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual("player 1 disqualified")
+})

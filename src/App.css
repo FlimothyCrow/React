@@ -13,8 +13,25 @@
   }
 }
 
-.card{
-  height: 100px
+.card {
+  height: 100px;
+  width: 65px;
+  padding: 2px;
+  display: inline-block;
+}
+
+.handToString {
+  height: 20px;
+}
+
+.highlight {
+  border: dashed red;
+  height: 104px;
+  display: inline-block;
+}
+
+.hand {
+  height: 100px;
 }
 
 .App-header {
