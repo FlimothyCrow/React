@@ -25,6 +25,10 @@ export default class HandRanker extends React.Component {
     this.setState({ currentHand: this.state.currentHand })
   }
 
+  dumpHand() {
+    this.setState({ currentHand: [] })
+  }
+
   cardToImage(card, onClickFN, cardToHighlight) {
     let isMatch = cardToHighlight && cardToHighlight.suit === card.suit && cardToHighlight.face === card.face
     return (
@@ -58,7 +62,17 @@ export default class HandRanker extends React.Component {
           </div>
         ))}
         <div>
-          <h3>Current hand</h3>
+          <h3>
+            Current hand{" "}
+            <button
+              onClick={() => {
+                this.dumpHand()
+              }}
+            >
+              Return hand
+            </button>
+          </h3>
+
           {console.log(this.state.currentHand)}
           <div className="handToString">
             {this.state.currentHand.length > 0 && poker.handToString(this.state.currentHand)}
@@ -77,12 +91,9 @@ export default class HandRanker extends React.Component {
 }
 
 // rebuild handToString to take results from handEval, not call it
-// return highCard data on line 40 while .length > 0
-// return 1s
 // highlight highest card if no other hand
 // multiple page > use react-router
-// have an empty string if handToString doesn't evaluate
-// 4 kings should evaluate to "4 of kings"
+// add button to remove all cards from hand
 
 // how to publish: npm run-script build
 // manual copy files from /build to /docs
