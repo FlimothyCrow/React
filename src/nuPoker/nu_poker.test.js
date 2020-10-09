@@ -59,7 +59,7 @@ test("handToString > three", () => {
     { face: 2, suit: "c" },
   ]
   var evaluated = poker.handToString(hand)
-  expect(evaluated).toEqual("three of 2s")
+  expect(evaluated).toEqual("three 2s")
 })
 
 test("handToString > four", () => {
@@ -71,7 +71,19 @@ test("handToString > four", () => {
     { face: 2, suit: "c" },
   ]
   var evaluated = poker.handToString(hand)
-  expect(evaluated).toEqual("four of 2s")
+  expect(evaluated).toEqual("four 2s")
+})
+
+test("handToString > queen", () => {
+  var hand = [
+    { face: 12, suit: "s" },
+    { face: 12, suit: "d" },
+    { face: 12, suit: "h" },
+    { face: 12, suit: "s" },
+    { face: 2, suit: "c" },
+  ]
+  var evaluated = poker.handToString(hand)
+  expect(evaluated).toEqual("four Queens")
 })
 
 test("handToString > clubs", () => {

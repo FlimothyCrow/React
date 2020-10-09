@@ -76,13 +76,13 @@ export default class HandRanker extends React.Component {
   }
 }
 
-
 // rebuild handToString to take results from handEval, not call it
 // return highCard data on line 40 while .length > 0
 // return 1s
 // highlight highest card if no other hand
 // multiple page > use react-router
 // have an empty string if handToString doesn't evaluate
+// 4 kings should evaluate to "4 of kings"
 
 // how to publish: npm run-script build
 // manual copy files from /build to /docs

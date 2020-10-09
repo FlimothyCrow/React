@@ -25,11 +25,11 @@ export function handToString(hand) {
   if (evaluated.type === "pair") {
     return `pair of ${cardFaceString(evaluated.values[0])}s`
   } else if (evaluated.type === "three") {
-    return `three of ${cardFaceString(evaluated.values[0])}s`
+    return `three ${cardFaceString(evaluated.values[0])}s`
   } else if (evaluated.type === "two pair") {
     return `two pair ${cardFaceString(evaluated.values[0])} and ${cardFaceString(evaluated.values[1])}`
   } else if (evaluated.type === "four") {
-    return "four of " + cardFaceString(evaluated.values) + "s"
+    return `four ${cardFaceString(evaluated.values[0])}s`
   } else if (evaluated.type === "full house") {
     return `full house ${cardFaceString(evaluated.values[0])} and ${cardFaceString(evaluated.values[1])}`
   } else if (evaluated.type === "flush" && evaluated.values[0] === "c") {
