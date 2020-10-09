@@ -69,6 +69,8 @@ export default class HandRanker extends React.Component {
 // two pair string return isn't working
 // return 1s
 // highlight highest card if no other hand
+// undefined hand leaves no empty space and moves the deck upwards, how about an empty placeholder space?
+// multiple page > use react-router
 
 // how to publish: npm run-script build
 // manual copy files from /build to /docs

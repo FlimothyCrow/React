@@ -1,4 +1,4 @@
-import _ from "lodash"
+import _ from "lodash";
 
 export function reduceFun(listOfThings, reduceFN, seed) {
   return listOfThings.reduce(reduceFN, seed);
@@ -81,3 +81,6 @@ export function putInArray(x, y, z) {
 }
 // applicationssss
 
+export function sumPlusTen(targetArray) {
+  return targetArray.reduce((acc, next) => acc + next, 10);
+}
