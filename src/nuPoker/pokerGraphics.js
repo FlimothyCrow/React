@@ -1,25 +1,37 @@
+import React from "react"
+
 export function cardToFileName(cardObject) {
-  let face = cardObject.face.toString();
+  let face = cardObject.face.toString()
   if (face === "13") {
-    face = "K";
+    face = "K"
   } else if (face === "1") {
-    face = "A";
+    face = "A"
   } else if (face === "12") {
-    face = "Q";
+    face = "Q"
   } else if (face === "11") {
-    face = "J";
+    face = "J"
   }
-  return face + cardObject.suit.toUpperCase() + ".jpg";
+  return face + cardObject.suit.toUpperCase() + ".jpg"
 }
 
 export function suitToString(char) {
   if (char === "s") {
-    return "Spades";
+    return "Spades"
   } else if (char === "d") {
-    return "Diamonds";
+    return "Diamonds"
   } else if (char === "c") {
-    return "Clubs";
+    return "Clubs"
   } else if (char === "h") {
-    return "Hearts";
+    return "Hearts"
   }
+}
+
+export function cardToImage(card, onClickFN, cardToHighlight) {
+  let isMatch = cardToHighlight && cardToHighlight.suit === card.suit && cardToHighlight.face === card.face
+  // if cardToHightlight is passed into cardToImage call
+  return (
+    <span onClick={() => onClickFN()} className={isMatch && "highlight"}>
+      <img className="card" src={"cardGraphics/" + cardToFileName(card)} alt="2C" />
+    </span>
+  )
 }

@@ -29,15 +29,6 @@ export default class HandRanker extends React.Component {
     this.setState({ currentHand: [] })
   }
 
-  cardToImage(card, onClickFN, cardToHighlight) {
-    let isMatch = cardToHighlight && cardToHighlight.suit === card.suit && cardToHighlight.face === card.face
-    return (
-      <span onClick={() => onClickFN(card)} className={isMatch && "highlight"}>
-        <img className="card" src={"cardGraphics/" + graphic.cardToFileName(card)} alt="2C" />
-      </span>
-    )
-  }
-
   render() {
     let evaluated = handEval(this.state.currentHand)
     let hightlightCard = undefined
@@ -54,7 +45,7 @@ export default class HandRanker extends React.Component {
               .filter((card) => card.suit === suit)
               .map((card) => {
                 if (!this.state.currentHand.includes(card)) {
-                  return this.cardToImage(card, (card) => this.addToHand(card), undefined)
+                  return graphic.cardToImage(card, () => this.addToHand(card), undefined)
                 } else {
                   return <span className="card" />
                 }
@@ -79,9 +70,11 @@ export default class HandRanker extends React.Component {
           </div>
           <ul>
             <div className="hand">
-              {this.state.currentHand.map(
-                (card) => this.cardToImage(card, (card) => this.removeFromHand(card), hightlightCard) // call has to include lambda to use this.data
-              )}
+              {this.state.currentHand.map((card) => {
+                console.log("rendering card", card)
+                return graphic.cardToImage(card, () => this.removeFromHand(card), hightlightCard)
+                // cardToImage() call has to include lambda to use this.data
+              })}
             </div>
           </ul>
         </div>
@@ -90,10 +83,14 @@ export default class HandRanker extends React.Component {
   }
 }
 
+// PRACTICE PASSING LAMBDAS INTO FUNCTIONS AS PARAMETERS
 // rebuild handToString to take results from handEval, not call it
 // highlight highest card if no other hand
 // multiple page > use react-router
 // add button to remove all cards from hand
+// react functions can't be exported, they would operate under the wrong scope
+// they have to be passed through lambdas so they operate under relative scope
+// inversion of control
 
 // how to publish: npm run-script build
 // manual copy files from /build to /docs
