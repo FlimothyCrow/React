@@ -13,12 +13,13 @@ test("deckMaker", () => {
 })
 
 // -----------------------------
-test.skip("drawHand", () => {
-  //
-  var deck = poker.deckMaker()
-  var hand = poker.drawHand(deck)
-  expect(hand.length).toBe(5)
-  expect(deck.length).toBe(47)
+test("drawHand", () => {
+  for (var x = 0; x < 200; x++) {
+    var deck = poker.deckMaker()
+    var hand = poker.drawHand(deck)
+    expect(hand.length).toBe(5)
+    expect(deck.length).toBe(47)
+  }
 })
 // -------------------------------------------
 test("cardFaceString", () => {
