@@ -13,9 +13,29 @@
   }
 }
 
+.gfg {
+  margin-left: 39.5%;
+  position: relative;
+  width: 65px;
+}
+
+.imageText {
+  position: absolute;
+  bottom: 9%;
+  left: 67%;
+  color: black;
+}
+
 .card {
   height: 100px;
   width: 65px;
+  padding: 2px;
+  display: inline-block;
+}
+
+.deckCard {
+  height: 200px;
+  width: 125px;
   padding: 2px;
   display: inline-block;
 }
