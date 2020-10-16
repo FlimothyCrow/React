@@ -12,9 +12,7 @@ export function deckMaker() {
 }
 
 export function drawHand(deck) {
-  //return _.pullAt(_.shuffle(deck), _.range(5))
-  // to do, secret third spicy option for maintainabilito
-  return _.flatMap(_.range(5), () => _.pullAt(deck, _.random(0, deck.length - 1)))
+  return deck.splice(0, 5)
 }
 
 export function handToString(hand) {
