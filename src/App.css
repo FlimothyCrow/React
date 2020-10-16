@@ -20,6 +20,10 @@
   height: 100vh;
 }
 
+header {
+  padding: 5px;
+}
+
 .gfg {
   position: relative;
   width: 65px;
@@ -67,7 +71,6 @@ a {
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

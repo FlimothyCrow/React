@@ -1,6 +1,8 @@
 import _ from "lodash"
 import { handEval, highCard, playerOneHigher } from "./handEval.js"
 import { suitToString } from "./pokerGraphics"
+import { PAIR, TWO_PAIR, THREE, FOUR, HIGH_CARD, FLUSH, STRAIGHT, FULL_HOUSE, STRAIGHT_FLUSH } from "./enums"
+
 export function deckMaker() {
   var faces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
   var suits = ["d", "c", "s", "h"]
@@ -17,29 +19,29 @@ export function drawHand(deck) {
 
 export function handToString(hand) {
   var evaluated = handEval(hand)
-  if (evaluated.type === "pair") {
+  if (evaluated.type === PAIR) {
     return `pair of ${cardFaceString(evaluated.values[0])}s`
-  } else if (evaluated.type === "three") {
+  } else if (evaluated.type === THREE) {
     return `three ${cardFaceString(evaluated.values[0])}s`
-  } else if (evaluated.type === "two pair") {
+  } else if (evaluated.type === TWO_PAIR) {
     return `two pair ${cardFaceString(evaluated.values[0])} and ${cardFaceString(evaluated.values[1])}`
-  } else if (evaluated.type === "four") {
+  } else if (evaluated.type === FOUR) {
     return `four ${cardFaceString(evaluated.values[0])}s`
-  } else if (evaluated.type === "full house") {
+  } else if (evaluated.type === FULL_HOUSE) {
     return `full house ${cardFaceString(evaluated.values[0])} and ${cardFaceString(evaluated.values[1])}`
-  } else if (evaluated.type === "flush" && evaluated.values[0] === "c") {
+  } else if (evaluated.type === FLUSH && evaluated.values[0] === "c") {
     return `flush of clubs`
-  } else if (evaluated.type === "flush" && evaluated.values[0] === "d") {
+  } else if (evaluated.type === FLUSH && evaluated.values[0] === "d") {
     return `flush of diamonds`
-  } else if (evaluated.type === "flush" && evaluated.values[0] === "h") {
+  } else if (evaluated.type === FLUSH && evaluated.values[0] === "h") {
     return `flush of hearts`
-  } else if (evaluated.type === "flush" && evaluated.values[0] === "s") {
+  } else if (evaluated.type === FLUSH && evaluated.values[0] === "s") {
     return `flush of spades`
-  } else if (evaluated.type === "straight") {
+  } else if (evaluated.type === STRAIGHT) {
     return `straight ${cardFaceString(evaluated.values[1])} through ${cardFaceString(evaluated.values[0])}`
-  } else if (evaluated.type === "straight flush") {
+  } else if (evaluated.type === STRAIGHT_FLUSH) {
     return `straight flush ${cardFaceString(evaluated.values[1])} through ${cardFaceString(evaluated.values[0])}`
-  } else if (evaluated.type === "high card") {
+  } else if (evaluated.type === HIGH_CARD) {
     return `high card ${cardFaceString(evaluated.values[0])} of ${suitToString(cardFaceString(evaluated.values[1]))}`
   }
 }
@@ -80,33 +82,27 @@ export function compareHands(hands) {
     null,
     highed.map((card) => card.face)
   )
-  if (isCheating(hands[0]) === true) {
-    return "player 1 disqualified"
-  } else if (isCheating(hands[1]) === true) {
-    return "player 2 disqualified"
-  }
-  if (eval0.type === "two pair" && eval1.type === "two pair") {
+
+  if (eval0.type === TWO_PAIR && eval1.type === TWO_PAIR) {
     if (eval0.values[0] === eval1.values[0]) {
-      return eval0.values[1] > eval1.values[1] ? hands[0] : hands[1]
+      return eval0.values[1] > eval1.values[1] ? 0 : 1
     } else {
-      return eval0.values[0] > eval1.values[0] ? hands[0] : hands[1]
+      return eval0.values[0] > eval1.values[0] ? 0 : 1
     }
   } else if (
-    (eval0.type === "pair" && eval1.type === "pair") ||
-    (eval0.type === "three" && eval1.type === "three") ||
-    (eval0.type === "four" && eval1.type === "four")
+    (eval0.type === PAIR && eval1.type === PAIR) ||
+    (eval0.type === THREE && eval1.type === THREE) ||
+    (eval0.type === FOUR && eval1.type === FOUR)
   ) {
-    return eval0.values[0] > eval1.values[0] ? hands[0] : hands[1]
+    return eval0.values[0] > eval1.values[0] ? 0 : 1
   } else if (highed[0].face === highed[1].face) {
-    return areSuitsDesc(highed[0], highed[1]) ? hands[0] : hands[1]
-  } else if (eval0.type === "high card" && eval1.type === "high card") {
-    return hands[
-      _.indexOf(
-        highed.map((card) => card.face),
-        highest
-      )
-    ]
+    return areSuitsDesc(highed[0], highed[1]) ? 0 : 1
+  } else if (eval0.type === HIGH_CARD && eval1.type === HIGH_CARD) {
+    return _.indexOf(
+      highed.map((card) => card.face),
+      highest
+    )
   } else {
-    return playerOneHigher(eval0, eval1) ? hands[0] : hands[1]
+    return playerOneHigher(eval0, eval1) ? 0 : 1
   }
 }

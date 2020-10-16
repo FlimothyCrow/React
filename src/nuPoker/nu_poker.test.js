@@ -1,6 +1,7 @@
 import {} from "./nu_poker.js"
 import deepEqual from "deepequal"
 import * as poker from "./nu_poker.js" // * === all, name to poker
+import { handEval } from "./handEval.js"
 
 // test.skip
 // test.only
@@ -249,7 +250,7 @@ test("compareHands > highCard", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[1])
+  expect(compared).toEqual(1)
 })
 
 test("compareHands > highCard + suit", () => {
@@ -271,7 +272,7 @@ test("compareHands > highCard + suit", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[1])
+  expect(compared).toEqual(1)
 })
 
 test("compareHands > pairs", () => {
@@ -293,7 +294,7 @@ test("compareHands > pairs", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[0])
+  expect(compared).toEqual(0)
 })
 
 test("compareHands > two pair matching", () => {
@@ -315,7 +316,7 @@ test("compareHands > two pair matching", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[1])
+  expect(compared).toEqual(1)
 })
 
 test("compareHands > two pair unmatched", () => {
@@ -337,7 +338,7 @@ test("compareHands > two pair unmatched", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[0])
+  expect(compared).toEqual(0)
 })
 
 test("compareHands > three", () => {
@@ -359,7 +360,7 @@ test("compareHands > three", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[0])
+  expect(compared).toEqual(0)
 })
 
 test("compareHands > four", () => {
@@ -381,7 +382,7 @@ test("compareHands > four", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[0])
+  expect(compared).toEqual(0)
 })
 
 test("compareHands > pair vs two pair", () => {
@@ -403,7 +404,7 @@ test("compareHands > pair vs two pair", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[0])
+  expect(compared).toEqual(0)
 })
 
 test("compareHands > full house vs straight", () => {
@@ -425,27 +426,5 @@ test("compareHands > full house vs straight", () => {
   ]
 
   var compared = poker.compareHands(hands)
-  expect(compared).toEqual(hands[0])
-})
-
-test("compareHands > cheating full house vs three", () => {
-  var hands = [
-    [
-      { face: 13, suit: "c" },
-      { face: 13, suit: "c" },
-      { face: 2, suit: "d" },
-      { face: 13, suit: "s" },
-      { face: 2, suit: "c" },
-    ],
-    [
-      { face: 3, suit: "s" },
-      { face: 3, suit: "c" },
-      { face: 3, suit: "d" },
-      { face: 6, suit: "s" },
-      { face: 2, suit: "c" },
-    ],
-  ]
-
-  var compared = poker.compareHands(hands)
-  expect(compared).toEqual("player 1 disqualified")
+  expect(compared).toEqual(0)
 })

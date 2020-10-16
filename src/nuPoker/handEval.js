@@ -1,4 +1,16 @@
 import _ from "lodash"
+import {
+  PAIR,
+  TWO_PAIR,
+  THREE,
+  FOUR,
+  HIGH_CARD,
+  FLUSH,
+  STRAIGHT,
+  FULL_HOUSE,
+  STRAIGHT_FLUSH,
+  getHandRank,
+} from "./enums"
 
 export function highCard(hand) {
   for (var card of hand) {
@@ -28,45 +40,33 @@ export function isStraight(hand) {
 }
 
 export function playerOneHigher(eval0, eval1) {
-  var rankedHands = {
-    "high card": 0,
-    pair: 1,
-    "two pair": 2,
-    three: 3,
-    straight: 4,
-    flush: 5,
-    "full house": 6,
-    four: 7,
-    "straight flush": 8,
-  }
-  var rank0 = rankedHands[eval0.type] // "pair"
-  var rank1 = rankedHands[eval1.type] // "two pair"
+  var rank0 = getHandRank(eval0.type) // PAIR
+  var rank1 = getHandRank(eval1.type) // TWO_PAIR
   return rank0 > rank1
 }
 
-// ?.
 export function handEval(hand) {
   if (hand && hand.length === 0) {
     return undefined
   }
   let counted = faceCount(hand)
   if (counted[0].amount === 2 && counted[1]?.amount === 2) {
-    return { type: "two pair", values: [counted[1].face, counted[0].face] }
+    return { type: TWO_PAIR, values: [counted[1].face, counted[0].face] }
   } else if (counted[0].amount === 3 && counted[1]?.amount === 2) {
-    return { type: "full house", values: [counted[0].face, counted[1].face] }
+    return { type: FULL_HOUSE, values: [counted[0].face, counted[1].face] }
   } else if (counted[0].amount === 2) {
-    return { type: "pair", values: [counted[0].face] }
+    return { type: PAIR, values: [counted[0].face] }
   } else if (counted[0].amount === 3) {
-    return { type: "three", values: [counted[0].face] }
+    return { type: THREE, values: [counted[0].face] }
   } else if (counted[0].amount === 4) {
-    return { type: "four", values: [counted[0].face] }
+    return { type: FOUR, values: [counted[0].face] }
   } else if (isFlush(hand) && isStraight(hand)) {
-    return { type: "straight flush", values: isStraight(hand) }
+    return { type: STRAIGHT_FLUSH, values: isStraight(hand) }
   } else if (isFlush(hand)) {
-    return { type: "flush", values: [isFlush(hand)] }
+    return { type: FLUSH, values: [isFlush(hand)] }
   } else if (isStraight(hand)) {
-    return { type: "straight", values: isStraight(hand) }
+    return { type: STRAIGHT, values: isStraight(hand) }
   } else {
-    return { type: "high card", values: [highCard(hand).face, highCard(hand).suit] }
+    return { type: HIGH_CARD, values: [highCard(hand).face, highCard(hand).suit] }
   }
 }

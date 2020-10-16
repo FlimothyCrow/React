@@ -21,46 +21,35 @@ export default class App extends React.Component {
     }
   }
 
+  setPageLink(mode) {
+    return (
+      <a
+        href={mode}
+        className={this.state.currentMode === mode ? "warningColor" : undefined}
+        onClick={(e) => {
+          e.preventDefault()
+          this.setGameMode(mode)
+        }}
+      >
+        {mode}
+      </a>
+    )
+  }
+
   render() {
     return (
       <div className="App">
-        <div>
-          <a
-            href="play"
-            className={this.state.currentMode === "home" ? "warningColor" : undefined}
-            onClick={(e) => {
-              e.preventDefault()
-              this.setGameMode("home")
-            }}
-          >
-            home
-          </a>
-          <a
-            href="play"
-            className={this.state.currentMode === "play" ? "warningColor" : undefined}
-            onClick={(e) => {
-              e.preventDefault()
-              this.setGameMode("play")
-            }}
-          >
-            play
-          </a>
-          <a
-            href="rank"
-            className={this.state.currentMode === "rank" ? "warningColor" : undefined}
-            onClick={(e) => {
-              e.preventDefault()
-              this.setGameMode("rank")
-            }}
-          >
-            rank
-          </a>
-        </div>
-        <header className="App-header">
-          {this.state.currentMode === "home" && <span>welcome to the new page</span>}
-          {this.state.currentMode === "rank" && <HandRanker></HandRanker>}
-          {this.state.currentMode === "play" && <PlayablePoker></PlayablePoker>}
+        <header>
+          {this.setPageLink("play")}
+          {this.setPageLink("rank")}
         </header>
+        <body className="App-header">
+          <span className="background">
+            {this.state.currentMode === "home" && <span>welcome to the new page</span>}
+            {this.state.currentMode === "rank" && <HandRanker></HandRanker>}
+            {this.state.currentMode === "play" && <PlayablePoker></PlayablePoker>}
+          </span>
+        </body>
       </div>
     )
   }

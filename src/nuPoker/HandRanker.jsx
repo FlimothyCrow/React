@@ -2,6 +2,7 @@ import React from "react"
 import * as poker from "./nu_poker"
 import * as graphic from "./pokerGraphics.js"
 import { handEval } from "./handEval.js"
+import { PAIR, TWO_PAIR, THREE, FOUR, HIGH_CARD, FLUSH, STRAIGHT, FULL_HOUSE, STRAIGHT_FLUSH } from "./enums"
 
 export default class HandRanker extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ export default class HandRanker extends React.Component {
   render() {
     let evaluated = handEval(this.state.currentHand)
     let hightlightCard = undefined
-    if (evaluated && evaluated.type === "high card") {
+    if (evaluated && evaluated.type === HIGH_CARD) {
       hightlightCard = { face: evaluated.values[0], suit: evaluated.values[1] }
     }
     return (

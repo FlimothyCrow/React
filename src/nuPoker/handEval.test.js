@@ -1,4 +1,5 @@
 import { highCard, handEval, faceCount, isFlush, isStraight, playerOneHigher } from "./handEval.js"
+import { PAIR, TWO_PAIR, THREE, FOUR, HIGH_CARD, FLUSH, STRAIGHT, FULL_HOUSE, STRAIGHT_FLUSH } from "./enums"
 
 test("highCard", () => {
   var hand = [
@@ -122,7 +123,7 @@ test("handEval > high card", () => {
     { face: 3, suit: "c" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "high card", values: [1, "c"] })
+  expect(evaluated).toEqual({ type: HIGH_CARD, values: [1, "c"] })
 })
 
 test("handEval > two pair", () => {
@@ -135,7 +136,7 @@ test("handEval > two pair", () => {
   ]
   var evaluated = handEval(hand)
 
-  expect(evaluated).toEqual({ type: "two pair", values: [5, 3] })
+  expect(evaluated).toEqual({ type: TWO_PAIR, values: [5, 3] })
 })
 
 test("handEval > pair", () => {
@@ -147,7 +148,7 @@ test("handEval > pair", () => {
     { face: 5, suit: "d" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "pair", values: [3] })
+  expect(evaluated).toEqual({ type: PAIR, values: [3] })
 })
 
 test("handEval > three of a kind", () => {
@@ -159,7 +160,7 @@ test("handEval > three of a kind", () => {
     { face: 3, suit: "d" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "three", values: [3] })
+  expect(evaluated).toEqual({ type: THREE, values: [3] })
 })
 
 test("handEval > four of ", () => {
@@ -171,10 +172,10 @@ test("handEval > four of ", () => {
     { face: 3, suit: "d" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "four", values: [10] })
+  expect(evaluated).toEqual({ type: FOUR, values: [10] })
 })
 
-test("handEval > full house", () => {
+test("handEval > full_house", () => {
   var hand = [
     { face: 10, suit: "c" },
     { face: 3, suit: "s" },
@@ -183,7 +184,33 @@ test("handEval > full house", () => {
     { face: 3, suit: "d" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "full house", values: [3, 10] })
+  expect(evaluated).toEqual({ type: FULL_HOUSE, values: [3, 10] })
+})
+
+test("handEval > FULLHOUSE", () => {
+  var hand = [
+    { face: 13, suit: "c" },
+    { face: 13, suit: "h" },
+    { face: 2, suit: "d" },
+    { face: 13, suit: "s" },
+    { face: 2, suit: "c" },
+  ]
+  var evaluated = handEval(hand)
+
+  expect(evaluated).toEqual({ type: FULL_HOUSE, values: [13, 2] })
+})
+
+test("handEval > TWOPAIR", () => {
+  let hand = [
+    { face: 13, suit: "c" },
+    { face: 13, suit: "h" },
+    { face: 2, suit: "d" },
+    { face: 10, suit: "s" },
+    { face: 2, suit: "c" },
+  ]
+
+  var evaluated = handEval(hand)
+  expect(evaluated).toEqual({ type: TWO_PAIR, values: [13, 2] })
 })
 
 test("handEval > flush", () => {
@@ -195,7 +222,7 @@ test("handEval > flush", () => {
     { face: 3, suit: "c" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "flush", values: ["c"] })
+  expect(evaluated).toEqual({ type: FLUSH, values: ["c"] })
 })
 
 test("handEval > straight", () => {
@@ -207,7 +234,7 @@ test("handEval > straight", () => {
     { face: 3, suit: "c" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "straight", values: [5, 1] })
+  expect(evaluated).toEqual({ type: STRAIGHT, values: [5, 1] })
 })
 
 test("handEval > straight flush", () => {
@@ -219,7 +246,7 @@ test("handEval > straight flush", () => {
     { face: 3, suit: "c" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "straight flush", values: [5, 1] })
+  expect(evaluated).toEqual({ type: STRAIGHT_FLUSH, values: [5, 1] })
 })
 
 test("handEval > two card", () => {
@@ -228,7 +255,7 @@ test("handEval > two card", () => {
     { face: 4, suit: "d" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "pair", values: [4] })
+  expect(evaluated).toEqual({ type: PAIR, values: [4] })
 })
 
 test("handEval > one card", () => {
@@ -244,27 +271,34 @@ test("handEval > three card", () => {
     { face: 4, suit: "h" },
   ]
   var evaluated = handEval(hand)
-  expect(evaluated).toEqual({ type: "three", values: [4] })
+  expect(evaluated).toEqual({ type: THREE, values: [4] })
 })
 // --------------------------------
 
 test("playerOneHigher > pair vs two pair", () => {
-  var eval0 = { type: "pair", values: [5] }
-  var eval1 = { type: "two pair", values: [3, 2] }
+  var eval0 = { type: PAIR, values: [5] }
+  var eval1 = { type: TWO_PAIR, values: [3, 2] }
   var evaluated = playerOneHigher(eval0, eval1)
   expect(evaluated).toEqual(false)
 })
 
 test("playerOneHigher > straight vs two pair", () => {
-  var eval0 = { type: "pair", values: [5] }
-  var eval1 = { type: "straight", values: [10, 6] }
+  var eval0 = { type: PAIR, values: [5] }
+  var eval1 = { type: STRAIGHT, values: [10, 6] }
   var evaluated = playerOneHigher(eval0, eval1)
   expect(evaluated).toEqual(false)
 })
 
 test("playerOneHigher > flush vs three", () => {
-  var eval0 = { type: "three", values: [5] }
-  var eval1 = { type: "flush", values: ["d"] }
+  var eval0 = { type: THREE, values: [5] }
+  var eval1 = { type: FLUSH, values: ["d"] }
   var evaluated = playerOneHigher(eval0, eval1)
   expect(evaluated).toEqual(false)
+})
+
+test.only("playerOneHigher > flush vs three", () => {
+  var eval0 = { type: FLUSH, values: ["d"] }
+  var eval1 = { type: THREE, values: [5] }
+  var evaluated = playerOneHigher(eval0, eval1)
+  expect(evaluated).toEqual(true)
 })

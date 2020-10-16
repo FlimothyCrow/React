@@ -8,13 +8,14 @@ export default class PlayablePoker extends React.Component {
     super(props)
     let deck = _.shuffle(poker.deckMaker())
     this.state = {
-      playerOneHand: poker.drawHand(deck),
-      playerTwoHand: poker.drawHand(deck),
+      playerOneHand: [],
+      playerTwoHand: [],
       deck: deck,
       isGameStarted: false,
       shuffling: 3,
       swapCounter: 3,
       showCards: false,
+      results: undefined,
     }
     //setInterval(() => this.setState({ shuffling: this.state.shuffling - 1 }), 1000)
   }
@@ -32,6 +33,14 @@ export default class PlayablePoker extends React.Component {
     }
   }
 
+  printResults() {
+    if (this.state.results === 0) {
+      return "player One wins"
+    } else if (this.state.results === 1) {
+      return "player Two wins"
+    }
+  }
+
   render() {
     /*if (this.state.shuffling > 0) {
       return <span>shuffling {this.state.shuffling}</span>
@@ -43,12 +52,17 @@ export default class PlayablePoker extends React.Component {
           <div
             className="gfg"
             onClick={() => {
-              this.setState({ isGameStarted: true })
+              this.setState({
+                isGameStarted: true,
+                playerOneHand: poker.drawHand(this.state.deck),
+                playerTwoHand: poker.drawHand(this.state.deck),
+              })
             }}
           >
             <img className="deckCard" src={"cardGraphics/blue_back.jpg"} alt="Logo" />
             <h3 className="imageText">{this.state.deck.length}</h3>
           </div>
+          {!this.state.isGameStarted ? "click the deck to begin" : undefined}
           {this.state.isGameStarted && (
             <span>
               <div>
@@ -70,14 +84,17 @@ export default class PlayablePoker extends React.Component {
                 Player One (Human) {this.state.swapCounter} swaps remaining
                 <button
                   onClick={() => {
-                    this.setState({ showCards: true })
+                    let results = poker.compareHands([this.state.playerOneHand, this.state.playerTwoHand])
+                    this.setState({
+                      showCards: true,
+                      results: results,
+                    })
                   }}
                 >
                   Show up
                 </button>
                 <div>{poker.handToString(this.state.playerOneHand)}</div>
               </div>
-
               <ul>
                 <div className="hand">
                   {this.state.playerOneHand.map((card, idx) => {
@@ -91,6 +108,7 @@ export default class PlayablePoker extends React.Component {
                   })}
                 </div>
               </ul>
+              <div>{this.printResults()}</div>
             </span>
           )}
         </div>
@@ -99,9 +117,6 @@ export default class PlayablePoker extends React.Component {
   }
 }
 
-// have PC cards render to "back of card" art until this.state.timeToReveal === true
-// compareHands
-// text out winner
-// get all that done before looking at cardGraphics stuff
 // practice _.flatMap
 // hand also shows statistical value
+// ?.
