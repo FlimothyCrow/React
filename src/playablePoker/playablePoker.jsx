@@ -117,7 +117,3 @@ export default class PlayablePoker extends React.Component {
   }
 }
 
-// practice _.flatMap
-// hand also shows statistical value
-// ?.
-// highCard() ranks aces as 1, not 14

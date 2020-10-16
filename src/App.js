@@ -54,6 +54,20 @@ export default class App extends React.Component {
     )
   }
 }
+// practice _.flatMap
+// hand also shows statistical value
+// ?.
+// highCard() ranks aces as 1, not 14
 
-// notice that the calls on 15 and 16 have different syntax
-// <FizzBuzzPrinter /> for line 16
+// PRACTICE PASSING LAMBDAS INTO FUNCTIONS AS PARAMETERS
+// rebuild handToString to take results from handEval, not call it
+// highlight highest card if no other hand
+// multiple page > use react-router
+// add button to remove all cards from hand
+// react functions can't be exported, they would operate under the wrong scope
+// they have to be passed through lambdas so they operate under relative scope
+// inversion of control
+
+// how to publish: npm run-script build
+// manual copy files from /build to /docs
+// commit > push
