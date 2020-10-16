@@ -43,13 +43,13 @@ export default class App extends React.Component {
           {this.setPageLink("play")}
           {this.setPageLink("rank")}
         </header>
-        <body className="App-header">
+        <div className="App-header">
           <span className="background">
             {this.state.currentMode === "home" && <span>welcome to the new page</span>}
             {this.state.currentMode === "rank" && <HandRanker></HandRanker>}
             {this.state.currentMode === "play" && <PlayablePoker></PlayablePoker>}
           </span>
-        </body>
+        </div>
       </div>
     )
   }

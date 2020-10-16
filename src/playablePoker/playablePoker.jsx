@@ -35,9 +35,9 @@ export default class PlayablePoker extends React.Component {
 
   printResults() {
     if (this.state.results === 0) {
-      return "player One wins"
+      return "Player One wins"
     } else if (this.state.results === 1) {
-      return "player Two wins"
+      return "Player Two wins"
     }
   }
 
@@ -120,3 +120,4 @@ export default class PlayablePoker extends React.Component {
 // practice _.flatMap
 // hand also shows statistical value
 // ?.
+// highCard() ranks aces as 1, not 14

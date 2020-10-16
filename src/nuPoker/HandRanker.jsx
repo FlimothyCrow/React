@@ -2,7 +2,7 @@ import React from "react"
 import * as poker from "./nu_poker"
 import * as graphic from "./pokerGraphics.js"
 import { handEval } from "./handEval.js"
-import { PAIR, TWO_PAIR, THREE, FOUR, HIGH_CARD, FLUSH, STRAIGHT, FULL_HOUSE, STRAIGHT_FLUSH } from "./enums"
+import { HIGH_CARD } from "./enums"
 
 export default class HandRanker extends React.Component {
   constructor(props) {

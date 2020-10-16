@@ -31,9 +31,10 @@ header {
 
 .imageText {
   position: absolute;
-  bottom: 9%;
-  left: 67%;
-  color: black;
+  bottom: 35%;
+  left: 79.5%;
+  color: white;
+  font-size: 19px;
 }
 
 .card {
