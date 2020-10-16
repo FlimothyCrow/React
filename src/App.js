@@ -27,7 +27,7 @@ export default class App extends React.Component {
         <div>
           <a
             href="play"
-            className={this.state.currentMode === "home" && "warningColor"}
+            className={this.state.currentMode === "home" ? "warningColor" : undefined}
             onClick={(e) => {
               e.preventDefault()
               this.setGameMode("home")
@@ -37,7 +37,7 @@ export default class App extends React.Component {
           </a>
           <a
             href="play"
-            className={this.state.currentMode === "play" && "warningColor"}
+            className={this.state.currentMode === "play" ? "warningColor" : undefined}
             onClick={(e) => {
               e.preventDefault()
               this.setGameMode("play")
@@ -47,7 +47,7 @@ export default class App extends React.Component {
           </a>
           <a
             href="rank"
-            className={this.state.currentMode === "rank" && "warningColor"}
+            className={this.state.currentMode === "rank" ? "warningColor" : undefined}
             onClick={(e) => {
               e.preventDefault()
               this.setGameMode("rank")

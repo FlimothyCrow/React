@@ -1,7 +1,6 @@
 import React from "react"
 import * as poker from "../nuPoker/nu_poker"
 import * as graphic from "../nuPoker/pokerGraphics.js"
-import { handEval } from "../nuPoker/handEval.js"
 import _ from "lodash"
 
 export default class PlayablePoker extends React.Component {
@@ -15,13 +14,14 @@ export default class PlayablePoker extends React.Component {
       isGameStarted: false,
       shuffling: 3,
       swapCounter: 3,
+      showCards: false,
     }
     //setInterval(() => this.setState({ shuffling: this.state.shuffling - 1 }), 1000)
   }
   //  <img src={"cardGraphics/background.jpg"} alt="Logo" />
 
   swapCards(idxToMove) {
-    if (this.state.swapCounter > 0) {
+    if (this.state.swapCounter > 0 && !this.state.showCards) {
       this.state.deck.push(this.state.playerOneHand[idxToMove])
       this.state.playerOneHand.splice(idxToMove, 1, this.state.deck.shift())
       this.setState({
@@ -47,12 +47,34 @@ export default class PlayablePoker extends React.Component {
             }}
           >
             <img className="deckCard" src={"cardGraphics/blue_back.jpg"} alt="Logo" />
-            <h3 class="imageText">{this.state.deck.length}</h3>
+            <h3 className="imageText">{this.state.deck.length}</h3>
           </div>
           {this.state.isGameStarted && (
             <span>
               <div>
+                Player Two (Computer){" "}
+                <div>{this.state.showCards ? poker.handToString(this.state.playerTwoHand) : undefined}</div>
+              </div>
+              <ul>
+                <div className="hand">
+                  {this.state.playerTwoHand.map((card, idx) => {
+                    if (this.state.showCards) {
+                      return graphic.cardToImage(card, () => {}, undefined)
+                    } else {
+                      return <img key={idx} className="card" src={"cardGraphics/blue_back.jpg"} alt="Logo" />
+                    }
+                  })}
+                </div>
+              </ul>
+              <div>
                 Player One (Human) {this.state.swapCounter} swaps remaining
+                <button
+                  onClick={() => {
+                    this.setState({ showCards: true })
+                  }}
+                >
+                  Show up
+                </button>
                 <div>{poker.handToString(this.state.playerOneHand)}</div>
               </div>
 
@@ -69,16 +91,6 @@ export default class PlayablePoker extends React.Component {
                   })}
                 </div>
               </ul>
-              <div>
-                Player Two (Computer) <div>{poker.handToString(this.state.playerTwoHand)}</div>
-              </div>
-              <ul>
-                <div className="hand">
-                  {this.state.playerTwoHand.map((card) => {
-                    return graphic.cardToImage(card, () => {}, undefined)
-                  })}
-                </div>
-              </ul>
             </span>
           )}
         </div>
@@ -87,11 +99,9 @@ export default class PlayablePoker extends React.Component {
   }
 }
 
-// rebuild drawHand() to shuffle entire deck and pull five cards at random
-// player can trade in cards (how many?)
+// have PC cards render to "back of card" art until this.state.timeToReveal === true
 // compareHands
 // text out winner
 // get all that done before looking at cardGraphics stuff
 // practice _.flatMap
-
-// have PC cards render to "back of card" art until this.state.timeToReveal === true
+// hand also shows statistical value

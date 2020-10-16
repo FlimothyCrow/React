@@ -27,11 +27,12 @@ export function suitToString(char) {
 }
 
 export function cardToImage(card, onClickFN, cardToHighlight) {
+  let cardFileName = cardToFileName(card)
   let isMatch = cardToHighlight && cardToHighlight.suit === card.suit && cardToHighlight.face === card.face
   // if cardToHightlight is passed into cardToImage call
   return (
-    <span onClick={() => onClickFN()} className={isMatch && "highlight"}>
-      <img className="card" src={"cardGraphics/" + cardToFileName(card)} alt="2C" />
+    <span key={cardFileName} onClick={() => onClickFN()} className={isMatch && "highlight"}>
+      <img className="card" src={"cardGraphics/" + cardFileName} alt="2C" />
     </span>
   )
 }
