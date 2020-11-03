@@ -32,7 +32,7 @@ export function cardToImage(card, onClickFN, cardToHighlight) {
   // if cardToHightlight is passed into cardToImage call
   return (
     <span key={cardFileName} onClick={() => onClickFN()} className={isMatch && "highlight"}>
-      <img className="card" src={"cardGraphics/" + cardFileName} alt="2C" />
+      <img className="card p-1" src={"cardGraphics/" + cardFileName} alt="2C" />
     </span>
   )
 }

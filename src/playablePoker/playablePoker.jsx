@@ -117,3 +117,4 @@ export default class PlayablePoker extends React.Component {
   }
 }
 
+// the deck shouldn't be clickable after showUp

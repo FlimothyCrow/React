@@ -37,49 +37,51 @@ export default class HandRanker extends React.Component {
       hightlightCard = { face: evaluated.values[0], suit: evaluated.values[1] }
     }
     return (
-      <div>
-        <h3>Click to select cards from deck</h3>
-        {["s", "d", "c", "h"].map((suit) => (
-          <div>
-            <div>{graphic.suitToString(suit)}</div>
-            {this.state.deck
-              .filter((card) => card.suit === suit)
-              .map((card) => {
-                if (!this.state.currentHand.includes(card)) {
-                  return graphic.cardToImage(card, () => this.addToHand(card), undefined)
-                } else {
-                  return <span className="card" />
-                }
-              })}
-          </div>
-        ))}
+      <span className="background">
         <div>
-          <h3>
-            Current hand{" "}
-            <button
-              onClick={() => {
-                this.dumpHand()
-              }}
-            >
-              Return hand
-            </button>
-          </h3>
-
-          {console.log(this.state.currentHand)}
-          <div className="handToString">
-            {this.state.currentHand.length > 0 && poker.handToString(this.state.currentHand)}
-          </div>
-          <ul>
-            <div className="hand">
-              {this.state.currentHand.map((card) => {
-                console.log("rendering card", card)
-                return graphic.cardToImage(card, () => this.removeFromHand(card), hightlightCard)
-                // cardToImage() call has to include lambda to use this.data
-              })}
+          <h3>Click to select cards from deck</h3>
+          {["s", "d", "c", "h"].map((suit) => (
+            <div>
+              <div>{graphic.suitToString(suit)}</div>
+              {this.state.deck
+                .filter((card) => card.suit === suit)
+                .map((card) => {
+                  if (!this.state.currentHand.includes(card)) {
+                    return graphic.cardToImage(card, () => this.addToHand(card), undefined)
+                  } else {
+                    return <span className="card" />
+                  }
+                })}
             </div>
-          </ul>
+          ))}
+          <div>
+            <h3>
+              Current hand{" "}
+              <button
+                onClick={() => {
+                  this.dumpHand()
+                }}
+              >
+                Return hand
+              </button>
+            </h3>
+
+            {console.log(this.state.currentHand)}
+            <div className="handToString">
+              {this.state.currentHand.length > 0 && poker.handToString(this.state.currentHand)}
+            </div>
+            <ul>
+              <div className="hand">
+                {this.state.currentHand.map((card) => {
+                  console.log("rendering card", card)
+                  return graphic.cardToImage(card, () => this.removeFromHand(card), hightlightCard)
+                  // cardToImage() call has to include lambda to use this.data
+                })}
+              </div>
+            </ul>
+          </div>
         </div>
-      </div>
+      </span>
     )
   }
 }
