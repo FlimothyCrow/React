@@ -92,7 +92,7 @@ test("handToString > clubs", () => {
   var hand = [
     { face: 4, suit: "c" },
     { face: 5, suit: "c" },
-    { face: 14, suit: "c" },
+    { face: 1, suit: "c" },
     { face: 12, suit: "c" },
     { face: 2, suit: "c" },
   ]
@@ -104,7 +104,7 @@ test("handToString > diamonds", () => {
   var hand = [
     { face: 4, suit: "d" },
     { face: 5, suit: "d" },
-    { face: 14, suit: "d" },
+    { face: 1, suit: "d" },
     { face: 12, suit: "d" },
     { face: 2, suit: "d" },
   ]
@@ -116,7 +116,7 @@ test("handToString > spades", () => {
   var hand = [
     { face: 4, suit: "s" },
     { face: 5, suit: "s" },
-    { face: 14, suit: "s" },
+    { face: 1, suit: "s" },
     { face: 12, suit: "s" },
     { face: 2, suit: "s" },
   ]
@@ -128,7 +128,7 @@ test("handToString > hearts", () => {
   var hand = [
     { face: 4, suit: "h" },
     { face: 5, suit: "h" },
-    { face: 14, suit: "h" },
+    { face: 1, suit: "h" },
     { face: 12, suit: "h" },
     { face: 2, suit: "h" },
   ]
@@ -399,6 +399,28 @@ test("compareHands > pair vs two pair", () => {
       { face: 5, suit: "s" },
       { face: 8, suit: "d" },
       { face: 8, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+  ]
+
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(0)
+})
+
+test("compareHands > pair vs three", () => {
+  var hands = [
+    [
+      { face: 7, suit: "c" },
+      { face: 7, suit: "h" },
+      { face: 2, suit: "d" },
+      { face: 7, suit: "s" },
+      { face: 5, suit: "c" },
+    ],
+    [
+      { face: 3, suit: "s" },
+      { face: 5, suit: "s" },
+      { face: 1, suit: "d" },
+      { face: 1, suit: "s" },
       { face: 2, suit: "c" },
     ],
   ]

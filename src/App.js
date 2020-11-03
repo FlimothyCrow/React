@@ -63,6 +63,7 @@ export default class App extends React.Component {
 // automatically sort cards in order
 // three of a kind should beat a pair
 
+
 // PRACTICE PASSING LAMBDAS INTO FUNCTIONS AS PARAMETERS
 // rebuild handToString to take results from handEval, not call it
 // highlight highest card if no other hand
