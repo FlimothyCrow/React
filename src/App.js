@@ -58,6 +58,10 @@ export default class App extends React.Component {
 // hand also shows statistical value
 // ?.
 // highCard() ranks aces as 1, not 14
+// cardSwap shouldn't replace spent cards into deck (deck counter should update)
+// deck should be unclickable during a game instance
+// automatically sort cards in order
+// three of a kind should beat a pair
 
 // PRACTICE PASSING LAMBDAS INTO FUNCTIONS AS PARAMETERS
 // rebuild handToString to take results from handEval, not call it

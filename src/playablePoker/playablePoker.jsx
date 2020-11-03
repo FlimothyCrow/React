@@ -33,11 +33,31 @@ export default class PlayablePoker extends React.Component {
     }
   }
 
-  printResults() {
+  renderDeck() {
+    return (
+      <div
+        className="gfg"
+        onClick={() => {
+          if (!this.state.isGameStarted) {
+            this.setState({
+              isGameStarted: true,
+              playerOneHand: poker.drawHand(this.state.deck),
+              playerTwoHand: poker.drawHand(this.state.deck),
+            })
+          }
+        }}
+      >
+        <img className="deckCard" src={"cardGraphics/blue_back.jpg"} alt="Logo" />
+        <h3 className="imageText">{this.state.deck.length}</h3>
+      </div>
+    )
+  }
+
+  printResults(playerHandResults, computerHandResults) {
     if (this.state.results === 0) {
-      return "Player One wins"
+      return "Player wins with " + playerHandResults
     } else if (this.state.results === 1) {
-      return "Player Two wins"
+      return "Computer wins with " + computerHandResults
     }
   }
 
@@ -45,31 +65,34 @@ export default class PlayablePoker extends React.Component {
     /*if (this.state.shuffling > 0) {
       return <span>shuffling {this.state.shuffling}</span>
     }*/
+    let playerHandResults = this.state.isGameStarted && poker.handToString(this.state.playerOneHand)
+    let computerHandResults = this.state.isGameStarted && poker.handToString(this.state.playerTwoHand)
 
     return (
       <span className="background">
         <div>
-          <div
-            className="gfg"
-            onClick={() => {
-              this.setState({
-                isGameStarted: true,
-                playerOneHand: poker.drawHand(this.state.deck),
-                playerTwoHand: poker.drawHand(this.state.deck),
-              })
-            }}
-          >
-            <img className="deckCard" src={"cardGraphics/blue_back.jpg"} alt="Logo" />
-            <h3 className="imageText">{this.state.deck.length}</h3>
-          </div>
-          {!this.state.isGameStarted ? "click the deck to begin" : undefined}
+          <div className="text">{!this.state.isGameStarted ? "click the deck to begin" : undefined}</div>
+          {this.state.isGameStarted && (
+            <div className="text">
+              {this.state.swapCounter} swaps remaining
+              <button
+                onClick={() => {
+                  let results = poker.compareHands([this.state.playerOneHand, this.state.playerTwoHand])
+                  this.setState({
+                    showCards: true,
+                    results: results,
+                  })
+                }}
+              >
+                Show up
+              </button>
+            </div>
+          )}
+          {this.renderDeck()}
           {this.state.isGameStarted && (
             <span>
-              <div>
-                Player Two (Computer){" "}
-                <div>{this.state.showCards ? poker.handToString(this.state.playerTwoHand) : undefined}</div>
-              </div>
-              <ul>
+              <div className="text">Computer {this.state.showCards ? "(" + computerHandResults + ")" : undefined}</div>
+              <ul className="card-list">
                 <div className="hand">
                   {this.state.playerTwoHand.map((card, idx) => {
                     if (this.state.showCards) {
@@ -80,22 +103,8 @@ export default class PlayablePoker extends React.Component {
                   })}
                 </div>
               </ul>
-              <div>
-                Player One (Human) {this.state.swapCounter} swaps remaining
-                <button
-                  onClick={() => {
-                    let results = poker.compareHands([this.state.playerOneHand, this.state.playerTwoHand])
-                    this.setState({
-                      showCards: true,
-                      results: results,
-                    })
-                  }}
-                >
-                  Show up
-                </button>
-                <div>{poker.handToString(this.state.playerOneHand)}</div>
-              </div>
-              <ul>
+              <div className="text">Player ({playerHandResults})</div>
+              <ul className="card-list">
                 <div className="hand">
                   {this.state.playerOneHand.map((card, idx) => {
                     return graphic.cardToImage(
@@ -108,7 +117,8 @@ export default class PlayablePoker extends React.Component {
                   })}
                 </div>
               </ul>
-              <div>{this.printResults()}</div>
+
+              <div className="text">{this.printResults(playerHandResults, computerHandResults)}</div>
             </span>
           )}
         </div>
