@@ -60,6 +60,8 @@ export function cardFaceString(int) {
   }
 }
 
+
+
 export function isCheating(hand) {
   var uniqueLength = _.uniqBy(hand, (card) => {
     // return JSON.stringify(card) // to avoid deepEqual

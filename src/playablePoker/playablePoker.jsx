@@ -61,6 +61,10 @@ export default class PlayablePoker extends React.Component {
     }
   }
 
+  orderHand(handOfCards) {
+    return handOfCards.sort((a, b) => (a.face > b.face ? 1 : -1))
+  }
+
   render() {
     /*if (this.state.shuffling > 0) {
       return <span>shuffling {this.state.shuffling}</span>
@@ -94,7 +98,7 @@ export default class PlayablePoker extends React.Component {
               <div className="text">Computer {this.state.showCards ? "(" + computerHandResults + ")" : undefined}</div>
               <ul className="card-list">
                 <div className="hand">
-                  {this.state.playerTwoHand.map((card, idx) => {
+                  {this.orderHand(this.state.playerTwoHand).map((card, idx) => {
                     if (this.state.showCards) {
                       return graphic.cardToImage(card, () => {}, undefined)
                     } else {
@@ -106,7 +110,7 @@ export default class PlayablePoker extends React.Component {
               <div className="text">Player ({playerHandResults})</div>
               <ul className="card-list">
                 <div className="hand">
-                  {this.state.playerOneHand.map((card, idx) => {
+                  {this.orderHand(this.state.playerOneHand).map((card, idx) => {
                     return graphic.cardToImage(
                       card,
                       () => {

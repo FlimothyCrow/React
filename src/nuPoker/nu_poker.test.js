@@ -450,3 +450,4 @@ test("compareHands > full house vs straight", () => {
   var compared = poker.compareHands(hands)
   expect(compared).toEqual(0)
 })
+
