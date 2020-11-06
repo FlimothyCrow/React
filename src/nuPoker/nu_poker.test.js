@@ -450,4 +450,34 @@ test("compareHands > full house vs straight", () => {
   var compared = poker.compareHands(hands)
   expect(compared).toEqual(0)
 })
+// ------------------------------------------------------
+test("orderHand", () => {
+  var hand = [
+    { face: 2, suit: "s" },
+    { face: 5, suit: "s" },
+    { face: 4, suit: "s" },
+  ]
+  var evaluated = poker.orderHand(hand)
+  expect(evaluated).toEqual([
+    { face: 2, suit: "s" },
+    { face: 4, suit: "s" },
+    { face: 5, suit: "s" },
+  ])
+})
 
+test("orderHand ace", () => {
+  var hand = [
+    { face: 1, suit: "s" },
+    { face: 5, suit: "s" },
+    { face: 4, suit: "s" },
+    { face: 1, suit: "s" },
+  ]
+  var evaluated = poker.orderHand(hand)
+  console.log(evaluated)
+  expect(evaluated).toEqual([
+    { face: 4, suit: "s" },
+    { face: 5, suit: "s" },
+    { face: 1, suit: "s" },
+    { face: 1, suit: "s" },
+  ])
+})

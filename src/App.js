@@ -59,7 +59,8 @@ export default class App extends React.Component {
 // ?.
 // highCard() ranks aces as 1, not 14
 // cardSwap shouldn't replace spent cards into deck (deck counter should update)
-// automatically sort cards in order WITH ACES AS THE HIGHEST
+// onClick isn't swapping the appropriate card
+// new game button next to "show up"
 
 // PRACTICE PASSING LAMBDAS INTO FUNCTIONS AS PARAMETERS
 // rebuild handToString to take results from handEval, not call it

@@ -1,4 +1,4 @@
-import _ from "lodash"
+import _, { indexOf } from "lodash"
 import { handEval, highCard, playerOneHigher } from "./handEval.js"
 import { suitToString } from "./pokerGraphics"
 import { PAIR, TWO_PAIR, THREE, FOUR, HIGH_CARD, FLUSH, STRAIGHT, FULL_HOUSE, STRAIGHT_FLUSH } from "./enums"
@@ -60,7 +60,23 @@ export function cardFaceString(int) {
   }
 }
 
-
+export function orderHand(handOfCards) {
+  let sorted = handOfCards.sort((a, b) => (a.face > b.face ? 1 : -1))
+  let filteredAces = []
+  let newArray = []
+  for (var card of sorted) {
+    if (card.face === 1) {
+      filteredAces.push(card)
+      //sorted.splice(indexOf(card), 1)
+    } else {
+      newArray.push(card)
+    }
+  }
+  for (var ace of filteredAces) {
+    newArray.push(ace)
+  }
+  return newArray
+}
 
 export function isCheating(hand) {
   var uniqueLength = _.uniqBy(hand, (card) => {

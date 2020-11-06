@@ -13,7 +13,7 @@ export default class PlayablePoker extends React.Component {
       deck: deck,
       isGameStarted: false,
       shuffling: 3,
-      swapCounter: 3,
+      swapCounter: 99,
       showCards: false,
       results: undefined,
     }
@@ -62,7 +62,21 @@ export default class PlayablePoker extends React.Component {
   }
 
   orderHand(handOfCards) {
-    return handOfCards.sort((a, b) => (a.face > b.face ? 1 : -1))
+    let sorted = handOfCards.sort((a, b) => (a.face > b.face ? 1 : -1))
+    let filteredAces = []
+    let newArray = []
+    for (var card of sorted) {
+      if (card.face === 1) {
+        filteredAces.push(card)
+        //sorted.splice(indexOf(card), 1)
+      } else {
+        newArray.push(card)
+      }
+    }
+    for (var ace of filteredAces) {
+      newArray.push(ace)
+    }
+    return newArray
   }
 
   render() {
