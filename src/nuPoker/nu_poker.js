@@ -67,7 +67,6 @@ export function orderHand(handOfCards) {
   for (var card of sorted) {
     if (card.face === 1) {
       filteredAces.push(card)
-      //sorted.splice(indexOf(card), 1)
     } else {
       newArray.push(card)
     }

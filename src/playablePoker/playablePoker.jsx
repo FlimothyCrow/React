@@ -13,7 +13,7 @@ export default class PlayablePoker extends React.Component {
       deck: deck,
       isGameStarted: false,
       shuffling: 3,
-      swapCounter: 99,
+      swapCounter: 3,
       showCards: false,
       results: undefined,
     }
@@ -61,6 +61,19 @@ export default class PlayablePoker extends React.Component {
     }
   }
 
+  newGame() {
+    this.setState({
+      playerOneHand: [],
+      playerTwoHand: [],
+      deck: _.shuffle(poker.deckMaker()),
+      isGameStarted: false,
+      shuffling: 3,
+      swapCounter: 3,
+      showCards: false,
+      results: undefined,
+    })
+  }
+
   orderHand(handOfCards) {
     let sorted = handOfCards.sort((a, b) => (a.face > b.face ? 1 : -1))
     let filteredAces = []
@@ -103,6 +116,13 @@ export default class PlayablePoker extends React.Component {
                 }}
               >
                 Show up
+              </button>
+              <button
+                onClick={() => {
+                  this.newGame()
+                }}
+              >
+                New game
               </button>
             </div>
           )}

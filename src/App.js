@@ -59,7 +59,7 @@ export default class App extends React.Component {
 // ?.
 // highCard() ranks aces as 1, not 14
 // cardSwap shouldn't replace spent cards into deck (deck counter should update)
-// onClick isn't swapping the appropriate card
+// onClick isn't swapping the appropriate card (but not always)
 // new game button next to "show up"
 
 // PRACTICE PASSING LAMBDAS INTO FUNCTIONS AS PARAMETERS
