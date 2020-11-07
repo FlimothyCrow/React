@@ -275,6 +275,28 @@ test("compareHands > highCard + suit", () => {
   expect(compared).toEqual(1)
 })
 
+test("compareHands > highCard ace", () => {
+  var hands = [
+    [
+      { face: 1, suit: "c" },
+      { face: 9, suit: "h" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+    [
+      { face: 13, suit: "s" },
+      { face: 9, suit: "s" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+  ]
+
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(0)
+})
+
 test("compareHands > pairs", () => {
   var hands = [
     [
@@ -295,6 +317,50 @@ test("compareHands > pairs", () => {
 
   var compared = poker.compareHands(hands)
   expect(compared).toEqual(0)
+})
+
+test("compareHands > pair aces and pair", () => {
+  var hands = [
+    [
+      { face: 1, suit: "c" },
+      { face: 1, suit: "h" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+    [
+      { face: 13, suit: "s" },
+      { face: 9, suit: "s" },
+      { face: 4, suit: "d" },
+      { face: 4, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+  ]
+
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(0)
+})
+
+test("compareHands > pair and pair aces", () => {
+  var hands = [
+    [
+      { face: 4, suit: "c" },
+      { face: 1, suit: "h" },
+      { face: 4, suit: "d" },
+      { face: 8, suit: "d" },
+      { face: 2, suit: "c" },
+    ],
+    [
+      { face: 1, suit: "s" },
+      { face: 9, suit: "s" },
+      { face: 1, suit: "d" },
+      { face: 4, suit: "s" },
+      { face: 2, suit: "c" },
+    ],
+  ]
+
+  var compared = poker.compareHands(hands)
+  expect(compared).toEqual(1)
 })
 
 test("compareHands > two pair matching", () => {
@@ -473,7 +539,6 @@ test("orderHand ace", () => {
     { face: 1, suit: "s" },
   ]
   var evaluated = poker.orderHand(hand)
-  console.log(evaluated)
   expect(evaluated).toEqual([
     { face: 4, suit: "s" },
     { face: 5, suit: "s" },

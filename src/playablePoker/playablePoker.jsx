@@ -13,7 +13,7 @@ export default class PlayablePoker extends React.Component {
       deck: deck,
       isGameStarted: false,
       shuffling: 3,
-      swapCounter: 3,
+      swapCounter: 99,
       showCards: false,
       results: undefined,
     }

@@ -99,6 +99,7 @@ export function compareHands(hands) {
     null,
     highed.map((card) => card.face)
   )
+  let bothHandsArePairs = eval0.type === PAIR && eval1.type === PAIR
 
   if (eval0.type === TWO_PAIR && eval1.type === TWO_PAIR) {
     if (eval0.values[0] === eval1.values[0]) {
@@ -106,6 +107,10 @@ export function compareHands(hands) {
     } else {
       return eval0.values[0] > eval1.values[0] ? 0 : 1
     }
+  } else if (bothHandsArePairs && eval0.values[0] === 1) {
+    return 0
+  } else if (bothHandsArePairs && eval1.values[0] === 1) {
+    return 1
   } else if (
     (eval0.type === PAIR && eval1.type === PAIR) ||
     (eval0.type === THREE && eval1.type === THREE) ||
