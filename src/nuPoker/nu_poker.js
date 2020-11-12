@@ -60,22 +60,13 @@ export function cardFaceString(int) {
   }
 }
 
+export const getCardRank = (card) => (card.face === 1 ? 14 : card.face)
+
+
 export function orderHand(handOfCards) {
-  let sorted = handOfCards.sort((a, b) => (a.face > b.face ? 1 : -1))
-  let filteredAces = []
-  let newArray = []
-  for (var card of sorted) {
-    if (card.face === 1) {
-      filteredAces.push(card)
-    } else {
-      newArray.push(card)
-    }
-  }
-  for (var ace of filteredAces) {
-    newArray.push(ace)
-  }
-  return newArray
+  return handOfCards.sort((a, b) => (getCardRank(a) > getCardRank(b) ? 1 : -1))
 }
+
 
 export function isCheating(hand) {
   var uniqueLength = _.uniqBy(hand, (card) => {
@@ -91,11 +82,10 @@ export function areSuitsDesc(card0, card1) {
   return suitRanks[card0.suit] > suitRanks[card1.suit]
 }
 
-
 export function compareHands(hands) {
   var eval0 = handEval(hands[0])
   var eval1 = handEval(hands[1])
-  var highed = _.map(hands, highCard)
+  var eachPlayersHighestCards = _.map(hands, highCard)
 
   let bothHandsArePairs = eval0.type === PAIR && eval1.type === PAIR
 
@@ -115,10 +105,10 @@ export function compareHands(hands) {
     (eval0.type === FOUR && eval1.type === FOUR)
   ) {
     return eval0.values[0] > eval1.values[0] ? 0 : 1
-  } else if (highed[0].face === highed[1].face) {
-    return areSuitsDesc(highed[0], highed[1]) ? 0 : 1
+  } else if (eachPlayersHighestCards[0].face === eachPlayersHighestCards[1].face) {
+    return areSuitsDesc(eachPlayersHighestCards[0], eachPlayersHighestCards[1]) ? 0 : 1
   } else if (eval0.type === HIGH_CARD && eval1.type === HIGH_CARD) {
-    let faces = highed.map((card) => (card.face === 1 ? 14 : card.face))
+    let faces = eachPlayersHighestCards.map(getCardRank)
     var highest = Math.max.apply(null, faces)
     return _.indexOf(faces, highest)
   } else {

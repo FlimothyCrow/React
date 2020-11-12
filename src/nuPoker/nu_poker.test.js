@@ -517,6 +517,12 @@ test("compareHands > full house vs straight", () => {
   expect(compared).toEqual(0)
 })
 // ------------------------------------------------------
+test("getCardRank", () => {
+  expect(poker.getCardRank({ face: 3, suit: "s" })).toEqual(3)
+  expect(poker.getCardRank({ face: 1, suit: "s" })).toEqual(14)
+  expect(poker.getCardRank({ face: 13, suit: "s" })).toEqual(13)
+})
+
 test("orderHand", () => {
   var hand = [
     { face: 2, suit: "s" },
