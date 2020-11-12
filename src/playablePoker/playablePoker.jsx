@@ -27,7 +27,7 @@ export default class PlayablePoker extends React.Component {
       this.state.playerOneHand.splice(idxToMove, 1, this.state.deck.shift())
       this.setState({
         deck: this.state.deck,
-        playerOneHand: this.state.playerOneHand,
+        playerOneHand: poker.orderHand(this.state.playerOneHand),
         swapCounter: this.state.swapCounter - 1,
       })
     }
@@ -41,8 +41,8 @@ export default class PlayablePoker extends React.Component {
           if (!this.state.isGameStarted) {
             this.setState({
               isGameStarted: true,
-              playerOneHand: poker.drawHand(this.state.deck),
-              playerTwoHand: poker.drawHand(this.state.deck),
+              playerOneHand: poker.orderHand(poker.drawHand(this.state.deck)),
+              playerTwoHand: poker.orderHand(poker.drawHand(this.state.deck)),
             })
           }
         }}
@@ -74,31 +74,13 @@ export default class PlayablePoker extends React.Component {
     })
   }
 
-  orderHand(handOfCards) {
-    let sorted = handOfCards.sort((a, b) => (a.face > b.face ? 1 : -1))
-    let filteredAces = []
-    let newArray = []
-    for (var card of sorted) {
-      if (card.face === 1) {
-        filteredAces.push(card)
-        //sorted.splice(indexOf(card), 1)
-      } else {
-        newArray.push(card)
-      }
-    }
-    for (var ace of filteredAces) {
-      newArray.push(ace)
-    }
-    return newArray
-  }
-
   render() {
     /*if (this.state.shuffling > 0) {
       return <span>shuffling {this.state.shuffling}</span>
     }*/
     let playerHandResults = this.state.isGameStarted && poker.handToString(this.state.playerOneHand)
     let computerHandResults = this.state.isGameStarted && poker.handToString(this.state.playerTwoHand)
-
+    console.log(this.state)
     return (
       <span className="background">
         <div>
@@ -132,7 +114,7 @@ export default class PlayablePoker extends React.Component {
               <div className="text">Computer {this.state.showCards ? "(" + computerHandResults + ")" : undefined}</div>
               <ul className="card-list">
                 <div className="hand">
-                  {this.orderHand(this.state.playerTwoHand).map((card, idx) => {
+                  {this.state.playerTwoHand.map((card, idx) => {
                     if (this.state.showCards) {
                       return graphic.cardToImage(card, () => {}, undefined)
                     } else {
@@ -144,7 +126,7 @@ export default class PlayablePoker extends React.Component {
               <div className="text">Player ({playerHandResults})</div>
               <ul className="card-list">
                 <div className="hand">
-                  {this.orderHand(this.state.playerOneHand).map((card, idx) => {
+                  {this.state.playerOneHand.map((card, idx) => {
                     return graphic.cardToImage(
                       card,
                       () => {

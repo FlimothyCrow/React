@@ -14,7 +14,9 @@ import {
 
 export function highCard(hand) {
   for (var card of hand) {
-    if (card.face === 1) return card
+    if (card.face === 1) {
+      return card
+    }
   }
   return _.orderBy(hand, ["face", "suit"], ["desc", "desc"])[0]
 }

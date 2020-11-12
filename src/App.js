@@ -54,19 +54,19 @@ export default class App extends React.Component {
     )
   }
 }
-// practice _.flatMap
+
 // hand also shows statistical value
-// ?.
-// highCard() ranks aces as 1, not 14
 // cardSwap shouldn't replace spent cards into deck (deck counter should update)
 // onClick isn't swapping the appropriate card (but not always)
-// new game button next to "show up"
+// add button to remove all cards from hand
 
+// ?.
+// practice _.flatMap
 // PRACTICE PASSING LAMBDAS INTO FUNCTIONS AS PARAMETERS
 // rebuild handToString to take results from handEval, not call it
 // highlight highest card if no other hand
 // multiple page > use react-router
-// add button to remove all cards from hand
+
 // react functions can't be exported, they would operate under the wrong scope
 // they have to be passed through lambdas so they operate under relative scope
 // inversion of control

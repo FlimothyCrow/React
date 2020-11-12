@@ -546,3 +546,19 @@ test("orderHand ace", () => {
     { face: 1, suit: "s" },
   ])
 })
+
+test("orderHand one ace", () => {
+  var hand = [
+    { face: 13, suit: "s" },
+    { face: 5, suit: "s" },
+    { face: 2, suit: "s" },
+    { face: 1, suit: "s" },
+  ]
+  var evaluated = poker.orderHand(hand)
+  expect(evaluated).toEqual([
+    { face: 2, suit: "s" },
+    { face: 5, suit: "s" },
+    { face: 13, suit: "s" },
+    { face: 1, suit: "s" },
+  ])
+})

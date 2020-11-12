@@ -296,7 +296,7 @@ test("playerOneHigher > flush vs three", () => {
   expect(evaluated).toEqual(false)
 })
 
-test.only("playerOneHigher > flush vs three", () => {
+test("playerOneHigher > flush vs three", () => {
   var eval0 = { type: FLUSH, values: ["d"] }
   var eval1 = { type: THREE, values: [5] }
   var evaluated = playerOneHigher(eval0, eval1)

@@ -91,14 +91,12 @@ export function areSuitsDesc(card0, card1) {
   return suitRanks[card0.suit] > suitRanks[card1.suit]
 }
 
+
 export function compareHands(hands) {
   var eval0 = handEval(hands[0])
   var eval1 = handEval(hands[1])
   var highed = _.map(hands, highCard)
-  var highest = Math.max.apply(
-    null,
-    highed.map((card) => card.face)
-  )
+
   let bothHandsArePairs = eval0.type === PAIR && eval1.type === PAIR
 
   if (eval0.type === TWO_PAIR && eval1.type === TWO_PAIR) {
@@ -120,10 +118,9 @@ export function compareHands(hands) {
   } else if (highed[0].face === highed[1].face) {
     return areSuitsDesc(highed[0], highed[1]) ? 0 : 1
   } else if (eval0.type === HIGH_CARD && eval1.type === HIGH_CARD) {
-    return _.indexOf(
-      highed.map((card) => card.face),
-      highest
-    )
+    let faces = highed.map((card) => (card.face === 1 ? 14 : card.face))
+    var highest = Math.max.apply(null, faces)
+    return _.indexOf(faces, highest)
   } else {
     return playerOneHigher(eval0, eval1) ? 0 : 1
   }
