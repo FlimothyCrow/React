@@ -13,7 +13,7 @@ export default class PlayablePoker extends React.Component {
       deck: deck,
       isGameStarted: false,
       shuffling: 3,
-      swapCounter: 99,
+      swapCounter: 3,
       showCards: false,
       results: undefined,
     }
@@ -30,6 +30,12 @@ export default class PlayablePoker extends React.Component {
         playerOneHand: poker.orderHand(this.state.playerOneHand),
         swapCounter: this.state.swapCounter - 1,
       })
+    }
+  }
+
+  swapWholeHand() {
+    for (var card = 0; card < 5; card++) {
+      this.swapCards(card)
     }
   }
 
@@ -136,6 +142,13 @@ export default class PlayablePoker extends React.Component {
                     )
                   })}
                 </div>
+                <button
+                  onClick={() => {
+                    this.swapWholeHand()
+                  }}
+                >
+                  Swap entire hand
+                </button>
               </ul>
 
               <div className="text">{this.printResults(playerHandResults, computerHandResults)}</div>

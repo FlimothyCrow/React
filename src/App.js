@@ -57,7 +57,6 @@ export default class App extends React.Component {
 
 // hand also shows statistical value
 // cardSwap shouldn't replace spent cards into deck (deck counter should update)
-// onClick isn't swapping the appropriate card (but not always)
 // add button to remove all cards from hand
 
 // ?.
