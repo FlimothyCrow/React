@@ -57,7 +57,6 @@ export default class App extends React.Component {
 
 // hand also shows statistical value
 // cardSwap shouldn't replace spent cards into deck (deck counter should update)
-// add button to remove all cards from hand
 
 // ?.
 // practice _.flatMap
