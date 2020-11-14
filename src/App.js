@@ -57,6 +57,7 @@ export default class App extends React.Component {
 
 // hand also shows statistical value
 // cardSwap shouldn't replace spent cards into deck (deck counter should update)
+// swapWholeHand() works conditionally on having a swap available
 
 // ?.
 // practice _.flatMap

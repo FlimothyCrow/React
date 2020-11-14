@@ -142,13 +142,15 @@ export default class PlayablePoker extends React.Component {
                     )
                   })}
                 </div>
-                <button
-                  onClick={() => {
-                    this.swapWholeHand()
-                  }}
-                >
-                  Swap entire hand
-                </button>
+                {this.state.swapCounter > 0 && (
+                  <button
+                    onClick={() => {
+                      this.swapWholeHand()
+                    }}
+                  >
+                    Swap entire hand
+                  </button>
+                )}
               </ul>
 
               <div className="text">{this.printResults(playerHandResults, computerHandResults)}</div>
