@@ -1,4 +1,4 @@
-import _ from "lodash"
+import _, { map } from "lodash"
 import {
   PAIR,
   TWO_PAIR,
@@ -70,5 +70,49 @@ export function handEval(hand) {
     return { type: STRAIGHT, values: isStraight(hand) }
   } else {
     return { type: HIGH_CARD, values: [highCard(hand).face, highCard(hand).suit] }
+  }
+}
+
+// ____
+// ___x
+// __x_
+// __xx
+// _x__
+// _x_x
+// _xx_
+// _xxx
+// x___
+// xxxx = 8 + 4 + 2 + 1 = (2^4 - 1) = 15
+
+// _xxx = 4 + 2 + 1 = (2^3 - 1) = 7
+// xxxx = 4 + 2 + 1 = (2^3 - 1) = -7
+
+// (2 ^ 31) - 1
+
+export function twoSum(nums, target) {
+  for (var i = 0; i < nums.length; i++) {
+    for (var j = 0; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target && i !== j) {
+        return [i, j]
+      }
+    }
+  }
+}
+
+export function reverseNum(integer) {
+  let reversed = ""
+  let asString = integer.toString()
+  for (var i = asString.length - 1; i >= 0; i--) {
+    reversed += asString[i]
+  }
+  if (asString[0] === "-") {
+    reversed = -1 * parseInt(reversed)
+  } else {
+    reversed = parseInt(reversed)
+  }
+  if (reversed <= 2147483647 && reversed >= -2147483648) {
+    return reversed
+  } else {
+    return 0
   }
 }

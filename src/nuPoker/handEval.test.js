@@ -1,4 +1,4 @@
-import { highCard, handEval, faceCount, isFlush, isStraight, playerOneHigher } from "./handEval.js"
+import { highCard, handEval, faceCount, isFlush, isStraight, playerOneHigher, twoSum, reverseNum } from "./handEval.js"
 import { PAIR, TWO_PAIR, THREE, FOUR, HIGH_CARD, FLUSH, STRAIGHT, FULL_HOUSE, STRAIGHT_FLUSH } from "./enums"
 
 test("highCard", () => {
@@ -301,4 +301,40 @@ test("playerOneHigher > flush vs three", () => {
   var eval1 = { type: THREE, values: [5] }
   var evaluated = playerOneHigher(eval0, eval1)
   expect(evaluated).toEqual(true)
+})
+
+test("twoSum 9", () => {
+  let arrayOfInts = [2, 15, 10, 7]
+  var evaluated = twoSum(arrayOfInts, 9)
+  expect(evaluated).toEqual([0, 3])
+})
+
+test("twoSum 10", () => {
+  let arrayOfInts = [5, 2, 5, 7]
+  var evaluated = twoSum(arrayOfInts, 10)
+  expect(evaluated).toEqual([0, 2])
+})
+
+test("reverse 4321", () => {
+  var evaluated = reverseNum(1234)
+  console.log(evaluated)
+  expect(evaluated).toEqual(4321)
+})
+
+test("reverse -159", () => {
+  var evaluated = reverseNum(-159)
+  console.log(evaluated)
+  expect(evaluated).toEqual(-951)
+})
+
+test("reverse positive overflow", () => {
+  var evaluated = reverseNum(2147483648)
+  console.log(evaluated)
+  expect(evaluated).toEqual(0)
+})
+
+test("reverse negative overflow", () => {
+  var evaluated = reverseNum(-2147483649)
+  console.log(evaluated)
+  expect(evaluated).toEqual(0)
 })
