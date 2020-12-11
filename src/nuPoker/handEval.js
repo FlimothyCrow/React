@@ -116,3 +116,26 @@ export function reverseNum(integer) {
     return 0
   }
 }
+
+export function restoreString(s, indices) {
+  let orderedString = [] // JS allows for dynamic arrays filling with <emptyObject>
+  for (var i = 0; i < indices.length; i++) {
+    let targetLetter = s[i]
+    orderedString[indices[i]] = targetLetter
+  }
+  return orderedString.reduce((acc, char) => acc + char, "")
+}
+
+export function howManySmaller(nums) {
+  let arrayOfLessers = []
+  for (var num of nums) {
+    let accum = 0
+    for (var check of nums) {
+      if (check < num) {
+        accum += 1
+      }
+    }
+    arrayOfLessers.push(accum)
+  }
+  return arrayOfLessers
+}
