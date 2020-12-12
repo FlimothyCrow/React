@@ -139,3 +139,8 @@ export function howManySmaller(nums) {
   }
   return arrayOfLessers
 }
+
+export function maxProduct(nums) {
+  let sortedArray = nums.sort((a, b) => a - b)
+  return (sortedArray[sortedArray.length - 1] - 1) * (sortedArray[sortedArray.length - 2] - 1)
+}
