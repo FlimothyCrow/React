@@ -1,0 +1,114 @@
+import {
+  restoreString,
+  commonChars,
+  howManySmaller,
+  sortedSquares,
+  maxProduct,
+  twoSum,
+  reverseNum,
+} from "./leetCode.js"
+
+test("twoSum 9", () => {
+  let arrayOfInts = [2, 15, 10, 7]
+  var evaluated = twoSum(arrayOfInts, 9)
+  expect(evaluated).toEqual([0, 3])
+})
+
+test("twoSum 10", () => {
+  let arrayOfInts = [5, 2, 5, 7]
+  var evaluated = twoSum(arrayOfInts, 10)
+  expect(evaluated).toEqual([0, 2])
+})
+
+test("reverse 4321", () => {
+  var evaluated = reverseNum(1234)
+  expect(evaluated).toEqual(4321)
+})
+
+test("reverse -159", () => {
+  var evaluated = reverseNum(-159)
+  expect(evaluated).toEqual(-951)
+})
+
+test("reverse positive overflow", () => {
+  var evaluated = reverseNum(2147483648)
+  expect(evaluated).toEqual(0)
+})
+
+test("reverse negative overflow", () => {
+  var evaluated = reverseNum(-2147483649)
+  expect(evaluated).toEqual(0)
+})
+//-------------------------------------------------
+test("restore string rat", () => {
+  var evaluated = restoreString("art", [1, 0, 2])
+  expect(evaluated).toEqual("rat")
+})
+
+test("restore string abc", () => {
+  var evaluated = restoreString("abc", [0, 1, 2])
+  expect(evaluated).toEqual("abc")
+})
+
+test("restore string leetcode", () => {
+  var evaluated = restoreString("codeleet", [4, 5, 6, 7, 0, 2, 1, 3])
+  expect(evaluated).toEqual("leetcode")
+})
+
+test("restore string nihao", () => {
+  var evaluated = restoreString("aiohn", [3, 1, 4, 2, 0])
+  expect(evaluated).toEqual("nihao")
+})
+
+test("restore string arigatou", () => {
+  var evaluated = restoreString("aaiougrt", [4, 0, 2, 6, 7, 3, 1, 5])
+  expect(evaluated).toEqual("arigatou")
+})
+
+test("restore string 1", () => {
+  var evaluated = restoreString("x", [0])
+  expect(evaluated).toEqual("x")
+})
+//-------------------------------------------------
+test("howManySmaller 0", () => {
+  var evaluated = howManySmaller([8, 1, 2, 2, 3])
+  expect(evaluated).toEqual([4, 0, 1, 1, 3])
+})
+
+test("howManySmaller 1", () => {
+  var evaluated = howManySmaller([7, 7, 7, 7])
+  expect(evaluated).toEqual([0, 0, 0, 0])
+})
+//-------------------------------------------------
+
+test("maxProduct 12", () => {
+  var evaluated = maxProduct([3, 4, 5, 2])
+  expect(evaluated).toEqual(12)
+})
+
+test("maxProduct 16", () => {
+  var evaluated = maxProduct([1, 5, 4, 5])
+  expect(evaluated).toEqual(16)
+})
+//-------------------------------------------------
+test.skip("commonChars 0", () => {
+  var evaluated = commonChars(["bella", "label", "roller"])
+  expect(evaluated).toEqual(["e", "l", "l"])
+})
+
+test.skip("commonChars 1", () => {
+  var evaluated = commonChars(["cool", "lock", "cook"])
+  console.log(evaluated)
+  expect(evaluated).toEqual(["c", "o"])
+})
+//-------------------------------------------------
+
+test("sorted squares", () => {
+  var evaluated = sortedSquares([-4, -1, 0, 3, 10])
+  expect(evaluated).toEqual([0, 1, 9, 16, 100])
+})
+
+test("sorted squares 0", () => {
+  var evaluated = sortedSquares([-7, -3, 2, 3, 11])
+  expect(evaluated).toEqual([4, 9, 9, 49, 121])
+})
