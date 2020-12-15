@@ -9,6 +9,8 @@
 // x___
 // xxxx = 8 + 4 + 2 + 1 = (2^4 - 1) = 15
 
+import { concat } from "lodash"
+
 // _xxx = 4 + 2 + 1 = (2^3 - 1) = 7
 // xxxx = 4 + 2 + 1 = (2^3 - 1) = -7
 
@@ -71,12 +73,37 @@ export function maxProduct(nums) {
 }
 
 export function commonChars(A) {
-  return A
+  // [{b: 1, c: 2}, {c:3 , d: 2}]
+  // [{c : 1}]
+  let counts = A.map((word) =>
+    word.split("").reduce((count, letter) => {
+      count[letter] = count[letter] ? count[letter] + 1 : 1
+      return count
+    }, {})
+  )
+  let concatArray = []
+  if (counts.length === 0) {
+    return []
+  }
+
+  for (var letterToCheck of Object.keys(counts[0])) {
+    let smallestNumber = Math.min(...counts.map((count) => count[letterToCheck]))
+    if (smallestNumber > 0) {
+      for (var i = smallestNumber; i > 0; i--) {
+        concatArray.push(letterToCheck)
+      }
+    }
+  }
+  // ["c", "c"]
+  return concatArray
 }
 
-export function sortedSquares(ints) {
-  let squared = ints.map((int) => int * int)
+export function sortedSquares(nums) {
+  let squared = nums.map((int) => int * int)
   return squared.sort((a, b) => {
     return a - b
   })
 }
+// comments
+
+// set, spread, reduce

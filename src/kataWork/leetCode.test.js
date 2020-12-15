@@ -91,12 +91,13 @@ test("maxProduct 16", () => {
   expect(evaluated).toEqual(16)
 })
 //-------------------------------------------------
-test.skip("commonChars 0", () => {
+test("commonChars 0", () => {
   var evaluated = commonChars(["bella", "label", "roller"])
+  console.log(evaluated)
   expect(evaluated).toEqual(["e", "l", "l"])
 })
 
-test.skip("commonChars 1", () => {
+test("commonChars 1", () => {
   var evaluated = commonChars(["cool", "lock", "cook"])
   console.log(evaluated)
   expect(evaluated).toEqual(["c", "o"])
@@ -112,3 +113,5 @@ test("sorted squares 0", () => {
   var evaluated = sortedSquares([-7, -3, 2, 3, 11])
   expect(evaluated).toEqual([4, 9, 9, 49, 121])
 })
+
+// comments
