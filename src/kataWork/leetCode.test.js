@@ -6,6 +6,7 @@ import {
   maxProduct,
   twoSum,
   reverseNum,
+  relativeSort,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -93,13 +94,11 @@ test("maxProduct 16", () => {
 //-------------------------------------------------
 test("commonChars 0", () => {
   var evaluated = commonChars(["bella", "label", "roller"])
-  console.log(evaluated)
   expect(evaluated).toEqual(["e", "l", "l"])
 })
 
 test("commonChars 1", () => {
   var evaluated = commonChars(["cool", "lock", "cook"])
-  console.log(evaluated)
   expect(evaluated).toEqual(["c", "o"])
 })
 //-------------------------------------------------
@@ -115,3 +114,9 @@ test("sorted squares 0", () => {
 })
 
 // comments
+
+test("relativeSort", () => {
+  var evaluated = relativeSort([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9, 6])
+  console.log(evaluated)
+  expect(evaluated).toEqual([2, 2, 2, 1, 4, 3, 3, 9, 6, 7, 19])
+})

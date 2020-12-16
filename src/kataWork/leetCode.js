@@ -9,7 +9,7 @@
 // x___
 // xxxx = 8 + 4 + 2 + 1 = (2^4 - 1) = 15
 
-import { concat } from "lodash"
+import { concat, indexOf } from "lodash"
 
 // _xxx = 4 + 2 + 1 = (2^3 - 1) = 7
 // xxxx = 4 + 2 + 1 = (2^3 - 1) = -7
@@ -106,4 +106,15 @@ export function sortedSquares(nums) {
 }
 // comments
 
-// set, spread, reduce
+export function relativeSort(arr1, arr2) {
+  let returnArray = []
+  for (var int of arr2) {
+    while (arr1.indexOf(int) > -1) {
+      returnArray = returnArray.concat(arr1.splice(arr1.indexOf(int), 1))
+    }
+  }
+  return returnArray.concat(arr1)
+}
+
+// set, spread, reduce, splice
+// to merge arrays in order
