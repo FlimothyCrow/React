@@ -7,6 +7,8 @@ import {
   twoSum,
   reverseNum,
   relativeSort,
+  heightCheck,
+  removePairs,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -117,6 +119,28 @@ test("sorted squares 0", () => {
 
 test("relativeSort", () => {
   var evaluated = relativeSort([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9, 6])
-  console.log(evaluated)
   expect(evaluated).toEqual([2, 2, 2, 1, 4, 3, 3, 9, 6, 7, 19])
+})
+//-------------------------------------------------
+/*
+test("heightCheck", () => {
+  var evaluated = heightCheck([1, 1, 4, 2, 1, 3])
+  expect(evaluated).toEqual(3)
+})
+
+
+test("heightCheck", () => {
+  var evaluated = heightCheck([1, 2, 3, 4, 5])
+  expect(evaluated).toEqual(0)
+})
+
+test("heightCheck", () => {
+  var evaluated = heightCheck([5, 1, 2, 3, 4])
+  expect(evaluated).toEqual(5)
+})
+*/
+
+test("removePairs", () => {
+  var evaluated = removePairs("abbaca")
+  expect(evaluated).toEqual("ca")
 })

@@ -118,3 +118,37 @@ export function relativeSort(arr1, arr2) {
 
 // set, spread, reduce, splice
 // to merge arrays in order
+
+/*
+export function heightCheck(ints) {
+  let moved = 0
+  ints.sort((a, b) => {
+    if (a > b) {
+      moved += 1
+      return true
+    } else {
+      return false
+    }
+    //return a > b ? 1 : -1
+  })
+  return moved
+}
+*/
+// recursion
+
+export function removePairs(S) {
+  let removed = true
+
+  while (removed) {
+    removed = false
+
+    for (let i = 0; i < S.length - 1; i++) {
+      if (S[i] === S[i + 1]) {
+        S = S.slice(0, i) + S.slice(i + 2)
+        removed = true
+      }
+    }
+  }
+
+  return S
+}
