@@ -9,7 +9,7 @@
 // x___
 // xxxx = 8 + 4 + 2 + 1 = (2^4 - 1) = 15
 
-import { concat, indexOf } from "lodash"
+import { concat, indexOf, remove } from "lodash"
 
 // _xxx = 4 + 2 + 1 = (2^3 - 1) = 7
 // xxxx = 4 + 2 + 1 = (2^3 - 1) = -7
@@ -116,9 +116,6 @@ export function relativeSort(arr1, arr2) {
   return returnArray.concat(arr1)
 }
 
-// set, spread, reduce, splice
-// to merge arrays in order
-
 /*
 export function heightCheck(ints) {
   let moved = 0
@@ -136,19 +133,24 @@ export function heightCheck(ints) {
 */
 // recursion
 
-export function removePairs(S) {
-  let removed = true
+export function threeOdds0(arr) {
+  let isOdd = (int) => int % 2 > 0
 
-  while (removed) {
-    removed = false
-
-    for (let i = 0; i < S.length - 1; i++) {
-      if (S[i] === S[i + 1]) {
-        S = S.slice(0, i) + S.slice(i + 2)
-        removed = true
-      }
+  for (var i = 0; i < arr.length; i++) {
+    if (isOdd(arr[i]) && isOdd(arr[i + 1]) && isOdd(arr[i + 2])) {
+      return true
     }
   }
-
-  return S
+  return false
 }
+
+export function threeOdds(arr) {
+  let isOdd = (x) => x % 2 > 0
+  return arr.reduce((isThreeConsec, int, idx) => {
+    return isThreeConsec || (isOdd(int) && isOdd(arr[idx + 1]) && isOdd(arr[idx + 2]))
+  }, false)
+}
+
+// list of values to convert to a boolean? try a reduce (many > one)
+// set, spread, reduce, splice
+// practice refactoring

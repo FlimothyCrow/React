@@ -9,6 +9,9 @@ import {
   relativeSort,
   heightCheck,
   removePairs,
+  threeOdds,
+  removePairs1,
+  threeOdds0,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -140,7 +143,14 @@ test("heightCheck", () => {
 })
 */
 
-test("removePairs", () => {
-  var evaluated = removePairs("abbaca")
-  expect(evaluated).toEqual("ca")
+//-------------------------------------------------
+
+test("threeOdds false", () => {
+  var evaluated = threeOdds0([2, 6, 4, 3])
+  expect(evaluated).toEqual(false)
+})
+
+test("threeOdds true", () => {
+  var evaluated = threeOdds0([1, 2, 34, 3, 4, 5, 7, 23, 12])
+  expect(evaluated).toEqual(true)
 })
