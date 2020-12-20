@@ -12,6 +12,7 @@ import {
   threeOdds,
   removePairs1,
   threeOdds0,
+  trimMean,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -153,4 +154,9 @@ test("threeOdds false", () => {
 test("threeOdds true", () => {
   var evaluated = threeOdds0([1, 2, 34, 3, 4, 5, 7, 23, 12])
   expect(evaluated).toEqual(true)
+})
+
+test("trimMean", () => {
+  var evaluated = trimMean([6, 2, 7, 5, 1, 2, 0, 3, 10, 2, 5, 0, 5, 5, 0, 8, 7, 6, 8, 0])
+  expect(evaluated).toEqual(4.0)
 })

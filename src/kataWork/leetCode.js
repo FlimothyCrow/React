@@ -151,6 +151,31 @@ export function threeOdds(arr) {
   }, false)
 }
 
+export function trimMean0(arr) {
+  let newArr = arr
+  let toRemove = arr.length * 0.05
+  for (var i = 0; i < toRemove; i++) {
+    let max = Math.max(...newArr)
+    let min = Math.min(...newArr)
+    console.log("new length", newArr.length, max, min)
+    newArr.splice(newArr.indexOf(max), 1)
+    newArr.splice(newArr.indexOf(min), 1)
+  }
+  return newArr.reduce((accum, next) => accum + next, 0) / newArr.length
+}
+
 // list of values to convert to a boolean? try a reduce (many > one)
 // set, spread, reduce, splice
 // practice refactoring
+// arr.sort(...).filter(...).reduce(sum) / arr.length
+
+export function trimMean(arr) {
+  let sortedArray = arr.sort((a, b) => a - b)
+  let toRemove = arr.length * 0.05
+  for (var i = 0; i < toRemove; i++) {
+    sortedArray.pop()
+    sortedArray.shift()
+  }
+
+  return sortedArray.reduce((accum, next) => accum + next / sortedArray.length, 0)
+}
