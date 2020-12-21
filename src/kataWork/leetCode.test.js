@@ -13,6 +13,7 @@ import {
   removePairs1,
   threeOdds0,
   trimMean,
+  goatLatin,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -159,4 +160,23 @@ test("threeOdds true", () => {
 test("trimMean", () => {
   var evaluated = trimMean([6, 2, 7, 5, 1, 2, 0, 3, 10, 2, 5, 0, 5, 5, 0, 8, 7, 6, 8, 0])
   expect(evaluated).toEqual(4.0)
+})
+
+test("goatLatin 0", () => {
+  var evaluated = goatLatin("I speak Goat Latin")
+  expect(evaluated).toEqual("Imaa peaksmaaa oatGmaaaa atinLmaaaaa")
+})
+
+test("goatLatin 1", () => {
+  var evaluated = goatLatin("The quick brown fox jumped over the lazy dog")
+  expect(evaluated).toEqual(
+    "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa"
+  )
+})
+
+test("goatLatin 2", () => {
+  var evaluated = goatLatin("A x gij T Ka Stsl UTK kqdc A")
+  expect(evaluated).toEqual(
+    "Amaa xmaaa ijgmaaaa Tmaaaaa aKmaaaaaa tslSmaaaaaaa UTKmaaaaaaaa qdckmaaaaaaaaa Amaaaaaaaaaa"
+  )
 })
