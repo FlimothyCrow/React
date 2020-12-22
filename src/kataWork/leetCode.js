@@ -185,32 +185,16 @@ export function goatLatin(S) {
   let vowels = ["a", "e", "i", "o", "u"]
   let vowelStart = (x) => vowels.includes(x[0].toLowerCase())
   let notVowel = (x) => {
-    let split = x.split("")
-
-    split.push(split[0])
-    split.splice(0, 1)
-    return (
-      split.reduce((accum, char) => {
-        return accum + char
-      }, "") + "ma"
-    )
+    return x.substring(1, x.length) + x[0] + "ma"
   }
 
-  let mappedArray = arrayOfWords.map((word, idx) => {
-    if (vowelStart(word)) {
-      return word + "ma" + "a".repeat(idx + 1)
-    } else {
-      return notVowel(word) + "a".repeat(idx + 1)
-    }
-  })
-  return (
-    mappedArray
-      .reduce((accumStr, nextStr) => {
-        return accumStr + " " + nextStr
-      }, "")
-      .slice(1, -1) + "a"
-  )
+  return arrayOfWords
+    .reduce((accum, word, idx) => {
+      if (vowelStart(word)) {
+        return accum + word + "ma" + "a".repeat(idx + 1) + " "
+      } else {
+        return accum + notVowel(word) + "a".repeat(idx + 1) + " "
+      }
+    }, "")
+    .slice(0, -1)
 }
-
-// if it starts with a vowel, append "ma". "apple" > "applema"
-// when doing the reduce to string, that's when you can add on the extra "a"s by index

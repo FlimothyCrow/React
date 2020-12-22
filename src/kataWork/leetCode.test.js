@@ -161,7 +161,7 @@ test("trimMean", () => {
   var evaluated = trimMean([6, 2, 7, 5, 1, 2, 0, 3, 10, 2, 5, 0, 5, 5, 0, 8, 7, 6, 8, 0])
   expect(evaluated).toEqual(4.0)
 })
-
+//-------------------------------------------------
 test("goatLatin 0", () => {
   var evaluated = goatLatin("I speak Goat Latin")
   expect(evaluated).toEqual("Imaa peaksmaaa oatGmaaaa atinLmaaaaa")
