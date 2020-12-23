@@ -14,6 +14,7 @@ import {
   threeOdds0,
   trimMean,
   goatLatin,
+  singleNumber,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -179,4 +180,14 @@ test("goatLatin 2", () => {
   expect(evaluated).toEqual(
     "Amaa xmaaa ijgmaaaa Tmaaaaa aKmaaaaaa tslSmaaaaaaa UTKmaaaaaaaa qdckmaaaaaaaaa Amaaaaaaaaaa"
   )
+})
+//-------------------------------------------------
+test("singleNumber 0", () => {
+  var evaluated = singleNumber([4, 1, 2, 1, 2])
+  expect(evaluated).toEqual(4)
+})
+
+test("singleNumber 1", () => {
+  var evaluated = singleNumber([2, 2, 1])
+  expect(evaluated).toEqual(1)
 })

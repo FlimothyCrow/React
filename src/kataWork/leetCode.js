@@ -198,3 +198,9 @@ export function goatLatin(S) {
     }, "")
     .slice(0, -1)
 }
+
+export function singleNumber(nums) {
+  let numCount = {}
+  nums.map((num) => (numCount[num] ? (numCount[num] += 1) : (numCount[num] = 1)))
+  return parseInt(Object.keys(numCount).filter((key) => numCount[key] === 1)[0])
+}
