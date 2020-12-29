@@ -203,4 +203,16 @@ export function singleNumber(nums) {
   let numCount = {}
   nums.map((num) => (numCount[num] ? (numCount[num] += 1) : (numCount[num] = 1)))
   return parseInt(Object.keys(numCount).filter((key) => numCount[key] === 1)[0])
+} // maybe rewrite using a single (first, second) comparison filter?
+
+export function isAnagramNaive(s, t) {
+  let sortedStr0 = [...s].sort((a, b) => a.localeCompare(b)).join("")
+  let sortedStr1 = [...t].sort((a, b) => a.localeCompare(b)).join("")
+  return sortedStr0 === sortedStr1 ? true : false
+}
+
+export function isAnagram(s, t) {
+  let sortedStr0 = [...s].sort().join("")
+  let sortedStr1 = [...t].sort().join("")
+  return sortedStr0 === sortedStr1 ? true : false
 }

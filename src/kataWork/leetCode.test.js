@@ -15,6 +15,7 @@ import {
   trimMean,
   goatLatin,
   singleNumber,
+  isAnagram,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -190,4 +191,19 @@ test("singleNumber 0", () => {
 test("singleNumber 1", () => {
   var evaluated = singleNumber([2, 2, 1])
   expect(evaluated).toEqual(1)
+})
+
+test("isAnagram 0", () => {
+  var evaluated = isAnagram("car", "cta")
+  expect(evaluated).toEqual(false)
+})
+
+test("isAnagram 1", () => {
+  var evaluated = isAnagram("anagram", "nagaram")
+  expect(evaluated).toEqual(true)
+})
+
+test("isAnagram 2", () => {
+  var evaluated = isAnagram("aacc", "ccac")
+  expect(evaluated).toEqual(false)
 })
