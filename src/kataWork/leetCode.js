@@ -9,7 +9,7 @@
 // x___
 // xxxx = 8 + 4 + 2 + 1 = (2^4 - 1) = 15
 
-import { concat, indexOf, remove } from "lodash"
+import { concat, indexOf, map, remove, split } from "lodash"
 
 // _xxx = 4 + 2 + 1 = (2^3 - 1) = 7
 // xxxx = 4 + 2 + 1 = (2^3 - 1) = -7
@@ -215,4 +215,15 @@ export function isAnagram(s, t) {
   let sortedStr0 = [...s].sort().join("")
   let sortedStr1 = [...t].sort().join("")
   return sortedStr0 === sortedStr1 ? true : false
+}
+
+export function reverseOnlyLetters(S) {
+  let splitArray = S.split("")
+  let reversedLetters = splitArray.filter((char) => /[a-zA-Z]/.test(char)).reverse()
+  splitArray.map((char, idx) => {
+    if (!/[a-zA-Z]/.test(char)) {
+      reversedLetters.splice(idx, 0, char)
+    }
+  })
+  return reversedLetters.join("")
 }

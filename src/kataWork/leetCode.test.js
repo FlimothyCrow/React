@@ -16,6 +16,7 @@ import {
   goatLatin,
   singleNumber,
   isAnagram,
+  reverseOnlyLetters,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -206,4 +207,19 @@ test("isAnagram 1", () => {
 test("isAnagram 2", () => {
   var evaluated = isAnagram("aacc", "ccac")
   expect(evaluated).toEqual(false)
+})
+
+test("reverseOnlyLetters 0", () => {
+  var evaluated = reverseOnlyLetters("ab-cd")
+  expect(evaluated).toEqual("dc-ba")
+})
+
+test("reverseOnlyLetters 1", () => {
+  var evaluated = reverseOnlyLetters("a-bC-dEf-ghIj")
+  expect(evaluated).toEqual("j-Ih-gfE-dCba")
+})
+
+test("reverseOnlyLetters 2", () => {
+  var evaluated = reverseOnlyLetters("Test1ng-Leet=code-Q!")
+  expect(evaluated).toEqual("Qedo1ct-eeLg=ntse-T!")
 })
