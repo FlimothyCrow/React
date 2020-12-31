@@ -17,6 +17,7 @@ import {
   singleNumber,
   isAnagram,
   reverseOnlyLetters,
+  addDigits,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -222,4 +223,24 @@ test("reverseOnlyLetters 1", () => {
 test("reverseOnlyLetters 2", () => {
   var evaluated = reverseOnlyLetters("Test1ng-Leet=code-Q!")
   expect(evaluated).toEqual("Qedo1ct-eeLg=ntse-T!")
+})
+// ---------------------------------------------
+test("addDigits 0", () => {
+  var evaluated = addDigits(38)
+  expect(evaluated).toEqual(2)
+})
+
+test("addDigits 1", () => {
+  var evaluated = addDigits(5522)
+  expect(evaluated).toEqual(5)
+})
+
+test("addDigits 2", () => {
+  var evaluated = addDigits(10)
+  expect(evaluated).toEqual(1)
+})
+
+test("addDigits 2", () => {
+  var evaluated = addDigits(11)
+  expect(evaluated).toEqual(2)
 })

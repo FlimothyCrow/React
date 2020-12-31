@@ -227,3 +227,19 @@ export function reverseOnlyLetters(S) {
   })
   return reversedLetters.join("")
 }
+
+export function addDigits(num) {
+  /*if (num < 10) {
+    return num
+  }*/
+  let splitToStrings = (y) => y.toString().split("")
+  let stringReduce = (x) =>
+    x.reduce((accum, next) => {
+      return accum + parseInt(next)
+    }, 0)
+  let reduced = stringReduce(splitToStrings(num))
+  while (reduced > 9) {
+    reduced = stringReduce(splitToStrings(reduced))
+  }
+  return reduced
+}
