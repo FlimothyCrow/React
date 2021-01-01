@@ -18,6 +18,8 @@ import {
   isAnagram,
   reverseOnlyLetters,
   addDigits,
+  sortNames,
+  moveZeroes,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -243,4 +245,19 @@ test("addDigits 2", () => {
 test("addDigits 2", () => {
   var evaluated = addDigits(11)
   expect(evaluated).toEqual(2)
+})
+// ---------------------------------------------
+test("sortNames 0", () => {
+  var evaluated = sortNames(["bill taylor", "mook jerkington", "adam west"])
+  expect(evaluated).toEqual(["adam west", "bill taylor", "mook jerkington"])
+})
+// ---------------------------------------------
+test("moveZeroes 0", () => {
+  var evaluated = moveZeroes([0, 1, 0, 3, 12])
+  expect(evaluated).toEqual([1, 3, 12, 0, 0])
+})
+
+test("moveZeroes 1", () => {
+  var evaluated = moveZeroes([0, 0, 1])
+  expect(evaluated).toEqual([1, 0, 0])
 })

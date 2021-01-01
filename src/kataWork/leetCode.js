@@ -229,9 +229,6 @@ export function reverseOnlyLetters(S) {
 }
 
 export function addDigits(num) {
-  /*if (num < 10) {
-    return num
-  }*/
   let splitToStrings = (y) => y.toString().split("")
   let stringReduce = (x) =>
     x.reduce((accum, next) => {
@@ -242,4 +239,19 @@ export function addDigits(num) {
     reduced = stringReduce(splitToStrings(reduced))
   }
   return reduced
+}
+
+export function sortNames(arrayOfStrings) {
+  let sorted = arrayOfStrings.sort((a, b) => a.localeCompare(b))
+  return sorted
+}
+
+export function moveZeroes(nums) {
+  for (var num of nums) {
+    if (num === 0) {
+      nums.splice(nums.indexOf(num), 1)
+      nums.push(0)
+    }
+  }
+  return nums
 }
