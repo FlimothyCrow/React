@@ -224,7 +224,7 @@ export function sortNames(arrayOfStrings) {
   return sorted
 }
 
-export function luckyNumber(arr) {
+export function luckyNumber0(arr) {
   let numberCount = {}
   let arrayOfLuckyNums = []
   arr.forEach((int) => {
@@ -234,6 +234,17 @@ export function luckyNumber(arr) {
     if (parseInt(numKey) === numberCount[numKey]) {
       arrayOfLuckyNums.push(parseInt(numKey))
     }
+  })
+  return arrayOfLuckyNums[0] ? Math.max(...arrayOfLuckyNums) : -1
+}
+
+export function luckyNumber(arr) {
+  let numberCount = {}
+  arr.forEach((int) => {
+    numberCount[int] = numberCount[int] ? numberCount[int] + 1 : 1
+  })
+  let arrayOfLuckyNums = Object.values(numberCount).filter((numKey) => {
+    return parseInt(numKey) === numberCount[numKey]
   })
   return arrayOfLuckyNums[0] ? Math.max(...arrayOfLuckyNums) : -1
 }
