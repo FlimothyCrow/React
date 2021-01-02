@@ -20,6 +20,7 @@ import {
   addDigits,
   sortNames,
   moveZeroes,
+  luckyNumber,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -252,12 +253,23 @@ test("sortNames 0", () => {
   expect(evaluated).toEqual(["adam west", "bill taylor", "mook jerkington"])
 })
 // ---------------------------------------------
-test("moveZeroes 0", () => {
-  var evaluated = moveZeroes([0, 1, 0, 3, 12])
-  expect(evaluated).toEqual([1, 3, 12, 0, 0])
+
+test("luckyNumber 0", () => {
+  var evaluated = luckyNumber([2, 2, 3, 4])
+  expect(evaluated).toEqual(2)
 })
 
-test("moveZeroes 1", () => {
-  var evaluated = moveZeroes([0, 0, 1])
-  expect(evaluated).toEqual([1, 0, 0])
+test("luckyNumber 1", () => {
+  var evaluated = luckyNumber([(2, 2, 2, 3, 3)])
+  expect(evaluated).toEqual(-1)
+})
+
+test("luckyNumber 2", () => {
+  var evaluated = luckyNumber([7, 7, 7, 7, 7, 7, 7])
+  expect(evaluated).toEqual(7)
+})
+
+test("luckyNumber 3", () => {
+  var evaluated = luckyNumber([5])
+  expect(evaluated).toEqual(-1)
 })

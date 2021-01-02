@@ -116,23 +116,6 @@ export function relativeSort(arr1, arr2) {
   return returnArray.concat(arr1)
 }
 
-/*
-export function heightCheck(ints) {
-  let moved = 0
-  ints.sort((a, b) => {
-    if (a > b) {
-      moved += 1
-      return true
-    } else {
-      return false
-    }
-    //return a > b ? 1 : -1
-  })
-  return moved
-}
-*/
-// recursion
-
 export function threeOdds0(arr) {
   let isOdd = (int) => int % 2 > 0
 
@@ -163,11 +146,6 @@ export function trimMean0(arr) {
   }
   return newArr.reduce((accum, next) => accum + next, 0) / newArr.length
 }
-
-// list of values to convert to a boolean? try a reduce (many > one)
-// set, spread, reduce, splice
-// practice refactoring
-// arr.sort(...).filter(...).reduce(sum) / arr.length
 
 export function trimMean(arr) {
   let sortedArray = arr.sort((a, b) => a - b)
@@ -246,12 +224,22 @@ export function sortNames(arrayOfStrings) {
   return sorted
 }
 
-export function moveZeroes(nums) {
-  for (var num of nums) {
-    if (num === 0) {
-      nums.splice(nums.indexOf(num), 1)
-      nums.push(0)
+export function luckyNumber(arr) {
+  let numberCount = {}
+  let arrayOfLuckyNums = []
+  arr.forEach((int) => {
+    numberCount[int] = numberCount[int] ? numberCount[int] + 1 : 1
+  })
+  Object.keys(numberCount).map((numKey) => {
+    if (parseInt(numKey) === numberCount[numKey]) {
+      arrayOfLuckyNums.push(parseInt(numKey))
     }
-  }
-  return nums
+  })
+  return arrayOfLuckyNums[0] ? Math.max(...arrayOfLuckyNums) : -1
 }
+
+// FOREACH NOT MAP
+// list of values to convert to a boolean? try a reduce (many > one)
+// set, spread, reduce, splice
+// practice refactoring
+// arr.sort(...).filter(...).reduce(sum) / arr.length
