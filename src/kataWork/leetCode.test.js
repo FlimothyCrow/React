@@ -11,6 +11,7 @@ import {
   removePairs,
   threeOdds,
   removePairs1,
+  getOccurrence,
   threeOdds0,
   trimMean,
   goatLatin,
@@ -22,6 +23,7 @@ import {
   moveZeroes,
   luckyNumber,
   findSpecialInteger,
+  findSpecialInteger0,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -276,6 +278,6 @@ test("luckyNumber 3", () => {
 })
 
 test("findSpecialInteger", () => {
-  var evaluated = findSpecialInteger([1, 2, 2, 6, 6, 6, 6, 7, 10])
+  var evaluated = findSpecialInteger0([1, 2, 2, 6, 6, 6, 6, 7, 10])
   expect(evaluated).toEqual(6)
 })

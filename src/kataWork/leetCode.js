@@ -256,12 +256,27 @@ export function luckyNumber(arr) {
   return Math.max(...arrayOfLuckyNums, -1)
 }
 
-export function findSpecialInteger(arr) {
+export function findSpecialInteger0(arr) {
   let integerCounts = arr.reduce((integerCounts, int) => {
     integerCounts[int] = integerCounts[int] ? integerCounts[int] + 1 : 1
     return integerCounts
   }, {})
   return parseInt(Object.keys(integerCounts).filter((int) => integerCounts[int] > arr.length / 4))
+}
+
+export function findSpecialInteger(arr) {
+  let getOccurrence = (array, value) => {
+    return array.filter((v) => v === value).length
+  }
+  for (var int of arr) {
+    if (getOccurrence(arr, int) > arr.length / 4) {
+      return int
+    }
+  }
+}
+
+export function getOccurrence(array, value) {
+  return array.filter((v) => v === value).length
 }
 
 // reduce into an object
