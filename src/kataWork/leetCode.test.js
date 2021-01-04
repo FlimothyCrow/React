@@ -21,6 +21,7 @@ import {
   sortNames,
   moveZeroes,
   luckyNumber,
+  findSpecialInteger,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -260,7 +261,7 @@ test("luckyNumber 0", () => {
 })
 
 test("luckyNumber 1", () => {
-  var evaluated = luckyNumber([(2, 2, 2, 3, 3)])
+  var evaluated = luckyNumber([2, 2, 2, 3, 3])
   expect(evaluated).toEqual(-1)
 })
 
@@ -272,4 +273,9 @@ test("luckyNumber 2", () => {
 test("luckyNumber 3", () => {
   var evaluated = luckyNumber([5])
   expect(evaluated).toEqual(-1)
+})
+
+test("findSpecialInteger", () => {
+  var evaluated = findSpecialInteger([1, 2, 2, 6, 6, 6, 6, 7, 10])
+  expect(evaluated).toEqual(6)
 })

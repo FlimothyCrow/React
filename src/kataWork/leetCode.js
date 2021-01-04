@@ -239,18 +239,36 @@ export function luckyNumber0(arr) {
 }
 
 export function luckyNumber(arr) {
-  let numberCount = {}
-  arr.forEach((int) => {
-    numberCount[int] = numberCount[int] ? numberCount[int] + 1 : 1
+  // let numberCount = {} // { '2': 1, '3': 2, '4': 1 }
+  // arr.forEach((int) => {
+  //   numberCount[int] = numberCount[int] ? numberCount[int] + 1 : 1
+  // })
+
+  let numberCounts = arr.reduce((numberCounts, int) => {
+    numberCounts[int] = numberCounts[int] ? numberCounts[int] + 1 : 1
+    return numberCounts
+  }, {})
+
+  let arrayOfLuckyNums = Object.keys(numberCounts).filter((possibleLuckyNum) => {
+    return parseInt(possibleLuckyNum) === numberCounts[possibleLuckyNum]
   })
-  let arrayOfLuckyNums = Object.values(numberCount).filter((numKey) => {
-    return parseInt(numKey) === numberCount[numKey]
-  })
-  return arrayOfLuckyNums[0] ? Math.max(...arrayOfLuckyNums) : -1
+
+  return Math.max(...arrayOfLuckyNums, -1)
 }
 
+export function findSpecialInteger(arr) {
+  let integerCounts = arr.reduce((integerCounts, int) => {
+    integerCounts[int] = integerCounts[int] ? integerCounts[int] + 1 : 1
+    return integerCounts
+  }, {})
+  return parseInt(Object.keys(integerCounts).filter((int) => integerCounts[int] > arr.length / 4))
+}
+
+// reduce into an object
 // FOREACH NOT MAP
 // list of values to convert to a boolean? try a reduce (many > one)
 // set, spread, reduce, splice
 // practice refactoring
 // arr.sort(...).filter(...).reduce(sum) / arr.length
+// practice immutable code
+//linked in map vs foreach
