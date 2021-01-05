@@ -24,6 +24,8 @@ import {
   luckyNumber,
   findSpecialInteger,
   findSpecialInteger0,
+  findSpecialInteger1,
+  countOdds,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -278,6 +280,41 @@ test("luckyNumber 3", () => {
 })
 
 test("findSpecialInteger", () => {
-  var evaluated = findSpecialInteger0([1, 2, 2, 6, 6, 6, 6, 7, 10])
+  var evaluated = findSpecialInteger([1, 2, 2, 6, 6, 6, 6, 7, 10])
   expect(evaluated).toEqual(6)
+})
+
+test("countOdds 0", () => {
+  var evaluated = countOdds(3, 7)
+  expect(evaluated).toEqual(3)
+})
+
+test("countOdds 1", () => {
+  var evaluated = countOdds(3, 13)
+  expect(evaluated).toEqual(6)
+})
+
+test("countOdds 2", () => {
+  var evaluated = countOdds(3, 12)
+  expect(evaluated).toEqual(5)
+})
+
+test("countOdds 3", () => {
+  var evaluated = countOdds(4, 11)
+  expect(evaluated).toEqual(4)
+})
+
+test("countOdds 4", () => {
+  var evaluated = countOdds(4, 12)
+  expect(evaluated).toEqual(4)
+})
+
+test("countOdds 5", () => {
+  var evaluated = countOdds(10, 10)
+  expect(evaluated).toEqual(0)
+})
+
+test("countOdds 6", () => {
+  var evaluated = countOdds(11, 11)
+  expect(evaluated).toEqual(1)
 })

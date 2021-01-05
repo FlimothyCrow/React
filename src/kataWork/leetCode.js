@@ -275,9 +275,36 @@ export function findSpecialInteger(arr) {
   }
 }
 
-export function getOccurrence(array, value) {
-  return array.filter((v) => v === value).length
-}
+export function countOddsTernary(low, high) {
+  let difference = high - low
+  let isOdd = (int) => (int % 2 !== 0 ? true : false)
+  if (!isOdd(low) && !isOdd(high)) {
+    return difference / 2
+  }
+  return isOdd(low) && isOdd(high) ? difference / 2 + 1 : Math.floor(difference / 2) + 1
+} // speed > 75.58%, memory < 50.58%
+
+export function countOdds(low, high) {
+  let difference = high - low
+  let isOdd = (int) => int % 2 !== 0
+  let bothAreOdd = isOdd(low) && isOdd(high)
+  let neitherAreOdd = !isOdd(low) && !isOdd(high)
+  if (bothAreOdd) {
+    if (low === high) {
+      return 1
+    } else {
+      return difference / 2 + 1
+    }
+  } else if (neitherAreOdd) {
+    if (low === high) {
+      return 0
+    } else {
+      return Math.floor(difference / 2)
+    }
+  } else {
+    return Math.floor(difference / 2) + 1
+  }
+} // speed > 85.47%, memory < 50.58%
 
 // reduce into an object
 // FOREACH NOT MAP
@@ -287,3 +314,6 @@ export function getOccurrence(array, value) {
 // arr.sort(...).filter(...).reduce(sum) / arr.length
 // practice immutable code
 //linked in map vs foreach
+
+// 1 2 3 4 5 6 7 8 9
+// if bothOdd() then (high - low)
