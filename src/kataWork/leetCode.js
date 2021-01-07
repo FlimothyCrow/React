@@ -306,6 +306,31 @@ export function countOdds(low, high) {
   }
 } // speed > 85.47%, memory < 50.58%
 
+export function reformatString(s) {
+  let arrOfInts = []
+  let arrOfLetters = []
+  let r = new RegExp(/[a-zA-Z]/)
+  for (let i = 0; i < s.length; i++) {
+    r.test(s[i]) ? arrOfLetters.push(s[i]) : arrOfInts.push(s[i])
+  }
+  let shorter = []
+  let longer = []
+  if (Math.abs(arrOfInts.length - arrOfLetters.length) > 1) {
+    return "" // + / - 1
+  }
+  if (arrOfInts.length > arrOfLetters.length) {
+    longer = arrOfInts
+    shorter = arrOfLetters
+  } else {
+    longer = arrOfLetters
+    shorter = arrOfInts
+  }
+
+  return longer.reduce((accum, next, idx) => {
+    return shorter[idx] ? accum + next + shorter[idx] : accum + next
+  }, "")
+}
+
 // reduce into an object
 // FOREACH NOT MAP
 // list of values to convert to a boolean? try a reduce (many > one)

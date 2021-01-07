@@ -26,6 +26,7 @@ import {
   findSpecialInteger0,
   findSpecialInteger1,
   countOdds,
+  reformatString,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -317,4 +318,24 @@ test("countOdds 5", () => {
 test("countOdds 6", () => {
   var evaluated = countOdds(11, 11)
   expect(evaluated).toEqual(1)
+})
+
+test("reformatString 0", () => {
+  var evaluated = reformatString("a0b1c2")
+  expect(evaluated).toEqual("a0b1c2")
+})
+
+test("reformatString 1", () => {
+  var evaluated = reformatString("covid2019")
+  expect(evaluated).toEqual("c2o0v1i9d")
+})
+
+test("reformatString 2", () => {
+  var evaluated = reformatString("covid2013339")
+  expect(evaluated).toEqual("")
+})
+
+test("reformatString 2", () => {
+  var evaluated = reformatString("ab123")
+  expect(evaluated).toEqual("1a2b3")
 })
