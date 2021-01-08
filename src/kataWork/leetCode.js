@@ -331,6 +331,32 @@ export function reformatString(s) {
   }, "")
 }
 
+export function missingInts(arr, k) {
+  let newArray = new Array(arr[arr.length - 1] - arr[0] + 1).fill(undefined)
+  let missCounter = 0
+  arr.forEach((int) => (newArray[int - 1] = int))
+  console.log(newArray)
+  for (var i = 0; i < newArray.length; i++) {
+    if (!newArray[i]) {
+      missCounter += 1
+      if (missCounter === k) {
+        return i + 1
+      }
+    }
+  }
+
+  /*for (var element of newArray) {
+    if (!element) {
+      missCounter += 1
+      console.log(element)
+      console.log(missCounter)
+      if (missCounter === k) {
+        return newArray.indexOf(element)
+      }
+    }
+  }*/
+}
+
 // reduce into an object
 // FOREACH NOT MAP
 // list of values to convert to a boolean? try a reduce (many > one)
