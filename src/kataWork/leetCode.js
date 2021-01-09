@@ -331,7 +331,7 @@ export function reformatString(s) {
   }, "")
 }
 
-export function missingInts(arr, k) {
+export function missingInts0(arr, k) {
   let newArray = new Array(arr[arr.length - 1] - arr[0] + 1).fill(undefined)
   let missCounter = 0
   arr.forEach((int) => (newArray[int - 1] = int))
@@ -348,8 +348,21 @@ export function missingInts(arr, k) {
   }
 }
 
-// [5, 6, 7, 8, 9], 9
-//
+export function missingInts(arr, k) {
+  let missCounter = 0
+  for (var i = 1; 0 < arr.length; i++) {
+    if (missCounter === k) {
+      return i - 1
+    } else if (!arr.includes(i)) {
+      missCounter += 1
+      //console.log(fullArray)
+      //console.log(missCounter)
+    }
+  }
+}
+
+// ([1, 2, 3, 5, 6, 9], 2)
+// [1, 2, 3, x, 5, 6, x, x, 9]
 
 // reduce into an object
 // FOREACH NOT MAP
