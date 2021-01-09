@@ -343,12 +343,20 @@ test("reformatString 2", () => {
 
 test("missingInts 0", () => {
   var evaluated = missingInts([1, 2, 3, 5, 6, 9], 2)
-  //console.log(evaluated)
   expect(evaluated).toEqual(7)
 })
 
 test("missingInts 1", () => {
   var evaluated = missingInts([2, 3, 4, 7, 11], 5)
-  //console.log(evaluated)
   expect(evaluated).toEqual(9)
+})
+
+test("missingInts 2", () => {
+  var evaluated = missingInts([1, 2, 3, 4], 2)
+  expect(evaluated).toEqual(6)
+})
+
+test("missingInts 2", () => {
+  var evaluated = missingInts([5, 6, 7, 8, 9], 9)
+  expect(evaluated).toEqual(14)
 })
