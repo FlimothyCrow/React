@@ -352,8 +352,20 @@ export function countChars(str) {
   return objOfCounts
 }
 
-// ([1, 2, 3, 5, 6, 9], 2)
-// [1, 2, 3, x, 5, 6, x, x, 9]
+export function mockingCase(str) {
+  let arrOfLetters = str.split("")
+  return arrOfLetters
+    .map((letter, idx) => {
+      if (idx === 0) {
+        return letter.toLowerCase()
+      } else if (idx % 2 !== 0) {
+        return letter.toUpperCase()
+      } else {
+        return letter.toLowerCase()
+      }
+    })
+    .join("")
+}
 
 // reduce into an object
 // FOREACH NOT MAP

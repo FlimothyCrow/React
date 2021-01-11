@@ -29,6 +29,7 @@ import {
   reformatString,
   missingInts,
   countChars,
+  mockingCase,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -365,4 +366,10 @@ test("missingInts 2", () => {
 test("countChars 0", () => {
   var evaluated = countChars("bbbbbbbbbbaaaaaaaaaaakkkkkkkkkkkkeeeeeeddddddddddddddddddddddd")
   expect(evaluated).toEqual({ a: 11, b: 10, d: 23, e: 6, k: 12 })
+})
+
+test("mockingCase 0", () => {
+  let targetStr = "grapevine"
+  var evaluated = mockingCase(targetStr)
+  expect(evaluated).toEqual("gRaPeViNe")
 })
