@@ -331,23 +331,6 @@ export function reformatString(s) {
   }, "")
 }
 
-export function missingInts0(arr, k) {
-  let newArray = new Array(arr[arr.length - 1] - arr[0] + 1).fill(undefined)
-  let missCounter = 0
-  arr.forEach((int) => (newArray[int - 1] = int))
-  for (var i = 0; i < newArray.length; i++) {
-    if (!newArray[i]) {
-      missCounter += 1
-      if (missCounter === k) {
-        return i + 1
-      }
-    }
-  }
-  if (missCounter < k) {
-    return newArray[newArray.length - 1] + (k - missCounter)
-  }
-}
-
 export function missingInts(arr, k) {
   let missCounter = 0
   for (var i = 1; 0 < arr.length; i++) {
@@ -359,6 +342,14 @@ export function missingInts(arr, k) {
       //console.log(missCounter)
     }
   }
+}
+
+export function countChars(str) {
+  let objOfCounts = {}
+  for (var i = 0; i < str.length; i++) {
+    objOfCounts[str[i]] = objOfCounts[str[i]] ? objOfCounts[str[i]] + 1 : 1
+  }
+  return objOfCounts
 }
 
 // ([1, 2, 3, 5, 6, 9], 2)

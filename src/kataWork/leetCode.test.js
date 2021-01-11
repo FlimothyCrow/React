@@ -28,6 +28,7 @@ import {
   countOdds,
   reformatString,
   missingInts,
+  countChars,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -359,4 +360,9 @@ test("missingInts 2", () => {
 test("missingInts 2", () => {
   var evaluated = missingInts([5, 6, 7, 8, 9], 9)
   expect(evaluated).toEqual(14)
+})
+
+test("countChars 0", () => {
+  var evaluated = countChars("bbbbbbbbbbaaaaaaaaaaakkkkkkkkkkkkeeeeeeddddddddddddddddddddddd")
+  expect(evaluated).toEqual({ a: 11, b: 10, d: 23, e: 6, k: 12 })
 })
