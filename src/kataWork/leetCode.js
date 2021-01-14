@@ -338,8 +338,6 @@ export function missingInts(arr, k) {
       return i - 1
     } else if (!arr.includes(i)) {
       missCounter += 1
-      //console.log(fullArray)
-      //console.log(missCounter)
     }
   }
 }
@@ -354,17 +352,31 @@ export function countChars(str) {
 
 export function mockingCase(str) {
   let arrOfLetters = str.split("")
-  return arrOfLetters
-    .map((letter, idx) => {
-      if (idx === 0) {
-        return letter.toLowerCase()
-      } else if (idx % 2 !== 0) {
-        return letter.toUpperCase()
-      } else {
-        return letter.toLowerCase()
-      }
-    })
-    .join("")
+  return arrOfLetters.reduce((accum, letter, idx) => {
+    if (idx === 0) {
+      return accum + letter.toLowerCase()
+    } else if (idx % 2 !== 0) {
+      return accum + letter.toUpperCase()
+    } else {
+      return accum + letter.toLowerCase()
+    }
+  }, "")
+}
+
+export function consecutiveOnes(nums) {
+  let currentCount = 0
+  let highestCount = 0
+
+  for (var i = 0; i < nums.length; i++) {
+    let current = nums[i]
+    if (current === 1) {
+      currentCount++
+    } else {
+      currentCount = 0
+    }
+    highestCount = Math.max(currentCount, highestCount)
+  }
+  return highestCount
 }
 
 // reduce into an object
@@ -375,6 +387,3 @@ export function mockingCase(str) {
 // arr.sort(...).filter(...).reduce(sum) / arr.length
 // practice immutable code
 //linked in map vs foreach
-
-// 1 2 3 4 5 6 7 8 9
-// if bothOdd() then (high - low)

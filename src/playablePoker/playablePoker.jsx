@@ -33,6 +33,7 @@ export default class PlayablePoker extends React.Component {
     }
   }
 
+
   swapWholeHand() {
     for (var card = 0; card < 5; card++) {
       this.swapCards(card)

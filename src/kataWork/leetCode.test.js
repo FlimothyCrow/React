@@ -30,6 +30,7 @@ import {
   missingInts,
   countChars,
   mockingCase,
+  consecutiveOnes,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -372,4 +373,24 @@ test("mockingCase 0", () => {
   let targetStr = "grapevine"
   var evaluated = mockingCase(targetStr)
   expect(evaluated).toEqual("gRaPeViNe")
+})
+
+test("consecutiveOnes 0", () => {
+  var evaluated = consecutiveOnes([1, 1, 0, 1, 1, 1])
+  expect(evaluated).toEqual(3)
+})
+
+test("consecutiveOnes 1", () => {
+  var evaluated = consecutiveOnes([1, 1, 1, 1, 0, 1, 1, 1])
+  expect(evaluated).toEqual(4)
+})
+
+test("consecutiveOnes 2", () => {
+  var evaluated = consecutiveOnes([0])
+  expect(evaluated).toEqual(0)
+})
+
+test("consecutiveOnes 3", () => {
+  var evaluated = consecutiveOnes([1])
+  expect(evaluated).toEqual(1)
 })
