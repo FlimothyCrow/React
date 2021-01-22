@@ -379,6 +379,31 @@ export function consecutiveOnes(nums) {
   return highestCount
 }
 
+export function missingInt(nums) {
+  if (nums[0] === 0) {
+    return 1
+  }
+
+  let larger = 0
+  let smaller = 0
+  for (var i = 0; i <= nums.length; i++) {
+    larger += i
+    if (nums[i]) {
+      smaller += nums[i]
+    }
+    //console.log("larger ", larger)
+    //console.log("smaller ", smaller)
+  }
+  return larger - smaller
+}
+
+// range 0, 3 + should === 6
+// get largest number (largest)
+// add up range 0 - largest (sum)
+// return sum - nums
+
+// write a range loop with two consequents; adding all [i]s in rangeX, then add all nums[i]s and subtract
+
 // reduce into an object
 // FOREACH NOT MAP
 // list of values to convert to a boolean? try a reduce (many > one)
