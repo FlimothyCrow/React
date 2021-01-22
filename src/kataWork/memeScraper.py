@@ -10,7 +10,6 @@ cnx = mysql.connector.connect(
 )
 
 
-
 def insertMemesFromDir(mycursor):
     mypath = "D:\Flim's Documents\Funnies\emergency funnies\private reserve"
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
