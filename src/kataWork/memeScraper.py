@@ -9,37 +9,33 @@ cnx = mysql.connector.connect(
     database="dbo"
 )
 
+memeDirectory = "D:\Flim's Documents\Funnies\emergency funnies\private reserve"
+legoDirectory = "D:\\temporary funnies\photos\\nostalgia\\toys\lego"
 
-def insertMemesFromDir(mycursor):
-    mypath = "D:\Flim's Documents\Funnies\emergency funnies\private reserve"
+def insertToDir(mycursor, mypath, table):
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-
     for fileName in onlyfiles:
-        sql = 'INSERT INTO mehms (name, path, sizeKb) VALUES (%s, %s, %s)'
-        mycursor.execute(sql, (fileName, mypath, getsize(join(mypath, fileName)) / 1000))
-
+        sql = 'INSERT INTO {} (catalog_id, set_name) VALUES (%s, %s)'.format(table)
+        mycursor.execute(sql, (fileName[0: 4], fileName[5:]))
     cnx.commit()
 
-def updateMehmsPaths(mycursor):
-    mypath = "D:\Flim's Documents\Funnies\emergency funnies\private reserve"
-    sql = 'UPDATE mehms SET path = %s'
+def updateTablePaths(mycursor, mypath, table):
+    sql = 'UPDATE {} SET path = %s'.format(table)
     mycursor.execute(sql, (mypath, ))
     cnx.commit()
 
-
-def deleteMehms(mycursor):
-    sql = 'DELETE FROM mehms'
+def deleteTable(mycursor, table):
+    sql = 'DELETE FROM {}'.format(table)
     mycursor.execute(sql)
     cnx.commit()
 
 mycursor = cnx.cursor()
 
-#deleteMehms(mycursor)
-#insertMemesFromDir(mycursor)
-
+# insertToDir(mycursor, legoDirectory, "lego")
+# deleteTable(mycursor, "lego")
 
 #updateMehmsPaths()
-results = mycursor.execute("SELECT * FROM mehms ORDER BY sizeKb DESC")
+results = mycursor.execute("SELECT * FROM lego WHERE set_name LIKE '%au%'")
 for x in mycursor:
     print(x)
 
