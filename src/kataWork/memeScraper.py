@@ -1,5 +1,5 @@
 import mysql.connector
-from os import listdir
+from os import listdir, scandir
 from os.path import isfile, join, getsize
 
 cnx = mysql.connector.connect(
@@ -11,32 +11,40 @@ cnx = mysql.connector.connect(
 
 memeDirectory = "D:\Flim's Documents\Funnies\emergency funnies\private reserve"
 legoDirectory = "D:\\temporary funnies\photos\\nostalgia\\toys\lego"
+musicDirectory = "C:\\Users\Timothy\Desktop\\target music\\Stevie Ray Vaughan"
 
-def insertToDir(mycursor, mypath, table):
+# def insertToDir(mycursor, mypath):
+#     onlyfiles = [f for f in listdir(mypath)]
+#     for fileName in onlyfiles:
+#         sql = 'INSERT INTO artists (band_name) VALUES (%s)'
+#         mycursor.execute(sql, (fileName,))
+#     cnx.commit()
+
+def insertToDir(mycursor, mypath):
+    # if isfile(join(mypath, f))
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     for fileName in onlyfiles:
-        sql = 'INSERT INTO {} (catalog_id, set_name) VALUES (%s, %s)'.format(table)
-        mycursor.execute(sql, (fileName[0: 4], fileName[5:]))
+        sql = 'INSERT INTO songs (song_name) VALUES (%s)'
+        mycursor.execute(sql, (fileName,))
     cnx.commit()
 
-def updateTablePaths(mycursor, mypath, table):
-    sql = 'UPDATE {} SET path = %s'.format(table)
-    mycursor.execute(sql, (mypath, ))
-    cnx.commit()
 
-def deleteTable(mycursor, table):
-    sql = 'DELETE FROM {}'.format(table)
+def deleteFromTable(mycursor):
+    sql = 'DELETE FROM songs'
     mycursor.execute(sql)
     cnx.commit()
 
+
 mycursor = cnx.cursor()
 
-# insertToDir(mycursor, legoDirectory, "lego")
-# deleteTable(mycursor, "lego")
+# deleteFromTable(mycursor)
+# insertToDir(mycursor, musicDirectory)
 
-#updateMehmsPaths()
-results = mycursor.execute("SELECT * FROM lego WHERE set_name LIKE '%au%'")
+results = mycursor.execute("SELECT * FROM songs")
+
 for x in mycursor:
     print(x)
 
+
 mycursor.close()
+
