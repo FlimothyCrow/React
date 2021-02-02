@@ -397,6 +397,10 @@ export function missingInt(nums) {
   return larger - smaller
 }
 
+export function checkAnagram(str0, str1) {
+  return str0.split("").sort().join() === str1.split("").sort().join()
+}
+
 // range 0, 3 + should === 6
 // get largest number (largest)
 // add up range 0 - largest (sum)

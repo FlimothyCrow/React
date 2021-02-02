@@ -32,6 +32,7 @@ import {
   mockingCase,
   consecutiveOnes,
   missingInt,
+  checkAnagram,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -373,7 +374,7 @@ test("countChars 0", () => {
 test("mockingCase 0", () => {
   let targetStr = "grapevine"
   var evaluated = mockingCase(targetStr)
-  console.log(evaluated)
+  // console.log(evaluated)
   expect(evaluated).toEqual("gRaPeViNe")
 })
 
@@ -397,22 +398,37 @@ test("consecutiveOnes 3", () => {
   expect(evaluated).toEqual(1)
 })
 
-test("missingInt 0", () => {
+test.skip("missingInt 0", () => {
   var evaluated = missingInt([3, 0, 1])
   expect(evaluated).toEqual(2)
 })
 
-test("missingInt 1", () => {
+test.skip("missingInt 1", () => {
   var evaluated = missingInt([9, 6, 4, 2, 3, 5, 7, 0, 1])
   expect(evaluated).toEqual(8)
 })
 
-test("missingInt 2", () => {
+test.skip("missingInt 2", () => {
   var evaluated = missingInt([0])
   expect(evaluated).toEqual(1)
 })
 
-test("missingInt 3", () => {
+test.skip("missingInt 3", () => {
   var evaluated = missingInt([0, 1])
   expect(evaluated).toEqual(2)
+})
+
+test("checkAnagram 0", () => {
+  var evaluated = checkAnagram("jerk", "ekrj")
+  expect(evaluated).toEqual(true)
+})
+
+test("checkAnagram 1", () => {
+  var evaluated = checkAnagram("ben", "bin")
+  expect(evaluated).toEqual(false)
+})
+
+test("checkAnagram 2", () => {
+  var evaluated = checkAnagram("a", "A")
+  expect(evaluated).toEqual(false)
 })
