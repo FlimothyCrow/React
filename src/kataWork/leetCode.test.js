@@ -33,6 +33,8 @@ import {
   consecutiveOnes,
   missingInt,
   checkAnagram,
+  titleSplit,
+  viewsAndUpvotes,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -398,26 +400,6 @@ test("consecutiveOnes 3", () => {
   expect(evaluated).toEqual(1)
 })
 
-test.skip("missingInt 0", () => {
-  var evaluated = missingInt([3, 0, 1])
-  expect(evaluated).toEqual(2)
-})
-
-test.skip("missingInt 1", () => {
-  var evaluated = missingInt([9, 6, 4, 2, 3, 5, 7, 0, 1])
-  expect(evaluated).toEqual(8)
-})
-
-test.skip("missingInt 2", () => {
-  var evaluated = missingInt([0])
-  expect(evaluated).toEqual(1)
-})
-
-test.skip("missingInt 3", () => {
-  var evaluated = missingInt([0, 1])
-  expect(evaluated).toEqual(2)
-})
-
 test("checkAnagram 0", () => {
   var evaluated = checkAnagram("jerk", "ekrj")
   expect(evaluated).toEqual(true)
@@ -431,4 +413,14 @@ test("checkAnagram 1", () => {
 test("checkAnagram 2", () => {
   var evaluated = checkAnagram("a", "A")
   expect(evaluated).toEqual(false)
+})
+
+test("titleSplit 0", () => {
+  var evaluated = titleSplit({}, "Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50")
+  expect(evaluated).toEqual({
+    keywords: ["jerk", "mook", "tobacco", "flying"],
+    title: "Taming the Shrew",
+    upvotes: 50,
+    views: 1945,
+  })
 })

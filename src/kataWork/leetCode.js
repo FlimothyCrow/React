@@ -379,26 +379,27 @@ export function consecutiveOnes(nums) {
   return highestCount
 }
 
-export function missingInt(nums) {
-  if (nums[0] === 0) {
-    return 1
-  }
-
-  let larger = 0
-  let smaller = 0
-  for (var i = 0; i <= nums.length; i++) {
-    larger += i
-    if (nums[i]) {
-      smaller += nums[i]
-    }
-    //console.log("larger ", larger)
-    //console.log("smaller ", smaller)
-  }
-  return larger - smaller
-}
-
 export function checkAnagram(str0, str1) {
   return str0.split("").sort().join() === str1.split("").sort().join()
+}
+
+
+export function titleSplit(obj, string) {
+  let splitStrings = string.split(" ")
+  let titleKey = ""
+  let arrayOfKeywords = []
+  splitStrings.forEach((element) => {
+    if (element[0] !== "[" && !parseInt(element)) {
+      titleKey += " " + element
+    } else if (element[0] === "[") {
+      arrayOfKeywords.push(element.substring(1, element.length - 1))
+    }
+  })
+  obj.upvotes = parseInt(splitStrings[splitStrings.length - 1])
+  obj.views = parseInt(splitStrings[splitStrings.length - 2])
+  obj.keywords = arrayOfKeywords
+  obj.title = titleKey.substring(1)
+  return obj
 }
 
 // range 0, 3 + should === 6
