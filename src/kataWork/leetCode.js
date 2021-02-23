@@ -1,20 +1,5 @@
-// ____
-// ___x
-// __x_
-// __xx
-// _x__
-// _x_x
-// _xx_
-// _xxx
-// x___
-// xxxx = 8 + 4 + 2 + 1 = (2^4 - 1) = 15
-
 import { concat, indexOf, map, remove, split } from "lodash"
-
-// _xxx = 4 + 2 + 1 = (2^3 - 1) = 7
-// xxxx = 4 + 2 + 1 = (2^3 - 1) = -7
-
-// (2 ^ 31) - 1
+var ohm = require("ohm-js")
 
 export function twoSum(nums, target) {
   for (var i = 0; i < nums.length; i++) {
@@ -383,8 +368,22 @@ export function checkAnagram(str0, str1) {
   return str0.split("").sort().join() === str1.split("").sort().join()
 }
 
+export function keywordFormatter(string) {
+  let parser = ohm.generate(`
+  Arithmetic {
+    start
+      = title tags* number " " number
+    title = (letter | " ")+
+    tags = "[" (letter | " ")+ "] "
+    number
+      =  digit+
+  }`)
+  let s = parser.createSemantics(s.addOperation)
+  let result = ohm.match(string)
+}
 
-export function titleSplit(obj, string) {
+export function titleSplit(string) {
+  let objectToReturn = {}
   let splitStrings = string.split(" ")
   let titleKey = ""
   let arrayOfKeywords = []
@@ -395,11 +394,17 @@ export function titleSplit(obj, string) {
       arrayOfKeywords.push(element.substring(1, element.length - 1))
     }
   })
-  obj.upvotes = parseInt(splitStrings[splitStrings.length - 1])
-  obj.views = parseInt(splitStrings[splitStrings.length - 2])
-  obj.keywords = arrayOfKeywords
-  obj.title = titleKey.substring(1)
-  return obj
+  objectToReturn.upvotes = parseInt(splitStrings[splitStrings.length - 1])
+  objectToReturn.views = parseInt(splitStrings[splitStrings.length - 2])
+  objectToReturn.keywords = arrayOfKeywords
+  objectToReturn.title = titleKey.substring(1)
+  return objectToReturn
+}
+
+export function analyticsAccum(arrayOfStrings) {
+  let arrayOfObjects = []
+  arrayOfStrings.forEach((string) => arrayOfObjects.push(titleSplit(string)))
+  return arrayOfObjects.sort((a, b) => b.views - a.views)
 }
 
 // range 0, 3 + should === 6

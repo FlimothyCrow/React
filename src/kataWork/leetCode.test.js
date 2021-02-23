@@ -35,6 +35,8 @@ import {
   checkAnagram,
   titleSplit,
   viewsAndUpvotes,
+  keywordFormatter,
+  analyticsAccum,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -415,12 +417,66 @@ test("checkAnagram 2", () => {
   expect(evaluated).toEqual(false)
 })
 
+test.skip("keywordFormatter 0", () => {
+  var evaluated = keywordFormatter("words words [mook board] [wet axe] [tobacco] 2000 50")
+  console.log(evaluated)
+  expect(evaluated).toEqual("words [mook-board] [wet-axe] [tobacco] 2000 50")
+})
+
 test("titleSplit 0", () => {
-  var evaluated = titleSplit({}, "Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50")
+  var evaluated = titleSplit("Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50")
   expect(evaluated).toEqual({
     keywords: ["jerk", "mook", "tobacco", "flying"],
     title: "Taming the Shrew",
     upvotes: 50,
     views: 1945,
   })
+})
+
+test.skip("titleSplit 1", () => {
+  var evaluated = titleSplit({}, "Fight me [fight] [dumb] [bacon cheese] 200 5")
+  console.log(evaluated)
+  expect(evaluated).toEqual({
+    keywords: ["fight", "dumb", "bacon-cheese"],
+    title: "Fight me",
+    upvotes: 5,
+    views: 200,
+  })
+})
+
+test("analyticsAccum 0", () => {
+  var arrayOfStrings = [
+    "Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50",
+    "test entry [schnook] [mackerel] [dog] 195 50",
+    "words words [board] [axe] [tobacco] 2011 45",
+    "Fight me [fight] [dumb] [bacon] 200 5",
+  ]
+  var evaluated = analyticsAccum(arrayOfStrings)
+  // console.log(evaluated)
+  expect(evaluated).toEqual([
+    {
+      upvotes: 45,
+      views: 2011,
+      keywords: ["board", "axe", "tobacco"],
+      title: "words words",
+    },
+    {
+      upvotes: 50,
+      views: 1945,
+      keywords: ["jerk", "mook", "tobacco", "flying"],
+      title: "Taming the Shrew",
+    },
+    {
+      upvotes: 5,
+      views: 200,
+      keywords: ["fight", "dumb", "bacon"],
+      title: "Fight me",
+    },
+    {
+      upvotes: 50,
+      views: 195,
+      keywords: ["schnook", "mackerel", "dog"],
+      title: "test entry",
+    },
+  ])
 })
