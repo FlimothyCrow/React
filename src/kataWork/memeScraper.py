@@ -49,57 +49,46 @@ for x in mycursor:
 
 
 mycursor.close()
-#
-# SELECT * FROM songs
-# 	INNER JOIN artists_x_songs ON songs.id = artists_x_songs.song_id
-#     INNER JOIN artists ON artists.id = artists_x_songs.artist_id
-#     WHERE artists.id = 1;
-#
-# INSERT INTO artists_X_songs (song_id, artist_id) VALUES (37, 1), (37, 2), (30, 2);
-# INSERT INTO artists_X_songs (song_id, artist_id) VALUES (35, 1), (33, 1), (30, 2);
-#
-#
-# ALTER TABLE songs ADD song_length INT NOT NULL;
-# ALTER TABLE artists ADD date_started INT NOT NULL;
-#
-# UPDATE artists SET date_started = 1962 WHERE band_name = "Stevie Ray Vaughan";
-#
-# CREATE TABLE albums (
+
+# CREATE TABLE characters (
 # 	id INT NOT NULL AUTO_INCREMENT,
-#     album_name VARCHAR(255),
-#     dateRecorded YEAR,
+#     character_name VARCHAR(255),
+#     fate_points INT,
+#     high_concept VARCHAR(255),
+#     trouble VARCHAR(255),
 #     PRIMARY KEY (id));
 #
-# INSERT INTO albums (album_name, dateRecorded) VALUES ('Alberts worst hits', 1980), ('stevie plays hollywood', 1990);
+# INSERT INTO characters (character_name, fate_points, high_concept, trouble)
+# 	VALUES ('satan', 5, 'trickster boi', 'gambling addiction'),
+# 		   ('coconuts', 1, 'salesman', 'tends to wander off'),
+# 		   ('billiamton buxaplenty', 0, 'rich guy af', 'disdain for the poor');
 #
-# ALTER TABLE songs ADD COLUMN album_id INT default (1), ADD FOREIGN KEY (album_id) REFERENCES albums (id);
-#
-# UPDATE songs SET album_id = 3 WHERE id = 29;
-# UPDATE songs SET album_id = 2 WHERE id = 33;
-# UPDATE songs SET album_id = 3 WHERE id = 32;
-# UPDATE songs SET album_id = 3 WHERE id = 30;
-#
-# SELECT * FROM songs
-# INNER JOIN albums ON songs.album_id = albums.id;
-#
-# CREATE TABLE labels (
+# CREATE TABLE consequences (
 # 	id INT NOT NULL AUTO_INCREMENT,
-# 	label_name VARCHAR(255),
+#     character_id INT NOT NULL,
+# 		FOREIGN KEY (character_id) REFERENCES characters(id),
+#     amount INT,
+#     text VARCHAR(255),
+#     checked INT,
+#     PRIMARY KEY (id)
+#     );
+#
+# INSERT INTO consequences (character_id, amount, text, checked) VALUES (3, 1, 'hobbled', 1);
+# INSERT INTO consequences (character_id, amount, text, checked) VALUES (2, 5, 'cracked ribs', 1);
+#
+# CREATE TABLE aspects (
+# 	id INT NOT NULL AUTO_INCREMENT,
+#     character_id INT NOT NULL,
+# 		FOREIGN KEY (character_id) REFERENCES characters(id),
+# 	text VARCHAR(255),
 #     PRIMARY KEY (id));
 #
-# INSERT INTO labels (label_name) VALUES ("spicy records"), ("cool tunes");
-# INSERT INTO labels (label_name) VALUES ("dazzle entertainment");
-# INSERT INTO artists (artist_name, date_started) VALUES ("Dave Matthews", 1993);
+# INSERT INTO aspects (character_id, text) VALUES (2, 'couple extra coins'), (3, 'despises elves'), (3, 'out in the rain');
 #
-# ALTER TABLE albums ADD label_id VARCHAR(255);
-# ALTER TABLE artists ADD FOREIGN KEY (label_id) REFERENCES labels (id);
+# SELECT * FROM characters
+# INNER JOIN consequences ON characters.id = character_id
+# INNER JOIN aspects ON aspects.character_id = characters.id;
 #
-# UPDATE albums SET label_id = 3 WHERE id = 3;
-# UPDATE albums SET label_id = 4 WHERE id = 1;
-# UPDATE albums SET label_id = 4 WHERE id = 2;
-#
-# ALTER TABLE albums ADD FOREIGN KEY (label_id) REFERENCES labels (id);
-#
-# SELECT * FROM artists
-# INNER JOIN labels ON artists.label_id = labels.id
-# INNER JOIN albums ON albums.label_id = labels.id;
+# SELECT * FROM characters;
+# SELECT * FROM aspects;
+
