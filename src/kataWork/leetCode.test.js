@@ -37,6 +37,7 @@ import {
   viewsAndUpvotes,
   keywordFormatter,
   analyticsAccum,
+  getObject,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -478,5 +479,99 @@ test("analyticsAccum 0", () => {
       keywords: ["schnook", "mackerel", "dog"],
       title: "test entry",
     },
+  ])
+})
+
+let objectForTest = {
+  code: 0,
+  data: [
+    {
+      Product: {
+        description: "Example description",
+        id: "5284e18fb5baba49d5xxxxxx",
+        name: "Cute Ring",
+        number_saves: "6",
+        number_sold: "0",
+        parent_sku: "Cute Bow Ring",
+        review_status: "approved",
+        removed_by_merchant: false,
+        default_shipping_price: "10.5",
+        tags: [
+          { Tag: { id: "womensring", name: "womens ring" } },
+          { Tag: { id: "jewelry", name: "Jewelry" } },
+          { Tag: { id: "bow", name: "Bow" } },
+        ],
+        variants: [
+          {
+            Variant: {
+              color: "green",
+              enabled: "True",
+              id: "5284e192b111ba49d5xxxxxx",
+              product_id: "5284e18fb5baba49d5xxxxxx",
+              inventory: "11",
+              msrp: "113.9",
+              price: "110.9",
+              shipping: "10.5",
+              localized_price: "660.0",
+              localized_shipping: "63.0",
+              localized_currency_code: "CNY",
+              sku: "AA1",
+            },
+          },
+          {
+            Variant: {
+              color: "blue",
+              enabled: "True",
+              id: "5284e19qqqbaba49d5bbbbbb",
+              product_id: "5284e18fb5baba49d5xxxxxx",
+              inventory: "100",
+              msrp: "19.9",
+              price: "15.9",
+              shipping: "10.5",
+              localized_price: "90.0",
+              localized_shipping: "63.0",
+              localized_currency_code: "CNY",
+              sku: "ZZ1",
+            },
+          },
+          {
+            Variant: {
+              color: "black",
+              enabled: "True",
+              id: "5284e19qqqbaba49d5bbbbbb",
+              product_id: "5284e18fb5baba49d5xxxxxx",
+              inventory: null,
+              msrp: "19.9",
+              price: "15.9",
+              shipping: null,
+              localized_price: "90.0",
+              localized_shipping: "63.0",
+              localized_currency_code: "CNY",
+              sku: "ZZ1",
+            },
+          },
+        ],
+      },
+    },
+  ],
+  country_shippings: [
+    { CountryShipping: { price: "4.99", localized_price: "30.0", localized_currency_code: "CNY", country_code: "CA" } },
+    { CountryShipping: { price: "3.99", localized_price: "24.0", localized_currency_code: "CNY", country_code: "US" } },
+  ],
+  message: "",
+  paging: {
+    next:
+      "https://merchant.wish.com/api/v2/product/multi-get?start=22&limit=2&since=2014-10-15&access_token=an_example_access_token",
+    previous:
+      "https://merchant.wish.com/api/v2/product/multi-get?start=18&limit=2&since=2014-10-15&access_token=an_example_access_token",
+  },
+}
+
+test.only("getObject 1", () => {
+  var evaluated = getObject(objectForTest.data[0])
+  console.log(evaluated)
+  expect(evaluated).toEqual([
+    { productID: "AA1", sku: "AA1", title: "Cute Ring" },
+    { productID: "ZZ1", sku: "ZZ1", title: "Cute Ring" },
   ])
 })

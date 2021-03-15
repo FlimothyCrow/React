@@ -422,3 +422,67 @@ export function analyticsAccum(arrayOfStrings) {
 // arr.sort(...).filter(...).reduce(sum) / arr.length
 // practice immutable code
 //linked in map vs foreach
+
+export function getObject(objectForTest) {
+  let arrayOfVariantObjs = []
+  objectForTest.Product.variants.forEach((variant) => {
+    if (variant.Variant.inventory && variant.Variant.shipping) {
+      arrayOfVariantObjs.push({
+        // current practice is using SKU to update inventory
+        // see https://merchant.wish.com/documentation/api/v2#how-to-update-inventory,
+        productID: variant.Variant.sku,
+        sku: variant.Variant.sku,
+        title: objectForTest.Product.name,
+      })
+    }
+  })
+  return arrayOfVariantObjs
+}
+
+export function startBatchDownload(access_token) {
+  // step 1: request batch download
+  fetch(`https://merchant.wish.com/api/v2/product/create-download-job?access_token=${access_token}`, {
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      console.log("response: " + response.data.job_id)
+
+      // step 2: execute asynchronous long-running polling process to check status
+      // since wish updated to v2 api, batch download is currently processed through batch CSV download
+      // see https://merchant.wish.com/documentation/api/v2#product-create-download-job
+    })
+}
+
+export function batchStatus(access_token, job_id) {
+  // step 3: confirm download link is returned
+
+  fetch(
+    `https://merchant.wish.com/api/v2/product/get-download-job-status?access_token=${access_token}&job_id=${job_id}`,
+    {
+      method: "POST",
+    }
+  )
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.data.download_link) {
+        // step 4: use link to download batch CSV file
+        fetch(`${response.data.download_link}?access_token=${access_token}`, {
+          method: "GET",
+        })
+        // step 5 .then(=> parse CSV to JSON)
+      }
+    })
+}
+
+// {
+//   'code': 0,
+//   'data': {'job_id': "57bb5803ba2a1f181de31b01"},
+//   'message': ''
+// }
+
+// {
+//   "productId": "",
+//   "sku": ""
+//   "title": ""
+//   }
