@@ -364,65 +364,6 @@ export function consecutiveOnes(nums) {
   return highestCount
 }
 
-export function checkAnagram(str0, str1) {
-  return str0.split("").sort().join() === str1.split("").sort().join()
-}
-
-export function keywordFormatter(string) {
-  let parser = ohm.generate(`
-  Arithmetic {
-    start
-      = title tags* number " " number
-    title = (letter | " ")+
-    tags = "[" (letter | " ")+ "] "
-    number
-      =  digit+
-  }`)
-  let s = parser.createSemantics(s.addOperation)
-  let result = ohm.match(string)
-}
-
-export function titleSplit(string) {
-  let objectToReturn = {}
-  let splitStrings = string.split(" ")
-  let titleKey = ""
-  let arrayOfKeywords = []
-  splitStrings.forEach((element) => {
-    if (element[0] !== "[" && !parseInt(element)) {
-      titleKey += " " + element
-    } else if (element[0] === "[") {
-      arrayOfKeywords.push(element.substring(1, element.length - 1))
-    }
-  })
-  objectToReturn.upvotes = parseInt(splitStrings[splitStrings.length - 1])
-  objectToReturn.views = parseInt(splitStrings[splitStrings.length - 2])
-  objectToReturn.keywords = arrayOfKeywords
-  objectToReturn.title = titleKey.substring(1)
-  return objectToReturn
-}
-
-export function analyticsAccum(arrayOfStrings) {
-  let arrayOfObjects = []
-  arrayOfStrings.forEach((string) => arrayOfObjects.push(titleSplit(string)))
-  return arrayOfObjects.sort((a, b) => b.views - a.views)
-}
-
-// range 0, 3 + should === 6
-// get largest number (largest)
-// add up range 0 - largest (sum)
-// return sum - nums
-
-// write a range loop with two consequents; adding all [i]s in rangeX, then add all nums[i]s and subtract
-
-// reduce into an object
-// FOREACH NOT MAP
-// list of values to convert to a boolean? try a reduce (many > one)
-// set, spread, reduce, splice
-// practice refactoring
-// arr.sort(...).filter(...).reduce(sum) / arr.length
-// practice immutable code
-//linked in map vs foreach
-
 export function getObject(objectForTest) {
   let arrayOfVariantObjs = []
   objectForTest.Product.variants.forEach((variant) => {
@@ -475,14 +416,74 @@ export function batchStatus(access_token, job_id) {
     })
 }
 
-// {
-//   'code': 0,
-//   'data': {'job_id': "57bb5803ba2a1f181de31b01"},
-//   'message': ''
-// }
+export function checkAnagram(str0, str1) {
+  return str0.split("").sort().join() === str1.split("").sort().join()
+}
 
-// {
-//   "productId": "",
-//   "sku": ""
-//   "title": ""
-//   }
+export function keywordFormatter(string) {
+  let parser = ohm.generate(`
+  Arithmetic {
+    start
+      = title tags* number " " number
+    title = (letter | " ")+
+    tags = "[" (letter | " ")+ "] "
+    number
+      =  digit+
+  }`)
+  let s = parser.createSemantics(s.addOperation)
+  let result = ohm.match(string)
+}
+
+export function titleSplit(string) {
+  let objectToReturn = {}
+  let splitStrings = string.split(" ")
+  let titleKey = ""
+  let arrayOfKeywords = []
+  splitStrings.forEach((element) => {
+    if (element[0] !== "[" && !parseInt(element)) {
+      titleKey += " " + element
+    } else if (element[0] === "[") {
+      arrayOfKeywords.push(element.substring(1, element.length - 1))
+    }
+  })
+  objectToReturn.upvotes = parseInt(splitStrings[splitStrings.length - 1])
+  objectToReturn.views = parseInt(splitStrings[splitStrings.length - 2])
+  objectToReturn.keywords = arrayOfKeywords
+  objectToReturn.title = titleKey.substring(1)
+  return objectToReturn
+}
+
+export function analyticsAccum(arrayOfStrings) {
+  let arrayOfObjects = []
+  arrayOfStrings.forEach((string) => arrayOfObjects.push(titleSplit(string)))
+  return arrayOfObjects.sort((a, b) => b.views - a.views)
+}
+
+export function arrayShuffle(nums, n) {
+  let counter = 0
+  let left = nums
+  let right = left.splice(n, n)
+  // console.log("split arrays: ", left, right)
+  right.forEach((num, idx) => {
+    counter++
+    // console.log(num)
+    left.splice(counter + idx, 0, num)
+  })
+  return left
+}
+
+// range 0, 3 + should === 6
+// get largest number (largest)
+// add up range 0 - largest (sum)
+// return sum - nums
+
+// write a range loop with two consequents; adding all [i]s in rangeX, then add all nums[i]s and subtract
+
+// reduce into an object
+// FOREACH NOT MAP
+// list of values to convert to a boolean? try a reduce (many > one)
+// set, spread, reduce, splice
+// practice refactoring
+// arr.sort(...).filter(...).reduce(sum) / arr.length
+// practice immutable code
+//linked in map vs foreach

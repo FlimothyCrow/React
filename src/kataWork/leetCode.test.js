@@ -38,6 +38,7 @@ import {
   keywordFormatter,
   analyticsAccum,
   getObject,
+  arrayShuffle,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -418,70 +419,6 @@ test("checkAnagram 2", () => {
   expect(evaluated).toEqual(false)
 })
 
-test.skip("keywordFormatter 0", () => {
-  var evaluated = keywordFormatter("words words [mook board] [wet axe] [tobacco] 2000 50")
-  console.log(evaluated)
-  expect(evaluated).toEqual("words [mook-board] [wet-axe] [tobacco] 2000 50")
-})
-
-test("titleSplit 0", () => {
-  var evaluated = titleSplit("Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50")
-  expect(evaluated).toEqual({
-    keywords: ["jerk", "mook", "tobacco", "flying"],
-    title: "Taming the Shrew",
-    upvotes: 50,
-    views: 1945,
-  })
-})
-
-test.skip("titleSplit 1", () => {
-  var evaluated = titleSplit({}, "Fight me [fight] [dumb] [bacon cheese] 200 5")
-  console.log(evaluated)
-  expect(evaluated).toEqual({
-    keywords: ["fight", "dumb", "bacon-cheese"],
-    title: "Fight me",
-    upvotes: 5,
-    views: 200,
-  })
-})
-
-test("analyticsAccum 0", () => {
-  var arrayOfStrings = [
-    "Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50",
-    "test entry [schnook] [mackerel] [dog] 195 50",
-    "words words [board] [axe] [tobacco] 2011 45",
-    "Fight me [fight] [dumb] [bacon] 200 5",
-  ]
-  var evaluated = analyticsAccum(arrayOfStrings)
-  // console.log(evaluated)
-  expect(evaluated).toEqual([
-    {
-      upvotes: 45,
-      views: 2011,
-      keywords: ["board", "axe", "tobacco"],
-      title: "words words",
-    },
-    {
-      upvotes: 50,
-      views: 1945,
-      keywords: ["jerk", "mook", "tobacco", "flying"],
-      title: "Taming the Shrew",
-    },
-    {
-      upvotes: 5,
-      views: 200,
-      keywords: ["fight", "dumb", "bacon"],
-      title: "Fight me",
-    },
-    {
-      upvotes: 50,
-      views: 195,
-      keywords: ["schnook", "mackerel", "dog"],
-      title: "test entry",
-    },
-  ])
-})
-
 let objectForTest = {
   code: 0,
   data: [
@@ -567,11 +504,90 @@ let objectForTest = {
   },
 }
 
-test.only("getObject 1", () => {
+test("getObject 1", () => {
   var evaluated = getObject(objectForTest.data[0])
-  console.log(evaluated)
   expect(evaluated).toEqual([
     { productID: "AA1", sku: "AA1", title: "Cute Ring" },
     { productID: "ZZ1", sku: "ZZ1", title: "Cute Ring" },
   ])
+})
+
+test.skip("keywordFormatter 0", () => {
+  var evaluated = keywordFormatter("words words [mook board] [wet axe] [tobacco] 2000 50")
+  expect(evaluated).toEqual("words [mook-board] [wet-axe] [tobacco] 2000 50")
+})
+
+test("titleSplit 0", () => {
+  var evaluated = titleSplit("Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50")
+  expect(evaluated).toEqual({
+    keywords: ["jerk", "mook", "tobacco", "flying"],
+    title: "Taming the Shrew",
+    upvotes: 50,
+    views: 1945,
+  })
+})
+
+test.skip("titleSplit 1", () => {
+  var evaluated = titleSplit({}, "Fight me [fight] [dumb] [bacon cheese] 200 5")
+  expect(evaluated).toEqual({
+    keywords: ["fight", "dumb", "bacon-cheese"],
+    title: "Fight me",
+    upvotes: 5,
+    views: 200,
+  })
+})
+
+test("analyticsAccum 0", () => {
+  var arrayOfStrings = [
+    "Taming the Shrew [jerk] [mook] [tobacco] [flying] 1945 50",
+    "test entry [schnook] [mackerel] [dog] 195 50",
+    "words words [board] [axe] [tobacco] 2011 45",
+    "Fight me [fight] [dumb] [bacon] 200 5",
+  ]
+  var evaluated = analyticsAccum(arrayOfStrings)
+  // console.log(evaluated)
+  expect(evaluated).toEqual([
+    {
+      upvotes: 45,
+      views: 2011,
+      keywords: ["board", "axe", "tobacco"],
+      title: "words words",
+    },
+    {
+      upvotes: 50,
+      views: 1945,
+      keywords: ["jerk", "mook", "tobacco", "flying"],
+      title: "Taming the Shrew",
+    },
+    {
+      upvotes: 5,
+      views: 200,
+      keywords: ["fight", "dumb", "bacon"],
+      title: "Fight me",
+    },
+    {
+      upvotes: 50,
+      views: 195,
+      keywords: ["schnook", "mackerel", "dog"],
+      title: "test entry",
+    },
+  ])
+})
+
+test("arrayShuffle 0", () => {
+  var evaluated = arrayShuffle([2, 5, 1, 3, 4, 7], 3)
+  // [ 2, 5, 1 ] [ 3, 4, 7 ]
+  expect(evaluated).toEqual([2, 3, 5, 4, 1, 7])
+})
+
+test("arrayShuffle 1", () => {
+  var evaluated = arrayShuffle([1, 2, 3, 4, 4, 3, 2, 1], 4)
+  // [ 2, 5, 1 ] [ 3, 4, 7 ]
+  expect(evaluated).toEqual([1, 4, 2, 3, 3, 2, 4, 1])
+})
+
+test("arrayShuffle 2", () => {
+  var evaluated = arrayShuffle([1, 1, 2, 2], 2)
+  // [ 2, 5, 1 ] [ 3, 4, 7 ]
+  expect(evaluated).toEqual([1, 2, 1, 2])
 })
