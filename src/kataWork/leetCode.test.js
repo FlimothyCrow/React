@@ -39,6 +39,7 @@ import {
   analyticsAccum,
   getObject,
   arrayShuffle,
+  maxNumber,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -576,18 +577,35 @@ test("analyticsAccum 0", () => {
 
 test("arrayShuffle 0", () => {
   var evaluated = arrayShuffle([2, 5, 1, 3, 4, 7], 3)
-  // [ 2, 5, 1 ] [ 3, 4, 7 ]
   expect(evaluated).toEqual([2, 3, 5, 4, 1, 7])
 })
 
 test("arrayShuffle 1", () => {
   var evaluated = arrayShuffle([1, 2, 3, 4, 4, 3, 2, 1], 4)
-  // [ 2, 5, 1 ] [ 3, 4, 7 ]
   expect(evaluated).toEqual([1, 4, 2, 3, 3, 2, 4, 1])
 })
 
 test("arrayShuffle 2", () => {
   var evaluated = arrayShuffle([1, 1, 2, 2], 2)
-  // [ 2, 5, 1 ] [ 3, 4, 7 ]
   expect(evaluated).toEqual([1, 2, 1, 2])
+})
+
+test("maxNumber 0", () => {
+  var evaluated = maxNumber(9669)
+  expect(evaluated).toEqual(9969)
+})
+
+test("maxNumber 1", () => {
+  var evaluated = maxNumber(9999)
+  expect(evaluated).toEqual(9999)
+})
+
+test("maxNumber 2", () => {
+  var evaluated = maxNumber(6999)
+  expect(evaluated).toEqual(9999)
+})
+
+test("maxNumber 3", () => {
+  var evaluated = maxNumber(6666)
+  expect(evaluated).toEqual(9666)
 })

@@ -472,6 +472,21 @@ export function arrayShuffle(nums, n) {
   return left
 }
 
+export function maxNumber(num) {
+  let splitNum = num.toString().split("")
+  // console.log(splitNum)
+  for (var i = 0; i < splitNum.length; i++) {
+    if (splitNum[i] === "6") {
+      splitNum.splice(i, 1, "9")
+      // console.log(splitNum[i])
+      return parseInt(splitNum.join(""))
+    }
+  }
+  return parseInt(splitNum.join(""))
+}
+
+// splitNum.splice(idx, 1, "9")
+
 // range 0, 3 + should === 6
 // get largest number (largest)
 // add up range 0 - largest (sum)
