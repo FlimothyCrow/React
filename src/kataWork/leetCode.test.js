@@ -40,6 +40,9 @@ import {
   getObject,
   arrayShuffle,
   maxNumber,
+  sumOfUnique,
+  reverseString,
+  averagePay,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -608,4 +611,49 @@ test("maxNumber 2", () => {
 test("maxNumber 3", () => {
   var evaluated = maxNumber(6666)
   expect(evaluated).toEqual(9666)
+})
+
+test("sumOfUnique 0", () => {
+  var evaluated = sumOfUnique([1, 2, 2, 3, 4, 4])
+  expect(evaluated).toEqual(4)
+})
+
+test("sumOfUnique 1", () => {
+  var evaluated = sumOfUnique([1, 1, 1, 1, 1])
+  expect(evaluated).toEqual(0)
+})
+
+test("sumOfUnique 2", () => {
+  var evaluated = sumOfUnique([1, 2, 3, 4, 5])
+  expect(evaluated).toEqual(15)
+})
+
+test("revereString 0", () => {
+  var evaluated = reverseString(["h", "e", "l", "l", "o"])
+  expect(evaluated).toEqual(["o", "l", "l", "e", "h"])
+})
+
+test("averagePay 0", () => {
+  var evaluated = averagePay([4000, 3000, 1000, 2000])
+  expect(evaluated).toEqual(2500.0)
+})
+
+test("averagePay 1", () => {
+  var evaluated = averagePay([1000, 2000, 3000])
+  expect(evaluated).toEqual(2000.0)
+})
+
+test("averagePay 2", () => {
+  var evaluated = averagePay([6000, 5000, 4000, 3000, 2000, 1000])
+  expect(evaluated).toEqual(3500.0)
+})
+
+test("averagePay 3", () => {
+  var evaluated = averagePay([8000, 9000, 2000, 3000, 6000, 1000])
+  expect(evaluated).toEqual(4750.0) // 410000
+})
+
+test("averagePay 4", () => {
+  var evaluated = averagePay([25000, 48000, 57000, 86000, 33000, 10000, 42000, 3000, 54000, 29000, 79000, 40000])
+  expect(evaluated).toEqual(41700.0) // 410000
 })

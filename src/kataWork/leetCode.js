@@ -474,18 +474,41 @@ export function arrayShuffle(nums, n) {
 
 export function maxNumber(num) {
   let splitNum = num.toString().split("")
-  // console.log(splitNum)
   for (var i = 0; i < splitNum.length; i++) {
     if (splitNum[i] === "6") {
       splitNum.splice(i, 1, "9")
-      // console.log(splitNum[i])
       return parseInt(splitNum.join(""))
     }
   }
   return parseInt(splitNum.join(""))
 }
 
-// splitNum.splice(idx, 1, "9")
+export function sumOfUnique(nums) {
+  let numCoda = {}
+  nums.forEach((num) => {
+    numCoda[num] = numCoda[num] ? numCoda[num] + 1 : 1
+  })
+  return Object.keys(numCoda).reduce((accum, key) => {
+    if (numCoda[key] === 1) {
+      return accum + parseInt(key)
+    } else {
+      return accum
+    }
+  }, 0)
+}
+
+export function reverseString(s) {
+  return s.reverse()
+}
+
+export function averagePay(salary) {
+  let sorted = salary.sort((a, b) => {
+    return a - b
+  })
+  sorted.shift()
+  sorted.pop()
+  return sorted.reduce((accum, next) => accum + next) / sorted.length
+}
 
 // range 0, 3 + should === 6
 // get largest number (largest)
