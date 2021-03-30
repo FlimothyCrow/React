@@ -125,7 +125,7 @@ export function trimMean0(arr) {
   for (var i = 0; i < toRemove; i++) {
     let max = Math.max(...newArr)
     let min = Math.min(...newArr)
-    console.log("new length", newArr.length, max, min)
+    // console.log("new length", newArr.length, max, min)
     newArr.splice(newArr.indexOf(max), 1)
     newArr.splice(newArr.indexOf(min), 1)
   }
@@ -497,10 +497,6 @@ export function sumOfUnique(nums) {
   }, 0)
 }
 
-export function reverseString(s) {
-  return s.reverse()
-}
-
 export function averagePay(salary) {
   let sorted = salary.sort((a, b) => {
     return a - b
@@ -508,6 +504,70 @@ export function averagePay(salary) {
   sorted.shift()
   sorted.pop()
   return sorted.reduce((accum, next) => accum + next) / sorted.length
+}
+
+export function reverseString(s) {
+  return s.reverse()
+}
+
+export function intersectionOfArrays(nums1, nums2) {
+  let interSet = new Set()
+  nums1.forEach((num) => {
+    if (nums2.includes(num)) {
+      interSet.add(num)
+    }
+  })
+  return Array.from(interSet)
+}
+
+export function missingNums(nums) {
+  var setOfExisting = new Set(nums)
+  var arrayOfMissing = []
+  var len = nums.length
+  for (let i = 1; i <= len; i++) {
+    if (!setOfExisting.has(i)) arrayOfMissing.push(i)
+  }
+  return arrayOfMissing
+}
+
+export function palindromeNumber(x) {
+  let char = x.toString()
+  let i = 0
+  let j = char.length - 1
+
+  while (i <= j) {
+    if (!(char[i++] === char[j--])) {
+      return false
+    }
+  }
+  return true
+}
+
+export function removeVal(nums, val) {
+  for (var i = nums.length; i--; ) {
+    if (nums[i] === val) {
+      nums.splice(i, 1)
+    }
+  }
+  return nums.length
+}
+
+export function arrayStringsAreEqual(word1, word2) {
+  return word1.join("") === word2.join("") ? true : false
+}
+
+export function consistentStrings(allowed, words) {
+  let counter = 0
+  words.forEach((str) => {
+    let isConsistent = true
+    for (var i = 0; i < str.length; i++) {
+      if (!allowed.includes(str[i])) {
+        isConsistent = false
+      }
+    }
+    return isConsistent ? counter++ : null
+  })
+  return counter
 }
 
 // range 0, 3 + should === 6
@@ -525,3 +585,10 @@ export function averagePay(salary) {
 // arr.sort(...).filter(...).reduce(sum) / arr.length
 // practice immutable code
 //linked in map vs foreach
+
+// nums.forEach((num, idx) => {
+//   if (num === val) {
+//     nums.splice(idx, 1)
+//     console.log(nums)
+//   }
+// })

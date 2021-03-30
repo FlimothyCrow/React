@@ -43,6 +43,13 @@ import {
   sumOfUnique,
   reverseString,
   averagePay,
+  intersectionOfArrays,
+  missingNums,
+  palindromeNumber,
+  removeVal,
+  secondLargest,
+  arrayStringsAreEqual,
+  consistentStrings,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -628,11 +635,6 @@ test("sumOfUnique 2", () => {
   expect(evaluated).toEqual(15)
 })
 
-test("revereString 0", () => {
-  var evaluated = reverseString(["h", "e", "l", "l", "o"])
-  expect(evaluated).toEqual(["o", "l", "l", "e", "h"])
-})
-
 test("averagePay 0", () => {
   var evaluated = averagePay([4000, 3000, 1000, 2000])
   expect(evaluated).toEqual(2500.0)
@@ -656,4 +658,84 @@ test("averagePay 3", () => {
 test("averagePay 4", () => {
   var evaluated = averagePay([25000, 48000, 57000, 86000, 33000, 10000, 42000, 3000, 54000, 29000, 79000, 40000])
   expect(evaluated).toEqual(41700.0) // 410000
+})
+
+test("revereString 0", () => {
+  var evaluated = reverseString(["h", "e", "l", "l", "o"])
+  expect(evaluated).toEqual(["o", "l", "l", "e", "h"])
+})
+
+test("intersectionOfArrays 0", () => {
+  var evaluated = intersectionOfArrays([1, 2, 2, 1], [2, 2])
+  expect(evaluated).toEqual([2])
+})
+
+test("intersectionOfArrays 1", () => {
+  var evaluated = intersectionOfArrays([9, 4, 9, 8, 4], [9, 4, 5])
+  expect(evaluated).toEqual([9, 4])
+})
+
+test("missingNums 0", () => {
+  var evaluated = missingNums([4, 3, 2, 7, 8, 2, 3, 1])
+  expect(evaluated).toEqual([5, 6])
+})
+
+test("missingNums 1", () => {
+  var evaluated = missingNums([1, 1])
+  expect(evaluated).toEqual([2])
+})
+
+test("palindromeNumber 0", () => {
+  var evaluated = palindromeNumber(123)
+  expect(evaluated).toEqual(false)
+})
+
+test("palindromeNumber 1", () => {
+  var evaluated = palindromeNumber(121)
+  expect(evaluated).toEqual(true)
+})
+
+test("removeVal 0", () => {
+  var evaluated = removeVal([0, 1, 2, 2, 3, 0, 4, 2], 2)
+  expect(evaluated).toEqual(5)
+})
+
+test("removeVal 1", () => {
+  var evaluated = removeVal([3, 2, 2, 3], 3)
+  expect(evaluated).toEqual(2)
+})
+
+test("arrayStringsAreEqual 0", () => {
+  var evaluated = arrayStringsAreEqual(["ab", "c"], ["a", "bc"])
+  expect(evaluated).toEqual(true)
+})
+
+test("arrayStringsAreEqual 1", () => {
+  var evaluated = arrayStringsAreEqual(["ab", "c"], ["a", "cb"])
+  expect(evaluated).toEqual(false)
+})
+
+test("arrayStringsAreEqual 1", () => {
+  var evaluated = arrayStringsAreEqual(["abc", "d", "defg"], ["abcddefg"])
+  expect(evaluated).toEqual(true)
+})
+
+test("arrayStringsAreEqual 1", () => {
+  var evaluated = arrayStringsAreEqual(["abc", "d", "defg"], ["abcddefg"])
+  expect(evaluated).toEqual(true)
+})
+
+test("consistentStrings 0", () => {
+  var evaluated = consistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"])
+  expect(evaluated).toEqual(2)
+})
+
+test("consistentStrings 1", () => {
+  var evaluated = consistentStrings("abc", ["a", "b", "c", "ab", "ac", "bc", "abc"])
+  expect(evaluated).toEqual(7)
+})
+
+test("consistentStrings 2", () => {
+  var evaluated = consistentStrings("cad", ["cc", "acd", "b", "ba", "bac", "bad", "ac", "d"])
+  expect(evaluated).toEqual(4)
 })
