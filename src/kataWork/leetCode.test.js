@@ -51,6 +51,7 @@ import {
   arrayStringsAreEqual,
   consistentStrings,
   runningSums,
+  defangIP,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -749,4 +750,14 @@ test("runningSums 1", () => {
 test("runningSums 2", () => {
   var evaluated = runningSums([1, 2, 3, 4])
   expect(evaluated).toEqual([1, 3, 6, 10])
+})
+
+test("defangingIP 0", () => {
+  var evaluated = defangIP("1.1.1.1")
+  expect(evaluated).toEqual("1[.]1[.]1[.]1")
+})
+
+test("defangingIP 0", () => {
+  var evaluated = defangIP("255.100.50.0")
+  expect(evaluated).toEqual("255[.]100[.]50[.]0")
 })

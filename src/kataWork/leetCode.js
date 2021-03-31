@@ -580,6 +580,16 @@ export function runningSums(nums) {
   return arrayToReturn
 }
 
+export function defangIP(address) {
+  let splitAddress = address.split("")
+  splitAddress.forEach((element, idx) => {
+    if (element === ".") {
+      splitAddress.splice(idx, 1, "[.]")
+    }
+  })
+  return splitAddress.join("")
+}
+
 // range 0, 3 + should === 6
 // get largest number (largest)
 // add up range 0 - largest (sum)
