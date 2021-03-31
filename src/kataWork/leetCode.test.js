@@ -52,6 +52,7 @@ import {
   consistentStrings,
   runningSums,
   defangIP,
+  maxWealth,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -760,4 +761,21 @@ test("defangingIP 0", () => {
 test("defangingIP 0", () => {
   var evaluated = defangIP("255.100.50.0")
   expect(evaluated).toEqual("255[.]100[.]50[.]0")
+})
+
+test("maxWealth 0", () => {
+  var evaluated = maxWealth([
+    [1, 2, 3],
+    [3, 2, 1],
+  ])
+  expect(evaluated).toEqual(6)
+})
+
+test("maxWealth 1", () => {
+  var evaluated = maxWealth([
+    [1, 5],
+    [7, 3],
+    [3, 5],
+  ])
+  expect(evaluated).toEqual(10)
 })

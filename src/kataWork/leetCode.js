@@ -590,6 +590,17 @@ export function defangIP(address) {
   return splitAddress.join("")
 }
 
+export function maxWealth(accounts) {
+  let largest = 0
+  accounts.forEach((customer) => {
+    let total = customer.reduce((accum, next) => accum + next)
+    if (total > largest) {
+      largest = total
+    }
+  })
+  return largest
+}
+
 // range 0, 3 + should === 6
 // get largest number (largest)
 // add up range 0 - largest (sum)
