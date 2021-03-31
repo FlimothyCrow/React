@@ -53,6 +53,7 @@ import {
   runningSums,
   defangIP,
   maxWealth,
+  jewelsAndStones,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -778,4 +779,14 @@ test("maxWealth 1", () => {
     [3, 5],
   ])
   expect(evaluated).toEqual(10)
+})
+
+test("jewelsAndStones 0", () => {
+  var evaluated = jewelsAndStones("aA", "aAAbbbb")
+  expect(evaluated).toEqual(3)
+})
+
+test("jewelsAndStones 1", () => {
+  var evaluated = jewelsAndStones("z", "ZZ")
+  expect(evaluated).toEqual(0)
 })

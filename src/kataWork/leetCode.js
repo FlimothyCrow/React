@@ -601,6 +601,16 @@ export function maxWealth(accounts) {
   return largest
 }
 
+export function jewelsAndStones(jewels, stones) {
+  let counter = 0
+  for (var i = 0; i < stones.length; i++){
+    if (jewels.includes(stones[i])){
+      counter++
+    }
+  }
+  return counter
+}
+
 // range 0, 3 + should === 6
 // get largest number (largest)
 // add up range 0 - largest (sum)
