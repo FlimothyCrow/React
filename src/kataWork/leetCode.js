@@ -570,6 +570,16 @@ export function consistentStrings(allowed, words) {
   return counter
 }
 
+export function runningSums(nums) {
+  let arrayToReturn = []
+  nums.reduce((accum, next) => {
+    let sum = accum + next
+    arrayToReturn.push(sum)
+    return sum
+  }, 0)
+  return arrayToReturn
+}
+
 // range 0, 3 + should === 6
 // get largest number (largest)
 // add up range 0 - largest (sum)

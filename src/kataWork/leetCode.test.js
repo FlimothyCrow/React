@@ -50,6 +50,7 @@ import {
   secondLargest,
   arrayStringsAreEqual,
   consistentStrings,
+  runningSums,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -738,4 +739,14 @@ test("consistentStrings 1", () => {
 test("consistentStrings 2", () => {
   var evaluated = consistentStrings("cad", ["cc", "acd", "b", "ba", "bac", "bad", "ac", "d"])
   expect(evaluated).toEqual(4)
+})
+
+test("runningSums 1", () => {
+  var evaluated = runningSums([3, 1, 2, 10, 1])
+  expect(evaluated).toEqual([3, 4, 6, 16, 17])
+})
+
+test("runningSums 2", () => {
+  var evaluated = runningSums([1, 2, 3, 4])
+  expect(evaluated).toEqual([1, 3, 6, 10])
 })
