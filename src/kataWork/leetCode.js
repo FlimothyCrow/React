@@ -603,14 +603,23 @@ export function maxWealth(accounts) {
 
 export function jewelsAndStones(jewels, stones) {
   let counter = 0
-  for (var i = 0; i < stones.length; i++){
-    if (jewels.includes(stones[i])){
+  for (var i = 0; i < stones.length; i++) {
+    if (jewels.includes(stones[i])) {
       counter++
     }
   }
   return counter
 }
 
+export function alternateBits(n) {
+  let binaryN = Number(n).toString(2)
+  for (var i = 0; i < binaryN.length; i++) {
+    if (binaryN[i] === binaryN[i + 1]) {
+      return false
+    }
+  }
+  return true
+}
 // range 0, 3 + should === 6
 // get largest number (largest)
 // add up range 0 - largest (sum)

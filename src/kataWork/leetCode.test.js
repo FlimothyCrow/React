@@ -54,6 +54,7 @@ import {
   defangIP,
   maxWealth,
   jewelsAndStones,
+  alternateBits,
 } from "./leetCode.js"
 
 test("twoSum 9", () => {
@@ -789,4 +790,19 @@ test("jewelsAndStones 0", () => {
 test("jewelsAndStones 1", () => {
   var evaluated = jewelsAndStones("z", "ZZ")
   expect(evaluated).toEqual(0)
+})
+
+test("alternateBits 0", () => {
+  var evaluated = alternateBits(5)
+  expect(evaluated).toEqual(true)
+})
+
+test("alternateBits 1", () => {
+  var evaluated = alternateBits(7)
+  expect(evaluated).toEqual(false)
+})
+
+test("alternateBits 2", () => {
+  var evaluated = alternateBits(11)
+  expect(evaluated).toEqual(false)
 })
