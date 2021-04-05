@@ -1,4 +1,4 @@
-import { majorityElement, maxPower } from "./leetCode.js"
+import { complementNum, majorityElement, maxPower } from "./leetCode.js"
 
 test("majorityElement 0", () => {
   var evaluated = majorityElement([3, 2, 3])
@@ -28,4 +28,14 @@ test("maxPower 2", () => {
 test("maxPower 3", () => {
   var evaluated = maxPower("p")
   expect(evaluated).toEqual(1)
+})
+
+test("complementNum 0", () => {
+  var evaluated = complementNum(5)
+  expect(evaluated).toEqual(2)
+})
+
+test("complementNum 1", () => {
+  var evaluated = complementNum(1)
+  expect(evaluated).toEqual(0)
 })

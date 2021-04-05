@@ -39,3 +39,14 @@ export function maxPower(str) {
   strCoda.forEach((array) => (array[1] > highCount ? (highCount = array[1]) : null))
   return highCount
 }
+
+export function complementNum(num) {
+  let invertedBinary = ""
+  let numBinary = Number(num).toString(2)
+  for (var i = 0; i < numBinary.length; i++) {
+    numBinary[i] === "1" ? (invertedBinary += "0") : (invertedBinary += "1")
+  }
+  return parseInt(invertedBinary, 2)
+}
+
+//
