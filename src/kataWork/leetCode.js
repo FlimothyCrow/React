@@ -1,4 +1,3 @@
-import { concat, indexOf, map, remove, split } from "lodash"
 var ohm = require("ohm-js")
 
 export function majorityElement(nums) {
@@ -13,17 +12,30 @@ export function majorityElement(nums) {
   )
 }
 
-export function stringMatching(words) {
-  let remainingArrayContains = (word) => {
-    let shallowWords = words.slice()
-    shallowWords.splice(shallowWords.indexOf(word), 1) // this splice isn't removing ypmfxj
-    return shallowWords.join("").includes(word)
-  }
-  return words.filter((word) => remainingArrayContains(word))
+export function maxPower0(s) {
+  let highCount = 1
+  s.split("").forEach((element, idx) => {
+    let currentCount = 1
+    for (var i = idx + 1; i < s.length; i++) {
+      if (element === s[i]) {
+        currentCount++
+        if (currentCount > highCount) {
+          highCount = currentCount
+        }
+      } else {
+        break
+      }
+    }
+  })
+  return highCount
 }
 
-export function stringMatching1(words) {
-  let shallowWords = words.slice()
-  shallowWords.splice(17, 1)
-  return shallowWords
+export function maxPower(str) {
+  var s = str.match(/([a-zA-Z])\1*/g) || []
+  let strCoda = s.map(function (itm) {
+    return [itm.charAt(0), itm.length]
+  })
+  let highCount = 1
+  strCoda.forEach((array) => (array[1] > highCount ? (highCount = array[1]) : null))
+  return highCount
 }

@@ -1,14 +1,4 @@
-import { stringMatching, majorityElement } from "./leetCode.js"
-
-test("stringMatching 0", () => {
-  var evaluated = stringMatching(["mass", "as", "hero", "superhero"])
-  expect(evaluated).toEqual(["as", "hero"])
-})
-
-test("stringMatching 1", () => {
-  var evaluated = stringMatching(["blue", "green", "bu"])
-  expect(evaluated).toEqual([])
-})
+import { majorityElement, maxPower } from "./leetCode.js"
 
 test("majorityElement 0", () => {
   var evaluated = majorityElement([3, 2, 3])
@@ -20,27 +10,22 @@ test("majorityElement 1", () => {
   expect(evaluated).toEqual(2)
 })
 
-test.skip("stringMatching 2", () => {
-  var evaluated = stringMatching([
-    "uexk",
-    "aeuexkf",
-    "wgxih",
-    "yuexk",
-    "gxea",
-    "yuexkm",
-    "ypmfx",
-    "jjuexkmb",
-    "wqpri",
-    "aeuexkfpo",
-    "kqtnz",
-    "pkqtnza",
-    "nrbb",
-    "hmypmfx",
-    "krqs",
-    "jjuexkmbyt",
-    "zvru",
-    "ypmfxj",
-  ])
-  expect(evaluated).toEqual(["uexk", "aeuexkf", "yuexk", "ypmfx", "jjuexkmb", "kqtnz"])
+test("maxPower 0", () => {
+  var evaluated = maxPower("leetcode")
+  expect(evaluated).toEqual(2)
 })
-// "ypmfxj" should not appear in the return
+
+test("maxPower 1", () => {
+  var evaluated = maxPower("leeetcoode")
+  expect(evaluated).toEqual(3)
+})
+
+test("maxPower 2", () => {
+  var evaluated = maxPower("abbcccddddeeeeedcba")
+  expect(evaluated).toEqual(5)
+})
+
+test("maxPower 3", () => {
+  var evaluated = maxPower("p")
+  expect(evaluated).toEqual(1)
+})
