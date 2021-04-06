@@ -49,20 +49,6 @@ export function complementNum(num) {
   return parseInt(invertedBinary, 2)
 }
 
-export function totalMoney0(n) {
-  let mondays = 1
-  let arrayOfDays = new Array(n)
-  arrayOfDays[0] = 1
-  for (var i = 1; i <= arrayOfDays.length; i++) {
-    if (i % 7 === 0) {
-      console.log(i + " monday")
-      mondays++
-      arrayOfDays[i] = mondays
-    }
-  }
-  return arrayOfDays
-}
-
 export function totalMoney(n) {
   let daysLeft = n
   let weekCounter = 0
@@ -78,13 +64,43 @@ export function totalMoney(n) {
     daysLeft -= 7
     weekCounter++
     totalSum += calculateWeek(weekCounter)
-    console.log(daysLeft + " days left")
-    console.log("total sum is " + totalSum)
+    // console.log(daysLeft + " days left")
+    // console.log("total sum is " + totalSum)
   }
   for (var i = 1; i <= daysLeft; i++) {
     totalSum += weekCounter + i
   }
   return totalSum
+}
+
+export function luckyNums(matrix) {
+  let arrayToReturn = []
+  let isMinInRow = (array, targetNum) => {
+    if (targetNum === Math.min(...array)) {
+      console.log(targetNum + " is min in row")
+      return true
+    }
+  }
+  let isMaxInColumn = (array, num) => {
+    let booleToReturn = true
+    let idxOfMatrix = matrix.indexOf(array)
+    let matrixToSplice = matrix.slice()
+    matrixToSplice.splice(idxOfMatrix, 1)
+    matrixToSplice.forEach((localArray) => {
+      if (num < localArray[array.indexOf(num)]) {
+        booleToReturn = false
+      }
+    })
+    return booleToReturn
+  }
+  matrix.forEach((array) => {
+    array.forEach((num) => {
+      if (isMinInRow(array, num) && isMaxInColumn(array, num)) {
+        arrayToReturn.push(num)
+      }
+    })
+  })
+  return arrayToReturn
 }
 
 // start by adding up the mondays

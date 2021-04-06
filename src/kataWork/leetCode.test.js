@@ -1,4 +1,4 @@
-import { complementNum, majorityElement, maxPower, totalMoney } from "./leetCode.js"
+import { complementNum, luckyNums, majorityElement, maxPower, totalMoney } from "./leetCode.js"
 
 test("majorityElement 0", () => {
   var evaluated = majorityElement([3, 2, 3])
@@ -47,18 +47,58 @@ test("complementNum 1", () => {
 
 test("totalMoney 0", () => {
   var evaluated = totalMoney(10)
-  console.log(evaluated)
+  // console.log(evaluated)
   expect(evaluated).toEqual(37) // total 28 : days left 3
 })
 
 test("totalMoney 1", () => {
   var evaluated = totalMoney(4)
-  console.log("test " + evaluated)
+  // console.log("test " + evaluated)
   expect(evaluated).toEqual(10)
 })
 
 test("totalMoney 2", () => {
   var evaluated = totalMoney(20)
-  console.log("test " + evaluated)
+  // console.log("test " + evaluated)
   expect(evaluated).toEqual(96)
+})
+
+test("luckyNums 0", () => {
+  var evaluated = luckyNums([
+    [3, 7, 8],
+    [9, 11, 13],
+    [15, 16, 17],
+  ])
+  console.log(evaluated)
+  expect(evaluated).toEqual([15])
+})
+
+test("luckyNums 1", () => {
+  var evaluated = luckyNums([
+    [1, 10, 4, 2],
+    [9, 3, 8, 7],
+    [15, 16, 17, 12],
+  ])
+  console.log(evaluated)
+  expect(evaluated).toEqual([12])
+})
+
+test("luckyNums 2", () => {
+  var evaluated = luckyNums([
+    [0, 0, 0, 0],
+    [9, 3, 8, 7],
+    [15, 16, 17, 12],
+  ])
+  console.log(evaluated)
+  expect(evaluated).toEqual([12])
+})
+
+test("luckyNums 3", () => {
+  var evaluated = luckyNums([
+    [0, 0, 0, 0],
+    [0, 3, 8, 7],
+    [0, 16, 17, 12],
+  ])
+  console.log(evaluated)
+  expect(evaluated).toEqual([12])
 })
