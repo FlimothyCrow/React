@@ -1,4 +1,4 @@
-import { complementNum, luckyNums, majorityElement, maxPower, totalMoney } from "./leetCode.js"
+import { complementNum, hammingDistance, luckyNums, majorityElement, maxPower, totalMoney } from "./leetCode.js"
 
 test("majorityElement 0", () => {
   var evaluated = majorityElement([3, 2, 3])
@@ -69,7 +69,7 @@ test("luckyNums 0", () => {
     [9, 11, 13],
     [15, 16, 17],
   ])
-  console.log(evaluated)
+  // console.log(evaluated)
   expect(evaluated).toEqual([15])
 })
 
@@ -79,7 +79,7 @@ test("luckyNums 1", () => {
     [9, 3, 8, 7],
     [15, 16, 17, 12],
   ])
-  console.log(evaluated)
+  // console.log(evaluated)
   expect(evaluated).toEqual([12])
 })
 
@@ -89,16 +89,22 @@ test("luckyNums 2", () => {
     [9, 3, 8, 7],
     [15, 16, 17, 12],
   ])
-  console.log(evaluated)
+  // console.log(evaluated)
   expect(evaluated).toEqual([12])
 })
 
-test("luckyNums 3", () => {
+test.skip("luckyNums 3", () => {
   var evaluated = luckyNums([
     [0, 0, 0, 0],
     [0, 3, 8, 7],
     [0, 16, 17, 12],
   ])
-  console.log(evaluated)
+  // console.log(evaluated)
   expect(evaluated).toEqual([12])
+})
+
+test("hammingDistance 0", () => {
+  var evaluated = hammingDistance(1, 4)
+  // console.log("test " + evaluated)
+  expect(evaluated).toEqual(2)
 })

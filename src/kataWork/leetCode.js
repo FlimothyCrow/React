@@ -77,7 +77,7 @@ export function luckyNums(matrix) {
   let arrayToReturn = []
   let isMinInRow = (array, targetNum) => {
     if (targetNum === Math.min(...array)) {
-      console.log(targetNum + " is min in row")
+      // console.log(targetNum + " is min in row")
       return true
     }
   }
@@ -103,17 +103,17 @@ export function luckyNums(matrix) {
   return arrayToReturn
 }
 
-// start by adding up the mondays
-// we have 2 mondays and 8 other days
-// loop through mondays and for each of them, add (n * 6) + 21
-// if it's a shorter week???
+export function hammingDistance(x, y) {
+  let counter = 0
+  let xBits = x.toString(2)
+  let yBits = y.toString(2)
 
-// n = 4 (1 + 2 + 3 + 4) = 10
-// n = 7 (1 + 2 +3 + 4 + 5 + 6 +7) 28
-// n = 10 (1 + 2 + 3 + 4 + 5 + 6 + 7) + (2 + 3 + 4) = 37
-// n = 14 (1 + 2 +3 + 4 + 5 + 6 +7) + ( 2 + 3 + 4 + 5 + 6 +7 + 8) = 35
-// n = 21 (1 + 2 +3 + 4 + 5 + 6 +7) + ( 2 + 3 + 4 + 5 + 6 +7 + 8) + (3 + 4 + 5 + 6 + 7 + 8 + 9)
-
-// week 1 : 28 total 28
-// week 2:  35 total 63
-// week 3:  42 total 105
+  if (xBits.length > yBits.length) yBits = yBits.padStart(xBits.length, "0")
+  else xBits = xBits.padStart(yBits.length, "0")
+  for (var i = 0; i < yBits; i++) {
+    if (xBits[i] !== yBits[i]) {
+      counter++
+    }
+  }
+  return counter
+}
