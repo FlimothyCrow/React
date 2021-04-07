@@ -117,3 +117,9 @@ export function hammingDistance(x, y) {
   }
   return counter
 }
+
+export function reverseWords(s) {
+  let reverseString = (str) => str.split("").reduce((reversed, character) => character + reversed, "")
+  let reversedArray = s.split(" ").map((string) => reverseString(string))
+  return reversedArray.join(" ")
+}

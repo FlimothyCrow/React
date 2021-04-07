@@ -1,4 +1,12 @@
-import { complementNum, hammingDistance, luckyNums, majorityElement, maxPower, totalMoney } from "./leetCode.js"
+import {
+  complementNum,
+  hammingDistance,
+  luckyNums,
+  majorityElement,
+  maxPower,
+  reverseWords,
+  totalMoney,
+} from "./leetCode.js"
 
 test("majorityElement 0", () => {
   var evaluated = majorityElement([3, 2, 3])
@@ -107,4 +115,14 @@ test("hammingDistance 0", () => {
   var evaluated = hammingDistance(1, 4)
   // console.log("test " + evaluated)
   expect(evaluated).toEqual(2)
+})
+
+test("reverseWords 0", () => {
+  var evaluated = reverseWords("Let's take LeetCode contest")
+  expect(evaluated).toEqual("s'teL ekat edoCteeL tsetnoc")
+})
+
+test("reverseWords 1", () => {
+  var evaluated = reverseWords("God Ding")
+  expect(evaluated).toEqual("doG gniD")
 })
