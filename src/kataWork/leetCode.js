@@ -123,3 +123,22 @@ export function reverseWords(s) {
   let reversedArray = s.split(" ").map((string) => reverseString(string))
   return reversedArray.join(" ")
 }
+
+export function replaceElements(arr) {
+  let arrayToReturn = new Array(arr.length)
+
+  for (var i = arr.length; i >= 0; i--) {
+    let largestCurrent = Math.max(...arr.slice(i))
+    // console.log("largest Current " + largestCurrent)
+    // console.log("next index " + arr[i - 1])
+    arrayToReturn[i - 1] = largestCurrent
+  }
+  arrayToReturn[arr.length - 1] = -1
+  return arrayToReturn.slice(0, arr.length)
+}
+
+// first loop ticks forward var i = 0
+// second loop backward var k = .length --
+// let largest = 0
+// k > largest? largest = k
+// i = k
