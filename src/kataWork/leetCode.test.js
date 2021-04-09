@@ -130,12 +130,10 @@ test("reverseWords 1", () => {
 
 test("replaceElements 0", () => {
   var evaluated = replaceElements([17, 18, 5, 4, 6, 1])
-  // console.log(evaluated)
   expect(evaluated).toEqual([18, 6, 6, 6, 1, -1])
 })
 
 test("replaceElements 1", () => {
   var evaluated = replaceElements([400])
-  // console.log(evaluated)
   expect(evaluated).toEqual([-1])
 })

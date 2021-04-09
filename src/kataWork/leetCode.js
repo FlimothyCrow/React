@@ -125,20 +125,30 @@ export function reverseWords(s) {
 }
 
 export function replaceElements(arr) {
-  let arrayToReturn = new Array(arr.length)
-
-  for (var i = arr.length; i >= 0; i--) {
-    let largestCurrent = Math.max(...arr.slice(i))
-    // console.log("largest Current " + largestCurrent)
-    // console.log("next index " + arr[i - 1])
-    arrayToReturn[i - 1] = largestCurrent
+  let arrayToReturn = []
+  let largest = 0
+  for (var i = 0; i < arr.length; i++) {
+    for (var k = arr.length; k > i; k--) {
+      if (arr[k] > largest) {
+        largest = arr[k]
+      } else {
+        if (!arr[k]) {
+          largest = -1
+        }
+      }
+    }
+    arrayToReturn.push(largest)
+    largest = 0
   }
-  arrayToReturn[arr.length - 1] = -1
-  return arrayToReturn.slice(0, arr.length)
+  return arrayToReturn
 }
 
+// if (arr[k] > largest) {
+//   largest = arr[k]
+// }
+
 // first loop ticks forward var i = 0
-// second loop backward var k = .length --
+// second loop backward var k = arr.length; k > i; k--
 // let largest = 0
 // k > largest? largest = k
 // i = k
