@@ -143,12 +143,13 @@ export function replaceElements(arr) {
   return arrayToReturn
 }
 
-// if (arr[k] > largest) {
-//   largest = arr[k]
-// }
-
-// first loop ticks forward var i = 0
-// second loop backward var k = arr.length; k > i; k--
-// let largest = 0
-// k > largest? largest = k
-// i = k
+export function sortParity(nums) {
+  let odds = []
+  let evens = []
+  let zipped = []
+  nums.forEach((num) => (num % 2 === 0 ? evens.push(num) : odds.push(num)))
+  evens.forEach((num, idx) => {
+    zipped.push(num, odds[idx])
+  })
+  return zipped
+}

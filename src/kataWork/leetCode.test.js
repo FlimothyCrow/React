@@ -6,6 +6,7 @@ import {
   maxPower,
   replaceElements,
   reverseWords,
+  sortParity,
   totalMoney,
 } from "./leetCode.js"
 
@@ -136,4 +137,14 @@ test("replaceElements 0", () => {
 test("replaceElements 1", () => {
   var evaluated = replaceElements([400])
   expect(evaluated).toEqual([-1])
+})
+
+test("sortParity 0", () => {
+  var evaluated = sortParity([4, 2, 5, 7])
+  expect(evaluated).toEqual([4, 5, 2, 7])
+})
+
+test("sortParity 1", () => {
+  var evaluated = sortParity([2, 3])
+  expect(evaluated).toEqual([2, 3])
 })
