@@ -153,3 +153,41 @@ export function sortParity(nums) {
   })
   return zipped
 }
+
+export function minDelete(strs) {
+  let numOfColumns = strs[0].length
+  let isOrdered = (str) => {
+    return str === str.split("").sort().join("")
+  }
+  let arrayOfColumns = strs.map((str, idx) => {
+    // here's the problem dickhead
+    let strToReturn = ""
+    for (var i = 0; i < numOfColumns; i++) {
+      strToReturn += strs[i][idx]
+    }
+    return strToReturn
+  })
+  console.log(arrayOfColumns)
+  return arrayOfColumns.reduce((accum, nextColumn) => {
+    if (!isOrdered(nextColumn)) {
+      accum += 1
+    }
+    return accum
+  }, 0)
+}
+
+export function heightCheck(heights) {
+  let counter = 0
+  let sortedHeights = [...heights].sort((a, b) => a - b)
+  sortedHeights.forEach((height, idx) => {
+    if (height !== heights[idx]) {
+      counter++
+    }
+  })
+  return counter
+}
+
+// iterate through strs by index
+// push n[i]...n[i] into [newStr0, newStr1... newStrn]
+// check each columnString if it's in order
+// if not, delete it and counter++

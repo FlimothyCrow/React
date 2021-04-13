@@ -1,9 +1,11 @@
 import {
   complementNum,
   hammingDistance,
+  heightCheck,
   luckyNums,
   majorityElement,
   maxPower,
+  minDelete,
   replaceElements,
   reverseWords,
   sortParity,
@@ -147,4 +149,24 @@ test("sortParity 0", () => {
 test("sortParity 1", () => {
   var evaluated = sortParity([2, 3])
   expect(evaluated).toEqual([2, 3])
+})
+
+test.skip("minDelete 0", () => {
+  var evaluated = minDelete(["cba", "daf", "ghi"])
+  expect(evaluated).toEqual(1)
+})
+
+test.skip("minDelete 1", () => {
+  var evaluated = minDelete(["a", "b"])
+  expect(evaluated).toEqual(0)
+})
+
+test("heightCheck 0", () => {
+  var evaluated = heightCheck([1, 1, 4, 2, 1, 3])
+  expect(evaluated).toEqual(3)
+})
+
+test("heightCheck 1", () => {
+  var evaluated = heightCheck([10, 6, 6, 10, 10, 9, 8, 8, 3, 3, 8, 2, 1, 5, 1, 9, 5, 2, 7, 4, 7, 7])
+  expect(evaluated).toEqual(22)
 })
