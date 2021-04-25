@@ -73,51 +73,6 @@ export function totalMoney(n) {
   return totalSum
 }
 
-export function luckyNums(matrix) {
-  let arrayToReturn = []
-  let isMinInRow = (array, targetNum) => {
-    if (targetNum === Math.min(...array)) {
-      // console.log(targetNum + " is min in row")
-      return true
-    }
-  }
-  let isMaxInColumn = (array, num) => {
-    let booleToReturn = true
-    let idxOfMatrix = matrix.indexOf(array)
-    let matrixToSplice = matrix.slice()
-    matrixToSplice.splice(idxOfMatrix, 1)
-    matrixToSplice.forEach((localArray) => {
-      if (num < localArray[array.indexOf(num)]) {
-        booleToReturn = false
-      }
-    })
-    return booleToReturn
-  }
-  matrix.forEach((array) => {
-    array.forEach((num) => {
-      if (isMinInRow(array, num) && isMaxInColumn(array, num)) {
-        arrayToReturn.push(num)
-      }
-    })
-  })
-  return arrayToReturn
-}
-
-export function hammingDistance(x, y) {
-  let counter = 0
-  let xBits = x.toString(2)
-  let yBits = y.toString(2)
-
-  if (xBits.length > yBits.length) yBits = yBits.padStart(xBits.length, "0")
-  else xBits = xBits.padStart(yBits.length, "0")
-  for (var i = 0; i < yBits; i++) {
-    if (xBits[i] !== yBits[i]) {
-      counter++
-    }
-  }
-  return counter
-}
-
 export function reverseWords(s) {
   let reverseString = (str) => str.split("").reduce((reversed, character) => character + reversed, "")
   let reversedArray = s.split(" ").map((string) => reverseString(string))
@@ -187,7 +142,21 @@ export function heightCheck(heights) {
   return counter
 }
 
-// iterate through strs by index
-// push n[i]...n[i] into [newStr0, newStr1... newStrn]
-// check each columnString if it's in order
-// if not, delete it and counter++
+export function arithmeticProg(arr) {
+  let step = arr[1] - arr[0] // step === 1
+  arr
+    .sort((a, b) => a - b)
+    .forEach((num, idx) => {
+      if (arr[idx + 1]) {
+        if (num + step !== arr[idx + 1]) {
+          return false
+        }
+      } else if (num + step !== arr[idx + 1]) {
+        return false
+      }
+    })
+  return true
+}
+
+// num + step !== arr[idx + 1]
+// distance backwards and forwards should be equal

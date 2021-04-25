@@ -1,0 +1,84 @@
+h2 {
+    margin-top: 60px;
+}
+
+body {
+    margin: 60px;
+    position: relative;
+}
+
+.default-box {
+    width: 100px;
+    height: 100px;
+    background-color: whitesmoke;
+    border: 1px solid #333;
+}
+
+.problem-description {
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.problem-container {
+    width: 100%;
+    min-width: 100%;
+    padding-left: 80px;
+}
+
+.p1-box {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+#p2-text-container {
+    width: 80px;
+    border: 1px solid black;
+}
+
+#p4-text-container {
+    width: 200px;
+    margin: 20px 0;
+    background-color: #ffaaaa;
+ }
+
+#p6-text-container {
+    width:400px;
+    min-height: 100px;
+    background-color: whitesmoke;
+    border: 1px solid black;
+}
+
+#p6-controls {
+    margin-bottom: 10px;
+}
+
+#cat-fact-container {
+    width: 500px;
+    margin-left: 80px;
+    min-height: 200px;
+    background-color: whitesmoke;
+    border: 1px solid black;
+}
+
+nav {
+    background-color: whitesmoke;
+}
+
+nav a {
+    padding: 8px 20px;
+}
+
+#outer-box {
+    background-color: #ffaaaa;
+    min-height: 30px;
+}
+
+#outer-box img {
+    margin: 20px;
+}
+
+footer {
+    min-height: 40px;
+    clear:both;
+}

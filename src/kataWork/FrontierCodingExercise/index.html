@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontier Communications: Front-End Coding Challenge</title>
+    <link rel="stylesheet" href="base.css"/>
+    <link rel="stylesheet" href="your-styles.css" />
+</head>
+<body>
+<h1>Some CSS/JavaScript Problems</h1>
+<p class="problem-description">
+    Each of the problems below will require styling something or using JavaScript to make it perform some action. These are not meant to require complex solutions and in most cases there is a fairly simple approach that can be taken. All problems must be solved without changing the provided HTML or the contents of base.css.</p>
+
+<h2>Problem 1</h2>
+<p class="problem-description">Below this line there are two boxes. Using CSS only, style the boxes so that they are next to one another, with 12px of space in between them. Then, center the boxes horizontally on the screen, so that there is the same amount of space to the left of box 1 as there is to the right of box 2.
+<div id="p1-container" class="problem-container">
+    <div id="p1-box-container">
+        <div id="p1-box1" class="default-box p1-box">1</div>
+        <div id="p1-box2" class="default-box p1-box">2</div>
+    </div>
+</div>
+<h2>Problem 2</h2>
+<p class="problem-description">Below you will find a rudimentary navigation bar and a button labeled "dropdown." Using JavaScript and styling only (without changing the HTML), turn the navigation bar into a dropdown menu that appears and disappears below the button when it is clicked.</p>
+<div id="p2-container" class="problem-container">
+    <button id="p2-button">dropdown</button>
+    <nav id="p2-nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Resources</a>
+        <a href="#">Pizza places in Irving</a>
+        <a href="#">Help</a>
+    </nav>
+</div>
+<h2>Problem 3</h2>
+<p class="problem-description">Make the below link look like a button, with the following characteristics: (1) there should be 14px of space around the text to the border of the button, (2) it should have rounded corners, and (3) clicking the button should change its text from "click me!" to "clicked!"</p><p class="problem-description">Additionally, the button's initial color should be #008bff with white text. When the mouse pointer is over the button, the color should be 20% darker. When the button has been clicked, the color should be #eee with black text.</p>
+<div id="p3-container" class="problem-container">
+    <div id="p3-button-wrapper">
+        <a id="p3-button">click me!</a>
+    </div>
+</div>
+
+<h2>Problem 4</h2>
+<p class="problem-description">
+    Below we have some text with long words, with one very long word at the end which sticks out of the container. Style this text so that the final word breaks to another line instead of going outside the container, while ensuring that the rest of the words continue to display correctly (i.e. without being broken).
+</p>
+<div id="p4-container" class="problem-container">
+<div id="p4-text-container">
+    hippopotamus' hippocampuses frequently enlarge subsequent to attending significant ceremonies, especially following instances demonstrating overgenerous distributions of sesquipidelia.
+    <br />
+    Pneumonoultramicroscopicsilicovolcanoconiosis!
+</div>
+</div>
+<h2>Problem 5</h2>
+<p class="problem-description">Thanks to the miracle of modern technology, it is now possible to get cat facts on demand through a public API.</p>
+<p class="problem-description">Using the endpoint at <a href="https://cat-fact.herokuapp.com/facts">https://cat-fact.herokuapp.com/facts</a>, write some JavaScript to retrieve the data from that endpoint and display the facts in the box below.</p>
+<div id="cat-fact-container"></div>
+
+<h2>Problem 6</h2>
+<p class="problem-description">Below is a number input, a button, and a box. Using JavaScript, develop a solution
+    that will translate whatever number is typed into the input into a Roman numeral representation and output this to the
+    box, when the button is clicked. Use the following rules in interpreting the numbers:
+<ul class="problem-description">
+    <li>Only positive numbers less than four thousand are allowed as input.</li>
+    <li>Use subtractive notation (e.g. IV instead of IIII, XC instead of LXXXX).</li>
+    <li>When a number cannot be parsed, either because it contains invalid characters or because it falls
+        outside the allowed range, the text should read "Invalid input."</li>
+</ul>
+<p class="problem-description">
+    Some examples:
+<ul class="problem-description">
+    <li>1 &rarr; I</li>
+    <li>4 &rarr; IV</li>
+    <li>1984 &rarr; MCMLXXXIV</li>
+    <li>4000 &rarr; Invalid input</li>
+    <li>3999 &rarr; MMMCMXCIX</li>
+    <li>0 &rarr; Invalid input</li>
+    <li>I like turtles &rarr; Invalid input</li>
+</ul>
+
+<div id="p6-container" class="problem-container">
+    <div id="p6-controls">
+<input type="number" id="number-input" />
+<button id="translate-number">Translate!</button>
+    </div>
+<div id="p6-text-container"></div>
+</div>
+<footer>
+    &nbsp;
+</footer>
+<script src="your-scripts.js"></script>
+</body>
+</html>

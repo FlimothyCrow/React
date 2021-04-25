@@ -1,5 +1,8 @@
 import {
+  arithmeticProg,
   complementNum,
+  diagonalSum,
+  fibSeq,
   hammingDistance,
   heightCheck,
   luckyNums,
@@ -75,52 +78,6 @@ test("totalMoney 2", () => {
   expect(evaluated).toEqual(96)
 })
 
-test("luckyNums 0", () => {
-  var evaluated = luckyNums([
-    [3, 7, 8],
-    [9, 11, 13],
-    [15, 16, 17],
-  ])
-  // console.log(evaluated)
-  expect(evaluated).toEqual([15])
-})
-
-test("luckyNums 1", () => {
-  var evaluated = luckyNums([
-    [1, 10, 4, 2],
-    [9, 3, 8, 7],
-    [15, 16, 17, 12],
-  ])
-  // console.log(evaluated)
-  expect(evaluated).toEqual([12])
-})
-
-test("luckyNums 2", () => {
-  var evaluated = luckyNums([
-    [0, 0, 0, 0],
-    [9, 3, 8, 7],
-    [15, 16, 17, 12],
-  ])
-  // console.log(evaluated)
-  expect(evaluated).toEqual([12])
-})
-
-test.skip("luckyNums 3", () => {
-  var evaluated = luckyNums([
-    [0, 0, 0, 0],
-    [0, 3, 8, 7],
-    [0, 16, 17, 12],
-  ])
-  // console.log(evaluated)
-  expect(evaluated).toEqual([12])
-})
-
-test("hammingDistance 0", () => {
-  var evaluated = hammingDistance(1, 4)
-  // console.log("test " + evaluated)
-  expect(evaluated).toEqual(2)
-})
-
 test("reverseWords 0", () => {
   var evaluated = reverseWords("Let's take LeetCode contest")
   expect(evaluated).toEqual("s'teL ekat edoCteeL tsetnoc")
@@ -169,4 +126,14 @@ test("heightCheck 0", () => {
 test("heightCheck 1", () => {
   var evaluated = heightCheck([10, 6, 6, 10, 10, 9, 8, 8, 3, 3, 8, 2, 1, 5, 1, 9, 5, 2, 7, 4, 7, 7])
   expect(evaluated).toEqual(22)
+})
+
+test.skip("arithmeticProg 0", () => {
+  var evaluated = arithmeticProg([1, 3, 5, 7])
+  expect(evaluated).toEqual(true)
+})
+
+test.skip("arithmeticProg 1", () => {
+  var evaluated = arithmeticProg([1, 2, 4])
+  expect(evaluated).toEqual(false)
 })
