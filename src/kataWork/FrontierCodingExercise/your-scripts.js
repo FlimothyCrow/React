@@ -1,4 +1,27 @@
-export function intToRoman(int) {
+let problem5 = function () {
+  // problem 5 module
+
+  const button = document.getElementById("translate-number")
+  button.addEventListener("click", (event) => {
+    let int = document.getElementById("number-input").value
+    console.log(intToRoman(int), int)
+    document.getElementById("p6-text-container").innerHTML = intToRoman(int)
+  })
+}
+problem5()
+
+let problem2 = function () {
+  // problem 2 module
+  let isDropdownShowing = false
+  const button = document.getElementById("p2-button")
+  button.addEventListener("click", (event) => {
+    document.getElementById("p2-nav").className = isDropdownShowing ? "" : "open"
+    isDropdownShowing = !isDropdownShowing
+  })
+}
+problem2()
+
+function intToRoman(int) {
   if (!parseInt(int) || int >= 4000) {
     return "invalid input"
   }
@@ -16,3 +39,30 @@ export function intToRoman(int) {
 
   return stringToReturn
 }
+
+// function submitName(event) {
+//   event.preventDefault()
+//   hideAllValidationMessages()
+//   let firstName = document.getElementById("firstName").value
+//   let lastName = document.getElementById("lastName").value
+//   fetch("/", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       action: "step_one",
+//       first_name: firstName,
+//       last_name: lastName,
+//     }),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       if (data.status === "error") {
+//         displayError(data.errors)
+//       } else {
+//         document.getElementById("step_two").removeAttribute("hidden")
+//         document.getElementById("step_one").setAttribute("hidden", true)
+//       }
+//     })
+// }

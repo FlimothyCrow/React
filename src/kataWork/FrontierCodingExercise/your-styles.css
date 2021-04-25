@@ -1,0 +1,25 @@
+.p1-box {
+  font-size: x-large;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin: 0px 6px 0px 6px;
+}
+
+.problem-container {
+  width: 100%;
+  min-width: 100%;
+  padding-left: 80px;
+}
+
+#p1-container {
+  padding-left: 0px;
+}
+
+#p2-nav {
+  display: none;
+}
+
+#p2-nav.open {
+  display: flex;
+  flex-direction: column;
+}
