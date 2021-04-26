@@ -1,4 +1,4 @@
-let problem5 = function () {
+let problem6 = function () {
   // problem 5 module
 
   const button = document.getElementById("translate-number")
@@ -8,7 +8,7 @@ let problem5 = function () {
     document.getElementById("p6-text-container").innerHTML = intToRoman(int)
   })
 }
-problem5()
+problem6()
 
 let problem2 = function () {
   // problem 2 module
@@ -44,36 +44,25 @@ let problem3 = function () {
   // problem 3 module
   const button = document.getElementById("p3-button")
   button.addEventListener("click", (event) => {
-    console.log(document.querySelector("#p3-button"))
     document.getElementById("p3-button").innerHTML = "clicked!"
     document.querySelector("#p3-button").style.color = "black"
   })
 }
 problem3()
 
-// function submitName(event) {
-//   event.preventDefault()
-//   hideAllValidationMessages()
-//   let firstName = document.getElementById("firstName").value
-//   let lastName = document.getElementById("lastName").value
-//   fetch("/", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       action: "step_one",
-//       first_name: firstName,
-//       last_name: lastName,
-//     }),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (data.status === "error") {
-//         displayError(data.errors)
-//       } else {
-//         document.getElementById("step_two").removeAttribute("hidden")
-//         document.getElementById("step_one").setAttribute("hidden", true)
-//       }
-//     })
-// }
+let problem5 = function () {
+  // problem 5 module
+  fetch("https://cat-fact.herokuapp.com/facts")
+    .then((response) => response.json())
+    .then((json) => {
+      let catRow = `<tr><th></th><th></th></tr>`
+      json.forEach((catFactObject) => {
+        catRow += `<tr>
+              <td>${catFactObject.text} </td>
+          </tr>`
+      })
+
+      document.getElementById("cat-fact-container").innerHTML = catRow
+    })
+}
+problem5()
