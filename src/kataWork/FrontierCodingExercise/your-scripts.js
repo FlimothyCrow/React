@@ -44,8 +44,9 @@ let problem3 = function () {
   // problem 3 module
   const button = document.getElementById("p3-button")
   button.addEventListener("click", (event) => {
-    document.getElementById("p3-button").innerHTML = "clicked!"
-    document.querySelector("#p3-button").style.color = "black"
+    let button = document.getElementById("p3-button")
+    button.innerHTML = "clicked!"
+    button.style.color = "black"
   })
 }
 problem3()
