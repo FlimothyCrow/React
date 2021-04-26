@@ -40,6 +40,17 @@ function intToRoman(int) {
   return stringToReturn
 }
 
+let problem3 = function () {
+  // problem 3 module
+  const button = document.getElementById("p3-button")
+  button.addEventListener("click", (event) => {
+    console.log(document.querySelector("#p3-button"))
+    document.getElementById("p3-button").innerHTML = "clicked!"
+    document.querySelector("#p3-button").style.color = "black"
+  })
+}
+problem3()
+
 // function submitName(event) {
 //   event.preventDefault()
 //   hideAllValidationMessages()
