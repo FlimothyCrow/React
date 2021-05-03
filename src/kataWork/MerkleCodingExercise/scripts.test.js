@@ -2,49 +2,49 @@ import { drawField, movementParse, rotationParse } from "./scripts.js"
 
 test("drawField 0", () => {
   var results = drawField({ x: 2, y: 2, facing: "e" })
-  console.log(results)
+  // console.log(results)
   expect(results).toEqual([
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, ">", 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", ">", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
   ])
 })
 
 test("drawField 1", () => {
   var results = drawField({ x: 1, y: 3, facing: "s" })
-  console.log(results)
+  // console.log(results)
   expect(results).toEqual([
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, "v", 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "v", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
   ])
 })
 
 test("drawField 2", () => {
   var results = drawField({ x: 0, y: 0, facing: "w" })
-  console.log(results)
+  // console.log(results)
   expect(results).toEqual([
-    ["<", 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
+    ["<", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
   ])
 })
 
 test("drawField 3", () => {
   var results = drawField({ x: 3, y: 1, facing: "n" })
-  console.log(results)
+  // console.log(results)
   expect(results).toEqual([
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, "^", 0, 0, 0],
-    [0, 0, 0, 0, 0],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "^", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
   ])
 })
 

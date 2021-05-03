@@ -56,8 +56,8 @@ export function movementParse(currentPosition, movement) {
 export function drawField(currentPosition) {
   let objOfDirections = { n: "^", e: ">", s: "v", w: "<" }
   let field = Array(5)
-    .fill(0)
-    .map((x) => Array(5).fill(0))
+    .fill("0")
+    .map((x) => Array(5).fill("0"))
   field[currentPosition.x][currentPosition.y] = objOfDirections[currentPosition.facing]
   // { x: 2, y: 2, facing: "e" }
   return field
