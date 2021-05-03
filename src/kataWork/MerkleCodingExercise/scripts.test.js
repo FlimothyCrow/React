@@ -1,0 +1,92 @@
+import { drawField, movementParse, rotationParse } from "./scripts.js"
+
+test.skip("drawField 0", () => {
+  var results = drawField()
+  console.log(results)
+  expect(results).toEqual([
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+  ])
+})
+
+test("rotationParse 0", () => {
+  var results = rotationParse({ x: 2, y: 2, facing: "n" }, "r")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 2, facing: "e" })
+})
+
+test("rotationParse 1", () => {
+  var results = rotationParse({ x: 2, y: 2, facing: "w" }, "r")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 2, facing: "n" })
+})
+
+test("rotationParse 2", () => {
+  var results = rotationParse({ x: 2, y: 2, facing: "s" }, "l")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 2, facing: "e" })
+})
+
+test("rotationParse 3", () => {
+  var results = rotationParse({ x: 2, y: 2, facing: "n" }, "l")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 2, facing: "w" })
+})
+// ----------------------------------------------------------------
+test("movementParse 0", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "n" }, "f")
+  //   console.log(results)
+  expect(results).toEqual({ x: 1, y: 2, facing: "n" })
+})
+
+test("movementParse 1", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "e" }, "f")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 3, facing: "e" })
+})
+
+test("movementParse 2", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "s" }, "f")
+  //   console.log(results)
+  expect(results).toEqual({ x: 3, y: 2, facing: "s" })
+})
+
+test("movementParse 3", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "w" }, "f")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 1, facing: "w" })
+})
+
+test("movementParse 4", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "n" }, "b")
+  //   console.log(results)
+  expect(results).toEqual({ x: 3, y: 2, facing: "n" })
+})
+
+test("movementParse 5", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "e" }, "b")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 1, facing: "e" })
+})
+
+test("movementParse 6", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "s" }, "b")
+  //   console.log(results)
+  expect(results).toEqual({ x: 1, y: 2, facing: "s" })
+})
+
+test("movementParse 7", () => {
+  var results = movementParse({ x: 2, y: 2, facing: "w" }, "b")
+  //   console.log(results)
+  expect(results).toEqual({ x: 2, y: 3, facing: "w" })
+})
+// let field = [
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 1, 0, 0],
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0],
+//   ]
