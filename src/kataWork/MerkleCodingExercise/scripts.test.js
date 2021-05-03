@@ -38,7 +38,7 @@ test("rotationParse 3", () => {
 // ----------------------------------------------------------------
 test("movementParse 0", () => {
   var results = movementParse({ x: 2, y: 2, facing: "n" }, "f")
-  //   console.log(results)
+  // console.log(results)
   expect(results).toEqual({ x: 1, y: 2, facing: "n" })
 })
 
@@ -82,6 +82,24 @@ test("movementParse 7", () => {
   var results = movementParse({ x: 2, y: 2, facing: "w" }, "b")
   //   console.log(results)
   expect(results).toEqual({ x: 2, y: 3, facing: "w" })
+})
+
+test("movementParse 8", () => {
+  var results = movementParse({ x: 0, y: 0, facing: "w" }, "f")
+  // console.log(results)
+  expect(results).toEqual({ x: 0, y: 0, facing: "w" })
+})
+
+test("movementParse 9", () => {
+  var results = movementParse({ x: 4, y: 0, facing: "w" }, "f")
+  // console.log(results)
+  expect(results).toEqual({ x: 4, y: 0, facing: "w" })
+})
+
+test("movementParse 10", () => {
+  var results = movementParse({ x: 4, y: 4, facing: "s" }, "f")
+  // console.log(results)
+  expect(results).toEqual({ x: 4, y: 4, facing: "s" })
 })
 // let field = [
 //     [0, 0, 0, 0, 0],

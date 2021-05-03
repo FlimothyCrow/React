@@ -1,18 +1,18 @@
-export function rotationParse(currentPosition, movement) {
-  let positionToReturn = currentPosition
+export function rotationParse(position, movement) {
+  let positionToReturn = position
   let compassArray = ["n", "e", "s", "w"]
   if (movement === "r") {
-    if (!compassArray[compassArray.indexOf(currentPosition.facing) + 1]) {
+    if (!compassArray[compassArray.indexOf(position.facing) + 1]) {
       positionToReturn.facing = "n"
     } else {
-      positionToReturn.facing = compassArray[compassArray.indexOf(currentPosition.facing) + 1]
+      positionToReturn.facing = compassArray[compassArray.indexOf(position.facing) + 1]
     }
   } else {
     if (movement === "l") {
-      if (!compassArray[compassArray.indexOf(currentPosition.facing) - 1]) {
+      if (!compassArray[compassArray.indexOf(position.facing) - 1]) {
         positionToReturn.facing = "w"
       } else {
-        positionToReturn.facing = compassArray[compassArray.indexOf(currentPosition.facing) - 1]
+        positionToReturn.facing = compassArray[compassArray.indexOf(position.facing) - 1]
       }
     }
   }
@@ -21,6 +21,7 @@ export function rotationParse(currentPosition, movement) {
 
 export function movementParse(currentPosition, movement) {
   let positionToReturn = currentPosition
+  let current = { x: currentPosition.x, y: currentPosition.y, facing: currentPosition.facing }
   if (movement === "f") {
     if (currentPosition.facing === "n") {
       positionToReturn.x -= 1
@@ -42,13 +43,23 @@ export function movementParse(currentPosition, movement) {
       positionToReturn.y += 1
     }
   }
-  return positionToReturn
+
+  if (positionToReturn.y < 0 || positionToReturn.x < 0) {
+    return current
+  } else if (positionToReturn.y > 4 || positionToReturn.x > 4) {
+    return current
+  } else {
+    return positionToReturn
+  }
 }
 
-export function drawField() {
-  return Array(5)
+export function drawField(currentPosition) {
+  let field = Array(5)
     .fill(0)
     .map((x) => Array(5).fill(0))
+  field[currentPosition.x][currentPosition.y] = 1
+  // { x: 2, y: 2, facing: "e" }
+  return field
 }
 
 // grid n x n
