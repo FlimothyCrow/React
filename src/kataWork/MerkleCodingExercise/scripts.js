@@ -54,29 +54,21 @@ export function movementParse(currentPosition, movement) {
 }
 
 export function drawField(currentPosition) {
+  let objOfDirections = { n: "^", e: ">", s: "v", w: "<" }
   let field = Array(5)
     .fill(0)
     .map((x) => Array(5).fill(0))
-  field[currentPosition.x][currentPosition.y] = 1
+  field[currentPosition.x][currentPosition.y] = objOfDirections[currentPosition.facing]
   // { x: 2, y: 2, facing: "e" }
   return field
 }
 
-// grid n x n
 // cow graphic...?
 // maybe a field graphic?
-// buttons to click for motion and rotation || arrow keys would be better
 // button for "EAT GRASS"
-// cowPosition is shaped {xCoords: n, yCoords: n, facing: n/s/e/w}
 // instructions shape like ['f', 'l', 'f', 'r', 'b', 'f', 'f'];
-//       l = -1 row
-//       r = +1 row
-//       f = -1 column
-//       b = +1 column
+
 // cow can start in the center facing north
-// there needs to be logic to prevent cow from going out of the field
 // how about an extra layer of "fence" and there's a warning when cow is near it?
-// movementParse takes instructions array and returns newPosition object {x: y: facing:}
-// drawField takes currentField and newPosition and redraws the field
 // controller will map through the long instructions array
 // then call movementParse() and drawfield() for each element
