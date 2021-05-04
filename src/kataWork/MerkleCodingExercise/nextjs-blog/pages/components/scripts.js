@@ -69,6 +69,10 @@ export function drawField(currentPosition) {
 // instructions shape like ['f', 'l', 'f', 'r', 'b', 'f', 'f'];
 
 // cow can start in the center facing north
-// how about an extra layer of "fence" and there's a warning when cow is near it?
-// controller will map through the long instructions array
-// then call movementParse() and drawfield() for each element
+
+// react fragment
+// map lives in state data
+// controller maps through [instructions]
+// for each instruction, if direction > movementParse
+// else if rotation > rotationParse
+// mP || rP > drawField(coords) > this.setState.field

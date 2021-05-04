@@ -137,10 +137,15 @@ test("movementParse 10", () => {
   // console.log(results)
   expect(results).toEqual({ x: 4, y: 4, facing: "s" })
 })
-// let field = [
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 1, 0, 0],
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0],
-//   ]
+
+// test("moveController 0", () => {
+//   var results = movementParse(["f", "l", "f", "r", "b"])
+//   // console.log(results)
+//   expect(results).toEqual([
+//     ["0", "0", "0", "0", "0"],
+//     ["0", "0", "0", "0", "0"],
+//     ["0", "^", "0", "0", "0"],
+//     ["0", "0", "0", "0", "0"],
+//     ["0", "0", "0", "0", "0"],
+//   ])
+// })
